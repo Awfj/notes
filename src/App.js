@@ -4,17 +4,13 @@ import "./App.css";
 class App extends React.Component {
   state = {
     notes: ["a", "b"],
-    value: ""
+    value: "",
+    expanded: false
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const value = e.target["new note"].value;
-    if (!value) return;
-
-    const notes = this.state.notes.concat(value);
-    this.setState({ notes });
+  handleChange = e => {
+    const value = e.target.value;
+    this.setState({ value });
   };
 
   removeNote = id => {
@@ -23,8 +19,26 @@ class App extends React.Component {
     this.setState({ notes });
   };
 
+  expandForm = () => {
+    if (this.state.expanded) return;
+    this.setState({ expanded: true });
+  };
+
+  makeNote = e => {
+    if (!this.state.expanded || e.target.form === document.forms.myForm) return;
+
+    const value = document.forms.myForm["new note"].value;
+    if (!value) {
+      this.setState({ expanded: false });
+      return;
+    }
+
+    const notes = this.state.notes.concat(value);
+    this.setState({ notes, expanded: false, value: "" });
+  };
+
   render() {
-    // console.log(this.state.notes);
+    console.log(this.state);
 
     const notes =
       this.state.notes.length > 0 ? (
@@ -41,14 +55,23 @@ class App extends React.Component {
       ) : null;
 
     return (
-      <div className="App">
+      <div className="App" onClick={this.makeNote}>
         <header className="">
           <h1>Notes</h1>
         </header>
         <main>
-          <form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Take a note..." name="new note" />
-            <button>Submit</button>
+          <form name="myForm">
+            {this.state.expanded ? (
+              <input type="text" placeholder="Title" />
+            ) : null}
+            <input
+              type="text"
+              placeholder="Take a note..."
+              name="new note"
+              value={this.state.value}
+              onChange={this.handleChange}
+              onClick={this.expandForm}
+            />
           </form>
           {notes}
         </main>
