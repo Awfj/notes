@@ -6,6 +6,7 @@ class App extends React.Component {
     notes: ["a", "b"],
     title: "",
     value: "",
+    color: "white",
     expanded: false
   };
 
@@ -29,11 +30,11 @@ class App extends React.Component {
     const noteForm = document.forms.noteForm;
     const value = noteForm["new note"].value;
     if (!value) {
-      this.setState({ expanded: false });
+      this.setState({ expanded: false, color: "white" });
       return;
     } else {
       const notes = this.state.notes.concat(value);
-      this.setState({ notes, expanded: false, value: "" });
+      this.setState({ notes, expanded: false, value: "", color: "white" });
     }
   };
 
@@ -48,8 +49,13 @@ class App extends React.Component {
     this.makeNote();
   };
 
+  changeColor = color => {
+    // document.forms.noteForm.style.backgroundColor = color;
+    this.setState({ color });
+  };
+
   render() {
-    // console.log(this.state);
+    console.log(this.state);
 
     const notes =
       this.state.notes.length > 0 ? (
@@ -64,15 +70,21 @@ class App extends React.Component {
           ))}
         </ul>
       ) : null;
+
+    let NoteFormStyles = "NoteForm";
+    if (this.state.expanded) {
+      NoteFormStyles += " newNote";
+    }
+
     return (
       <div className="App" onClick={this.handleClick}>
-        <header className="">
+        <header>
           <h1>Notes</h1>
         </header>
         <main>
           <form
             name="noteForm"
-            className={this.state.expanded ? "newNote" : null}
+            className={NoteFormStyles}
             onSubmit={this.handleSubmit}
           >
             {this.state.expanded ? (
@@ -82,6 +94,7 @@ class App extends React.Component {
               className={this.state.expanded ? null : "newNote"}
               type="text"
               placeholder="Take a note..."
+              autoComplete="off"
               name="new note"
               value={this.state.value}
               onChange={this.handleChange}
@@ -89,7 +102,15 @@ class App extends React.Component {
             />
             {this.state.expanded ? (
               <footer>
-                {/* <button type="button">asf</button> */}
+                <div>
+                  <button
+                    type="button"
+                    onClick={this.changeColor.bind(this, "yellow")}
+                  >
+                    Change Color
+                  </button>
+                  <button type="button">sBtn</button>
+                </div>
                 <button>Close</button>
               </footer>
             ) : null}

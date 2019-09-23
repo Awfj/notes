@@ -32,10 +32,25 @@
   }
 }
 
-form {
-  display: grid;
+.NoteForm {
+  // background-color: yellow;
+  // border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.5em;
+    border: 1px solid #000;
+  }
   input {
     padding: 1em 0;
+  }
+  input,
+  button {
+    background-color: transparent;
+    border: 1px solid #000;
     // border: none;
   }
 }
@@ -43,7 +58,7 @@ form {
 // }
 
 .newNote {
-  width: 500px;
+  width: 100%;
   margin: 0 auto;
   border: none;
   border-radius: 10px;
@@ -54,4 +69,35 @@ input.newNote {
 }
 form.newNote {
   padding: 0 1em;
+}
+
+header {
+  padding: .5em 1em;
+  margin-bottom: 1.5em;
+}
+
+main {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  // list-style: none;
+  // padding: 0;
+  margin: 0;
+  li {
+    // border: 1px solid grey;
+    border-radius: 10px;
+    box-shadow: 0 0 1px gray;
+    padding: 1em;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 5px gray;
+    }
+  }
+  li:not(:last-child) {
+    margin-bottom: 1em;
+  }
 }
