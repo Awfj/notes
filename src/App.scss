@@ -31,3 +31,27 @@
     transform: rotate(360deg);
   }
 }
+
+form {
+  display: grid;
+  input {
+    padding: 1em 0;
+    // border: none;
+  }
+}
+// .NoteForm {
+// }
+
+.newNote {
+  width: 500px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 5px gray;
+}
+input.newNote {
+  padding: 1em;
+}
+form.newNote {
+  padding: 0 1em;
+}

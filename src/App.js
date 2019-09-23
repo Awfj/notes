@@ -1,9 +1,10 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 
 class App extends React.Component {
   state = {
     notes: ["a", "b"],
+    title: "",
     value: "",
     expanded: false
   };
@@ -24,21 +25,31 @@ class App extends React.Component {
     this.setState({ expanded: true });
   };
 
-  makeNote = e => {
-    if (!this.state.expanded || e.target.form === document.forms.myForm) return;
-
-    const value = document.forms.myForm["new note"].value;
+  makeNote = () => {
+    const noteForm = document.forms.noteForm;
+    const value = noteForm["new note"].value;
     if (!value) {
       this.setState({ expanded: false });
       return;
+    } else {
+      const notes = this.state.notes.concat(value);
+      this.setState({ notes, expanded: false, value: "" });
     }
+  };
 
-    const notes = this.state.notes.concat(value);
-    this.setState({ notes, expanded: false, value: "" });
+  handleClick = e => {
+    const noteForm = document.forms.noteForm;
+    if (noteForm.contains(e.target)) return;
+    this.makeNote();
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.makeNote();
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     const notes =
       this.state.notes.length > 0 ? (
@@ -53,18 +64,22 @@ class App extends React.Component {
           ))}
         </ul>
       ) : null;
-
     return (
-      <div className="App" onClick={this.makeNote}>
+      <div className="App" onClick={this.handleClick}>
         <header className="">
           <h1>Notes</h1>
         </header>
         <main>
-          <form name="myForm">
+          <form
+            name="noteForm"
+            className={this.state.expanded ? "newNote" : null}
+            onSubmit={this.handleSubmit}
+          >
             {this.state.expanded ? (
               <input type="text" placeholder="Title" />
             ) : null}
             <input
+              className={this.state.expanded ? null : "newNote"}
               type="text"
               placeholder="Take a note..."
               name="new note"
@@ -72,6 +87,12 @@ class App extends React.Component {
               onChange={this.handleChange}
               onClick={this.expandForm}
             />
+            {this.state.expanded ? (
+              <footer>
+                {/* <button type="button">asf</button> */}
+                <button>Close</button>
+              </footer>
+            ) : null}
           </form>
           {notes}
         </main>
