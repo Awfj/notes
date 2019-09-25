@@ -1,13 +1,29 @@
 import React from "react";
 import "./App.scss";
 
+import Note from "./components/Note/Note";
+
 class App extends React.Component {
   state = {
-    notes: ["a", "b"],
     title: "",
     value: "",
     color: "white",
-    expanded: false
+    expanded: false,
+    selected: false,
+    notes: [
+      {
+        id: 0,
+        title: "Qwe",
+        body: "gds",
+        color: ""
+      },
+      {
+        id: 1,
+        title: "",
+        body: "hrer",
+        color: "yellow"
+      }
+    ]
   };
 
   handleChange = e => {
@@ -28,12 +44,13 @@ class App extends React.Component {
 
   makeNote = () => {
     const noteForm = document.forms.noteForm;
-    const value = noteForm["new note"].value;
-    if (!value) {
+    const title = noteForm["title"].value;
+    const body = noteForm["body"].value;
+    if (!title && !body) {
       this.setState({ expanded: false, color: "white" });
       return;
     } else {
-      const notes = this.state.notes.concat(value);
+      const notes = this.state.notes.concat({ title, body });
       this.setState({ notes, expanded: false, value: "", color: "white" });
     }
   };
@@ -55,20 +72,19 @@ class App extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state.notes);
 
     const notes =
       this.state.notes.length > 0 ? (
-        <ul>
+        <div className="Notes">
           {this.state.notes.map((note, index) => (
-            <li key={index}>
-              {note}
-              <button type="button" onClick={this.removeNote.bind(this, index)}>
-                X
-              </button>
-            </li>
+            <Note
+              key={index}
+              note={note}
+              removeNote={this.removeNote.bind(this, index)}
+            />
           ))}
-        </ul>
+        </div>
       ) : null;
 
     let NoteFormStyles = "NoteForm";
@@ -88,14 +104,14 @@ class App extends React.Component {
             onSubmit={this.handleSubmit}
           >
             {this.state.expanded ? (
-              <input type="text" placeholder="Title" />
+              <input type="text" name="title" placeholder="Title" />
             ) : null}
             <input
               className={this.state.expanded ? null : "newNote"}
               type="text"
               placeholder="Take a note..."
               autoComplete="off"
-              name="new note"
+              name="body"
               value={this.state.value}
               onChange={this.handleChange}
               onClick={this.expandForm}
