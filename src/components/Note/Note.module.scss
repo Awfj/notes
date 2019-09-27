@@ -1,17 +1,8 @@
 .Note {
-  display: grid;
-  justify-content: start;
-  grid-gap: .5em;
   border-radius: 10px;
   box-shadow: 0 0 1px gray;
-  padding: 1em;
   transition: all 0.1s ease-in-out;
   &:hover {
     box-shadow: 0 0 5px gray;
   }
-}
-
-.Overlay {
-  transition: all 0.3s ease-in-out;
-  opacity: 0;
 }

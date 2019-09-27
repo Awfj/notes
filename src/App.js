@@ -2,6 +2,7 @@ import React from "react";
 import "./App.scss";
 
 import Note from "./components/Note/Note";
+import Toolbox from "./components/Toolbox/Toolbox";
 
 class App extends React.Component {
   state = {
@@ -97,6 +98,7 @@ class App extends React.Component {
         <header>
           <h1>Notes</h1>
         </header>
+
         <main>
           <form
             name="noteForm"
@@ -104,32 +106,31 @@ class App extends React.Component {
             onSubmit={this.handleSubmit}
           >
             {this.state.expanded ? (
-              <input type="text" name="title" placeholder="Title" />
-            ) : null}
-            <input
-              className={this.state.expanded ? null : "newNote"}
-              type="text"
-              placeholder="Take a note..."
-              autoComplete="off"
-              name="body"
-              value={this.state.value}
-              onChange={this.handleChange}
-              onClick={this.expandForm}
-            />
-            {this.state.expanded ? (
-              <footer>
-                <div>
-                  <button
-                    type="button"
-                    onClick={this.changeColor.bind(this, "yellow")}
-                  >
-                    Change Color
-                  </button>
-                  <button type="button">sBtn</button>
-                </div>
-                <button>Close</button>
-              </footer>
-            ) : null}
+              <Toolbox>
+                <input type="text" name="title" placeholder="Title" />
+                <input
+                  className={this.state.expanded ? null : "newNote"}
+                  type="text"
+                  placeholder="Take a note..."
+                  autoComplete="off"
+                  name="body"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  onClick={this.expandForm}
+                />
+              </Toolbox>
+            ) : (
+              <input
+                className={this.state.expanded ? null : "newNote"}
+                type="text"
+                placeholder="Take a note..."
+                autoComplete="off"
+                name="body"
+                value={this.state.value}
+                onChange={this.handleChange}
+                onClick={this.expandForm}
+              />
+            )}
           </form>
           {notes}
         </main>

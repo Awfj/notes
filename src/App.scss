@@ -28,34 +28,31 @@
   }
 }
 
+header {
+  padding: 0.5em 1em;
+  margin-bottom: 1.5em;
+}
+
+main {
+  display: grid;
+  grid-gap: 2em;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
 .NoteForm {
   // background-color: yellow;
-  // border: 1px solid #000;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.5em;
-    border: 1px solid #000;
-  }
   input {
+    border: none;
     padding: 1em 0;
-  }
-  input,
-  button {
-    background-color: transparent;
-    border: 1px solid #000;
-    // border: none;
+    width: 100%;
   }
 }
-// .NoteForm {
-// }
 
 .newNote {
   width: 100%;
-  margin: 0 auto;
   border: none;
   border-radius: 10px;
   box-shadow: 0 0 5px gray;
@@ -63,22 +60,6 @@
 input.newNote {
   padding: 1em;
 }
-form.newNote {
-  padding: 0 1em;
-}
-
-header {
-  padding: 0.5em 1em;
-  margin-bottom: 1.5em;
-}
-
-main {
-  max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
 .Notes {
   display: grid;
   grid-gap: 1em;
