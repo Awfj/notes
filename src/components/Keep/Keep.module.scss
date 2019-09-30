@@ -1,0 +1,19 @@
+.Keep {
+  display: grid;
+  grid-gap: 2em;
+  .NoteForm {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+    width: 100%;
+    border: none;
+    input {
+      border: none;
+    }
+  }
+  input.newNote {
+    padding: 1em;
+  }
+}

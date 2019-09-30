@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.scss";
 
-import Note from "./components/Note/Note";
-import Toolbox from "./components/Toolbox/Toolbox";
+import Keep from "./components/Keep/Keep";
 
 class App extends React.Component {
   state = {
@@ -33,6 +32,7 @@ class App extends React.Component {
   };
 
   removeNote = id => {
+    console.log(id);
     const notes = [...this.state.notes];
     notes.splice(id, 1);
     this.setState({ notes });
@@ -75,24 +75,6 @@ class App extends React.Component {
   render() {
     // console.log(this.state.notes);
 
-    const notes =
-      this.state.notes.length > 0 ? (
-        <div className="Notes">
-          {this.state.notes.map((note, index) => (
-            <Note
-              key={index}
-              note={note}
-              removeNote={this.removeNote.bind(this, index)}
-            />
-          ))}
-        </div>
-      ) : null;
-
-    let NoteFormStyles = "NoteForm";
-    if (this.state.expanded) {
-      NoteFormStyles += " newNote";
-    }
-
     return (
       <div className="App" onClick={this.handleClick}>
         <header>
@@ -100,39 +82,15 @@ class App extends React.Component {
         </header>
 
         <main>
-          <form
-            name="noteForm"
-            className={NoteFormStyles}
-            onSubmit={this.handleSubmit}
-          >
-            {this.state.expanded ? (
-              <Toolbox>
-                <input type="text" name="title" placeholder="Title" />
-                <input
-                  className={this.state.expanded ? null : "newNote"}
-                  type="text"
-                  placeholder="Take a note..."
-                  autoComplete="off"
-                  name="body"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  onClick={this.expandForm}
-                />
-              </Toolbox>
-            ) : (
-              <input
-                className={this.state.expanded ? null : "newNote"}
-                type="text"
-                placeholder="Take a note..."
-                autoComplete="off"
-                name="body"
-                value={this.state.value}
-                onChange={this.handleChange}
-                onClick={this.expandForm}
-              />
-            )}
-          </form>
-          {notes}
+          <Keep
+            value={this.state.value}
+            notes={this.state.notes}
+            expanded={this.state.expanded}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            expandForm={this.expandForm}
+            removeNote={this.removeNote}
+          />
         </main>
       </div>
     );
