@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Note.module.scss";
-import Toolbox from "../Toolbox/Toolbox";
+// import Toolbox from "../Toolbox/Toolbox";
 
 const Note = props => {
   const { title, body } = props.note;
@@ -19,14 +19,14 @@ const Note = props => {
 
   return (
     <article
-      className={styles.Note}
+      className={`note ${styles.Note}`}
       // onMouseEnter={handleMouseEnter}
       // onMouseLeave={handleMouseLeave}
     >
-      <Toolbox>
-        {title ? <h2>{title}</h2> : null}
-        {body ? <p>{body}</p> : null}
-      </Toolbox>
+      {/* <Toolbox> */}
+      {title ? <h2>{title}</h2> : null}
+      {body ? <p>{body}</p> : null}
+      {/* </Toolbox> */}
     </article>
   );
 };

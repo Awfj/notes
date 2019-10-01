@@ -1,0 +1,20 @@
+.Header {
+  // border-bottom: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 1px gray;
+  form {
+    border-radius: 10px;
+    padding-right: 2em;
+    border: 1px solid #000;
+    display: flex;
+  }
+  button {
+    padding: 1em;
+  }
+  input {
+    // padding: 1em 0;
+    border: 1px solid #000;
+  }
+}

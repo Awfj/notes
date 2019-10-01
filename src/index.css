@@ -37,3 +37,9 @@ ul {
   padding-left: 0;
   list-style: none;
 }
+
+.note {
+  border-radius: 10px;
+  box-shadow: 0 0 1px gray;
+  padding: 1em;
+}

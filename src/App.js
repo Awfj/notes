@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.scss";
 
+import Header from "./components/Header/Header";
 import Keep from "./components/Keep/Keep";
 
 class App extends React.Component {
@@ -73,13 +74,11 @@ class App extends React.Component {
   };
 
   render() {
-    // console.log(this.state.notes);
+    // console.log(this.state.expanded);
 
     return (
       <div className="App" onClick={this.handleClick}>
-        <header>
-          <h1>Notes</h1>
-        </header>
+        <Header />
 
         <main>
           <Keep
