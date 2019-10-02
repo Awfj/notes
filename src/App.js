@@ -11,6 +11,7 @@ class App extends React.Component {
     color: "white",
     expanded: false,
     selected: false,
+    view: "list",
     notes: [
       {
         id: 0,
@@ -73,17 +74,26 @@ class App extends React.Component {
     this.setState({ color });
   };
 
+  changeView = () => {
+    if (this.state.view === "list") {
+      this.setState({ view: "grid" });
+    } else {
+      this.setState({ view: "list" });
+    }
+  };
+
   render() {
     // console.log(this.state.expanded);
 
     return (
       <div className="App" onClick={this.handleClick}>
-        <Header />
+        <Header view={this.state.view} changeView={this.changeView} />
 
         <main>
           <Keep
             value={this.state.value}
             notes={this.state.notes}
+            view={this.state.view}
             expanded={this.state.expanded}
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}

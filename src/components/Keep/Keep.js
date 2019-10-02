@@ -16,7 +16,11 @@ const Keep = props => {
         expandForm={props.expandForm}
         removeNote={props.removeNote}
       />
-      <Notes notes={props.notes} removeNote={props.removeNote} />
+      <Notes
+        notes={props.notes}
+        removeNote={props.removeNote}
+        view={props.view}
+      />
     </div>
   );
 };
