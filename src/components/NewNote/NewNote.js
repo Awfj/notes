@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./NewNote.module.scss";
-// import Toolbox from "../Toolbox/Toolbox";
+import Toolbox from "../Toolbox/Toolbox";
 
 const NewNote = props => {
   return (
@@ -11,8 +11,8 @@ const NewNote = props => {
       onSubmit={props.handleSubmit}
     >
       {props.expanded ? (
-        // <Toolbox>
-        <div>
+        // <div>
+        <Toolbox>
           <input type="text" name="title" placeholder="Title" />
           <input
             type="text"
@@ -22,8 +22,8 @@ const NewNote = props => {
             value={props.value}
             onChange={props.handleChange}
           />
-          {/* </Toolbox> */}
-        </div>
+        {/* </div> */}
+          </Toolbox>
       ) : (
         <input
           type="text"
