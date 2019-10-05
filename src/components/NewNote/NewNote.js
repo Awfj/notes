@@ -11,8 +11,7 @@ const NewNote = props => {
       onSubmit={props.handleSubmit}
     >
       {props.expanded ? (
-        // <div>
-        <Toolbox>
+        <Toolbox parent="NewNote" makeNote={props.makeNote}>
           <input type="text" name="title" placeholder="Title" />
           <input
             type="text"
@@ -22,8 +21,7 @@ const NewNote = props => {
             value={props.value}
             onChange={props.handleChange}
           />
-        {/* </div> */}
-          </Toolbox>
+        </Toolbox>
       ) : (
         <input
           type="text"

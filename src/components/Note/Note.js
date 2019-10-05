@@ -12,7 +12,7 @@ const Note = props => {
       if (tag.type === "button" || tag.tagName === "FOOTER") {
         if (e.type === "mouseenter") {
           tag.style.opacity = "1";
-        } else if(e.type === "mouseleave") {
+        } else if (e.type === "mouseleave") {
           tag.style.opacity = "0";
         }
       }
@@ -25,7 +25,7 @@ const Note = props => {
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
     >
-      <Toolbox>
+      <Toolbox parent="Note" removeNote={props.removeNote}>
         {title ? <h2>{title}</h2> : null}
         {body ? <p>{body}</p> : null}
       </Toolbox>

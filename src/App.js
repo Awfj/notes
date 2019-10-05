@@ -34,7 +34,6 @@ class App extends React.Component {
   };
 
   removeNote = id => {
-    console.log(id);
     const notes = [...this.state.notes];
     notes.splice(id, 1);
     this.setState({ notes });
@@ -53,7 +52,8 @@ class App extends React.Component {
       this.setState({ expanded: false, color: "white" });
       return;
     } else {
-      const notes = this.state.notes.concat({ title, body });
+      const notes = [...this.state.notes];
+      notes.splice(0, 0, { title, body });
       this.setState({ notes, expanded: false, value: "", color: "white" });
     }
   };
@@ -99,6 +99,7 @@ class App extends React.Component {
             handleSubmit={this.handleSubmit}
             expandForm={this.expandForm}
             removeNote={this.removeNote}
+            makeNote={this.makeNote}
           />
         </main>
       </div>

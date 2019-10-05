@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: 0.5em;
-  // padding: 1em;
+  height: 100%;
   .select {
     position: absolute;
     top: -1.5em;
@@ -18,12 +18,23 @@
     padding: 0;
   }
   footer {
-    transition: all 0.3s ease-in-out;
     display: flex;
     justify-content: space-between;
-    // opacity: 0;
+    align-self: end;
     button {
       border: 1px solid #000;
     }
+  }
+  .select,
+  .pin,
+  footer {
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.hidden {
+  & > button,
+  & > footer {
+    opacity: 0;
   }
 }

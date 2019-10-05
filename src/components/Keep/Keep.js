@@ -15,6 +15,7 @@ const Keep = props => {
         handleSubmit={props.handleSubmit}
         expandForm={props.expandForm}
         removeNote={props.removeNote}
+        makeNote={props.makeNote}
       />
       <Notes
         notes={props.notes}
