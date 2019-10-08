@@ -1,12 +1,12 @@
 import React from "react";
 
-import styles from "./Keep.module.scss";
+import styles from "./Notes.module.scss";
 import NewNote from "../NewNote/NewNote";
 import NoteList from "../NoteList/NoteList";
 
 const Keep = props => {
   return (
-    <div className={styles.Keep}>
+    <div className={styles.Notes}>
       <NewNote
         value={props.value}
         notes={props.notes}

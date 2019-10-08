@@ -9,6 +9,10 @@ const Toolbox = props => {
   const parentNote = parent === "Note";
   const parentNewNote = parent === "NewNote";
 
+  function changeColor() {
+    console.log("!!");
+  }
+
   let classToolbox = styles.Toolbox;
   if (parentNote) {
     classToolbox += ` ${styles.hidden}`;
@@ -26,7 +30,18 @@ const Toolbox = props => {
       </button>
       <footer>
         <div>
-          <button type="button">Change Color</button>
+          <div className={styles.colorSelector}>
+            <button type="button">Change Color</button>
+            <div className={styles.colorList}>
+              <button
+                className={styles.color}
+                type="button"
+                onClick={changeColor}
+              >
+                Red
+              </button>
+            </div>
+          </div>
           <button type="button" onClick={props.removeNote}>
             Delete note
           </button>

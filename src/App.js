@@ -2,7 +2,7 @@ import React from "react";
 import "./App.scss";
 
 import Header from "./components/Header/Header";
-import Keep from "./components/Keep/Keep";
+import Notes from "./components/Notes/Notes";
 
 class App extends React.Component {
   state = {
@@ -90,7 +90,7 @@ class App extends React.Component {
         <Header view={this.state.view} changeView={this.changeView} />
 
         <main>
-          <Keep
+          <Notes
             value={this.state.value}
             notes={this.state.notes}
             view={this.state.view}

@@ -30,6 +30,28 @@
   footer {
     transition: all 0.3s ease-in-out;
   }
+
+  .colorSelector {
+    position: relative;
+    display: inline-block;
+    &:hover {
+      .colorList {
+        display: block;
+        // z-index: 1;
+      }
+    }
+  }
+  .colorList {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    display: none;
+    box-shadow: 0 0 5px gray;
+    padding: 0.5em;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+    border: 1px solid #000;
+  }
 }
 
 .hidden {
