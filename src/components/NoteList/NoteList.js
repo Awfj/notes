@@ -1,10 +1,10 @@
 import React from "react";
 
-import styles from "./Notes.module.scss";
+import styles from "./NoteList.module.scss";
 import Note from "../Note/Note";
 
 const Notes = props => {
-  let classNotes = styles.Notes;
+  let classNotes = styles.NoteList;
 
   switch (props.view) {
     case "grid":

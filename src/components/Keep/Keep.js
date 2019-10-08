@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Keep.module.scss";
 import NewNote from "../NewNote/NewNote";
-import Notes from "../Notes/Notes";
+import NoteList from "../NoteList/NoteList";
 
 const Keep = props => {
   return (
@@ -17,7 +17,7 @@ const Keep = props => {
         removeNote={props.removeNote}
         makeNote={props.makeNote}
       />
-      <Notes
+      <NoteList
         notes={props.notes}
         removeNote={props.removeNote}
         view={props.view}
