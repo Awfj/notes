@@ -5,7 +5,8 @@ import {
   faSearch,
   faCog,
   faTh,
-  faThList
+  faThList,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = props => {
@@ -19,21 +20,28 @@ const Header = props => {
   }
   return (
     <header className={styles.Header}>
-      <h1>Notes</h1>
       <div>
+        <button type="button">
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+        <h1>Notes</h1>
+      </div>
+      <div className={styles.tools}>
         <form>
           <button>
             <FontAwesomeIcon icon={faSearch} />
           </button>
           <input type="search" placeholder="Search" />
         </form>
-        <button type="button" id="grid" onClick={props.changeView}>
-          <FontAwesomeIcon icon={iconView} size="lg" />
-        </button>
-        <button type="button">
-          <FontAwesomeIcon icon={faCog} size="lg" />
-        </button>
-        {/* <button type='button'>Enable Dark Theme</button> */}
+        <div>
+          <button type="button" id="grid" onClick={props.changeView}>
+            <FontAwesomeIcon icon={iconView} />
+          </button>
+          <button type="button">
+            <FontAwesomeIcon icon={faCog} />
+          </button>
+          {/* <button type='button'>Enable Dark Theme</button> */}
+        </div>
       </div>
     </header>
   );
