@@ -32,4 +32,11 @@
   svg {
     font-size: 1.25em;
   }
+  .iconMenu, .iconSearch {
+    &:hover{
+      background-color: rgba(60,64,67,0.08);
+      // border-radius: 50%;
+      border: 1px solid #000;
+    }
+  }
 }

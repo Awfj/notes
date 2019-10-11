@@ -21,14 +21,14 @@ const Header = props => {
   return (
     <header className={styles.Header}>
       <div>
-        <button type="button">
+        <button type="button" className={styles.iconMenu}>
           <FontAwesomeIcon icon={faBars} />
         </button>
         <h1>Notes</h1>
       </div>
       <div className={styles.tools}>
         <form>
-          <button>
+          <button className={styles.iconSearch}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
           <input type="search" placeholder="Search" />

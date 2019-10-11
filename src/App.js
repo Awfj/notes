@@ -3,6 +3,7 @@ import "./App.scss";
 
 import Header from "./components/Header/Header";
 import Notes from "./components/Notes/Notes";
+import Sidenav from "./components/Sidenav/Sidenav";
 
 class App extends React.Component {
   state = {
@@ -90,6 +91,7 @@ class App extends React.Component {
         <Header view={this.state.view} changeView={this.changeView} />
 
         <main>
+          <Sidenav />
           <Notes
             value={this.state.value}
             notes={this.state.notes}

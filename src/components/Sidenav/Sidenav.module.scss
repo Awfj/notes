@@ -1,0 +1,33 @@
+.Sidenav {
+  border: 1px solid #000;
+  min-height: 100vh;
+  flex-grow: 1;
+  // max-width: 350px;
+  // width: 100%;
+  // display: flex;
+  // justify-content: flex-start;
+  li {
+    // display: grid;
+    // display: inline-block;
+    // border: 1px solid blue;
+    
+    a {
+      color: #202124;
+      font-weight: 600;
+      font-size: .875rem;
+      padding: 1em;
+      display: block;
+      border: 1px solid red;
+      border: {
+        top-right-radius: 20px;
+        bottom-right-radius: 20px;
+      }
+      &:hover {
+        background-color: #f1f3f4;
+      }
+      &:active {
+        background-color: #feefc3;
+      }
+    }
+  }
+}
