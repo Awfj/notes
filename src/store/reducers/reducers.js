@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import * as reducers from "./notes";
+import notes from "./notes";
+import visibilityFilter from "./visibilityFilter";
 
 export default combineReducers({
-  reducers
+  notes,
+  visibilityFilter
 });

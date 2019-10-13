@@ -4,6 +4,7 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import Notes from "./components/Notes/Notes";
 import Sidenav from "./components/Sidenav/Sidenav";
+// import VisibleNoteList from "./containers/VisibleNoteList";
 
 class App extends React.Component {
   state = {
@@ -17,14 +18,23 @@ class App extends React.Component {
       {
         id: 0,
         title: "Qwe",
-        body: "gds",
-        color: ""
+        body: "gds active",
+        color: "",
+        status: "active"
       },
       {
         id: 1,
         title: "",
-        body: "hrer",
-        color: "yellow"
+        body: "hrer archived",
+        color: "yellow",
+        status: "archived"
+      },
+      {
+        id: 2,
+        title: "",
+        body: "erw deleted",
+        color: "yellow",
+        status: "deleted"
       }
     ]
   };

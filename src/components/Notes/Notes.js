@@ -2,9 +2,9 @@ import React from "react";
 
 import styles from "./Notes.module.scss";
 import NewNote from "../NewNote/NewNote";
-import NoteList from "../NoteList/NoteList";
+import VisibleNoteList from "../../containers/VisibleNoteList";
 
-const Keep = props => {
+const Notes = props => {
   return (
     <div className={styles.Notes}>
       <NewNote
@@ -17,13 +17,28 @@ const Keep = props => {
         removeNote={props.removeNote}
         makeNote={props.makeNote}
       />
-      <NoteList
+      <VisibleNoteList />
+
+      {/* <NoteList
         notes={props.notes}
         removeNote={props.removeNote}
         view={props.view}
-      />
+      /> */}
     </div>
   );
 };
 
-export default Keep;
+// const mapStateToProps = (state, ownProps) => ({
+
+// })
+
+// const mapDispatchToProps = {
+
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Notes);
+export default Notes;
+// export default connect(
+//   null,
+//   { addNote }
+// )(Notes);

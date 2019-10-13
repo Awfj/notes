@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import styles from "./NoteList.module.scss";
 import Note from "../Note/Note";
 
-const Notes = props => {
+const NoteList = props => {
   let classNotes = styles.NoteList;
 
   switch (props.view) {
@@ -21,7 +21,7 @@ const Notes = props => {
           <Note
             key={index}
             {...note}
-            removeNote={props.removeNote.bind(this, index)}
+            // removeNote={props.removeNote.bind(this, index)}
           ></Note>
         ))
       ) : (
@@ -31,15 +31,15 @@ const Notes = props => {
   );
 };
 
-Notes.propTypes = {
-  notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      color: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired
+NoteList.propTypes = {
+  // notes: PropTypes.arrayOf(
+  //   PropTypes.shape({
+  //     id: PropTypes.number.isRequired,
+  //     title: PropTypes.string.isRequired,
+  //     body: PropTypes.string.isRequired,
+  //     color: PropTypes.string.isRequired
+  //   }).isRequired
+  // ).isRequired
 };
 
-export default Notes;
+export default NoteList;

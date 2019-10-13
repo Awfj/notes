@@ -11,17 +11,19 @@
     // display: inline-block;
     // border: 1px solid blue;
     
-    a {
+    & > * {
       color: #202124;
       font-weight: 600;
       font-size: .875rem;
       padding: 1em;
-      display: block;
       border: 1px solid red;
       border: {
         top-right-radius: 20px;
         bottom-right-radius: 20px;
       }
+      text-align: left;
+      display: block;
+      width: 100%;
       &:hover {
         background-color: #f1f3f4;
       }
