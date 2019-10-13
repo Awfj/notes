@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./Note.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
 
-const Note = props => {
-  const { title, body, removeNote } = props;
-
+const Note = ({ title, body, deleteNote }) => {
   function handleMouseHover(e) {
     const toolbox = e.currentTarget.children[0].children;
     for (var tag of toolbox) {
@@ -26,7 +24,7 @@ const Note = props => {
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
     >
-      <Toolbox parent="Note" removeNote={removeNote}>
+      <Toolbox parent="Note" deleteNote={deleteNote}>
         {title ? <h2>{title}</h2> : null}
         {body ? <p>{body}</p> : null}
       </Toolbox>
@@ -36,7 +34,8 @@ const Note = props => {
 
 Note.propTypes = {
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
+  deleteNote: PropTypes.func.isRequired
 };
 
 export default Note;

@@ -1,5 +1,6 @@
 import {
   ADD_NOTE,
+  ARCHIVE_NOTE,
   DELETE_NOTE
   // SET_VIEW_OPTION,
   // viewOptions,
@@ -39,25 +40,25 @@ const initialState = [
 const notes = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE:
-      return {
+      console.log('asf')
+      return [
         ...state,
-        notes: [
-          ...state.notes,
-          {
-            id: action.id,
-            title: action.title,
-            body: action.body,
-            color: action.color
-          }
-        ]
-      };
+        {
+          id: action.id,
+          title: action.title,
+          body: action.body,
+          color: "white",
+          status: "active"
+        }
+      ];
+    case ARCHIVE_NOTE:
+      return state.map(note =>
+        note.id === action.id ? { ...note, status: "archived" } : note
+      );
     case DELETE_NOTE:
-      const notes = [...state.notes];
-      notes.splice(action.id, 1);
-      return {
-        ...state,
-        notes
-      };
+      return state.map(note =>
+        note.id === action.id ? { ...note, status: "deleted" } : note
+      );
     default:
       return state;
   }

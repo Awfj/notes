@@ -4,10 +4,10 @@ import React from "react";
 import styles from "./NoteList.module.scss";
 import Note from "../Note/Note";
 
-const NoteList = props => {
+const NoteList = ({ notes, deleteNote, view }) => {
   let classNotes = styles.NoteList;
 
-  switch (props.view) {
+  switch (view) {
     case "grid":
       classNotes += ` ${styles.grid}`;
       break;
@@ -16,12 +16,12 @@ const NoteList = props => {
   }
   return (
     <div className={classNotes}>
-      {props.notes.length > 0 ? (
-        props.notes.map((note, index) => (
+      {notes.length > 0 ? (
+        notes.map((note, index) => (
           <Note
             key={index}
             {...note}
-            // removeNote={props.removeNote.bind(this, index)}
+            deleteNote={() => deleteNote(note.id)}
           ></Note>
         ))
       ) : (
@@ -39,7 +39,8 @@ NoteList.propTypes = {
   //     body: PropTypes.string.isRequired,
   //     color: PropTypes.string.isRequired
   //   }).isRequired
-  // ).isRequired
+  // ).isRequired,
+  // deleteNote: PropTypes.func.isRequired
 };
 
 export default NoteList;

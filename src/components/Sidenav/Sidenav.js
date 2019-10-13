@@ -11,7 +11,7 @@ const Sidenav = () => {
           <FilterLink filter={visibilityFilters.SHOW_ACTIVE}>Notes</FilterLink>
         </li>
         {/* <li>
-          <a href="/">Reminders</a>
+          <a href="#as">Reminders</a>
         </li> */}
       </ul>
       <ul>

@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styles from "./Link.module.scss";
 
-const Link = ({ children, onClick }) => {
+const Link = ({ active, children, onClick }) => {
   return (
-    <button type="button" onClick={onClick}>
+    <a href={`#${children}`} className={styles.Link} onClick={onClick}>
       {children}
-    </button>
+    </a>
   );
 };
 
 Link.propTypes = {
+  active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired
 };

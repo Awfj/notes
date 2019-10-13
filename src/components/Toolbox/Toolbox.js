@@ -42,7 +42,7 @@ const Toolbox = props => {
               </button>
             </div>
           </div>
-          <button type="button" onClick={props.removeNote}>
+          <button type="button" onClick={props.deleteNote}>
             Delete note
           </button>
         </div>
