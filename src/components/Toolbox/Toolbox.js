@@ -46,11 +46,7 @@ const Toolbox = props => {
             Delete note
           </button>
         </div>
-        {parentNewNote ? (
-          <button type="button" onClick={props.makeNote}>
-            Close
-          </button>
-        ) : null}
+        {parentNewNote ? <button>Close</button> : null}
       </footer>
     </div>
   );

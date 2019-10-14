@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styles from "./Note.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
 
-const Note = ({ title, body, deleteNote }) => {
+const Note = ({ title, body, color, deleteNote }) => {
   function handleMouseHover(e) {
     const toolbox = e.currentTarget.children[0].children;
     for (var tag of toolbox) {
@@ -21,6 +21,7 @@ const Note = ({ title, body, deleteNote }) => {
   return (
     <article
       className={`note ${styles.Note}`}
+      style={{backgroundColor: color}}
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
     >

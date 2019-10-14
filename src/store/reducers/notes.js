@@ -11,7 +11,7 @@ const initialState = [
     id: 0,
     title: "Qwe!",
     body: "gds active",
-    color: "",
+    color: "orange",
     status: "active"
   },
   {
@@ -25,14 +25,14 @@ const initialState = [
     id: 2,
     title: "",
     body: "erw deleted",
-    color: "yellow",
+    color: "green",
     status: "deleted"
   },
   {
     id: 3,
     title: "",
     body: "Qrsghh& active",
-    color: "blue",
+    color: "pink",
     status: "active"
   }
 ];
@@ -40,7 +40,6 @@ const initialState = [
 const notes = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE:
-      console.log('asf')
       return [
         ...state,
         {

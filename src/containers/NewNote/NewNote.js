@@ -48,7 +48,6 @@ const NewNote = ({ dispatch }) => {
           onClick={props.expandForm}
         />
       )} */}
-      <button>Submit</button>
     </form>
   );
 };

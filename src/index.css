@@ -44,4 +44,6 @@ ul {
   border-radius: 10px;
   box-shadow: 0 0 1px gray;
   padding: 1em;
+  max-width: 500px;
+  width: 100%;
 }
