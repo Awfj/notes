@@ -1,0 +1,25 @@
+.Menu {
+  background-color: white;
+  box-shadow: 0 0 5px gray;
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  li {
+    border: 1px solid #000;
+    button {
+      border: 1px solid red;
+    }
+  }
+  .list {
+    padding: 0.3em 0;
+    li button {
+      text-align: left;
+      width: 100%;
+    }
+  }
+  .grid {
+    padding: 0.3em;
+  }
+}

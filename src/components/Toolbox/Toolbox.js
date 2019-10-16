@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faThumbtack } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Toolbox.module.scss";
+import Menu from "../Menu/Menu";
 
 const Toolbox = props => {
   const { parent } = props;
@@ -36,12 +37,13 @@ const Toolbox = props => {
               <button
                 className={styles.color}
                 type="button"
-                onClick={() => changeColor('red')}
+                onClick={() => changeColor("red")}
               >
                 Red
               </button>
             </div>
           </div>
+          <Menu view="list" options={["Delete", "Add"]}></Menu>
           <button type="button" onClick={props.deleteNote}>
             Delete note
           </button>
