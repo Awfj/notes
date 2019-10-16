@@ -9,8 +9,8 @@ const Toolbox = props => {
   const parentNote = parent === "Note";
   const parentNewNote = parent === "NewNote";
 
-  function changeColor() {
-    console.log("!!");
+  function changeColor(color) {
+    props.noteForm.style.backgroundColor = color;
   }
 
   let classToolbox = styles.Toolbox;
@@ -36,7 +36,7 @@ const Toolbox = props => {
               <button
                 className={styles.color}
                 type="button"
-                onClick={changeColor}
+                onClick={() => changeColor('red')}
               >
                 Red
               </button>

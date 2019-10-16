@@ -1,13 +1,13 @@
 import React from "react";
 
 import styles from "./Notes.module.scss";
-import NewNote from "../../containers/NewNote/NewNote";
-import VisibleNoteList from "../../containers/VisibleNoteList";
+// import NewNote from "../../containers/NewNote/NewNote";
+import NoteList from "../../containers/NoteList";
 
 const Notes = props => {
   return (
     <div className={styles.Notes}>
-      <NewNote
+      {/* <NewNote
         // value={props.value}
         // notes={props.notes}
         // expanded={props.expanded}
@@ -16,8 +16,8 @@ const Notes = props => {
         // expandForm={props.expandForm}
         // removeNote={props.removeNote}
         // makeNote={props.makeNote}
-      />
-      <VisibleNoteList />
+      /> */}
+      <NoteList />
     </div>
   );
 };

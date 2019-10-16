@@ -1,33 +1,39 @@
-import React from "react";
+import React, {createRef} from "react";
 import { connect } from "react-redux";
 import { addNote } from "../../store/actions/actions";
 import styles from "./NewNote.module.scss";
 import Toolbox from "../../components/Toolbox/Toolbox";
 
 const NewNote = ({ dispatch }) => {
-  let title, body;
+  const noteForm = createRef();
+  const title = createRef();
+  const body = createRef();
+
+  // function changeColor(color) {
+  //   noteForm.style.backgroundColor = color;
+  // }
+
   return (
     <form
+      ref={noteForm}
       name="noteForm"
       className={`note ${styles.NewNote}`}
       // onClick={expandForm}
       onSubmit={e => {
         e.preventDefault();
-        if (!title.value.trim() && !body.value.trim()) return;
-        dispatch(addNote(title.value, body.value));
-        title.value = "";
-        body.value = "";
+        if (!title.current.value.trim() && !body.current.value.trim()) return;
+        dispatch(addNote(title.current.value, body.current.value));
+        title.current.value = "";
+        body.current.value = "";
       }}
     >
+      {/* <button type="button" onClick={() => changeColor("red")}>
+        test
+      </button> */}
       <Toolbox parent="NewNote">
+        <input ref={title} type="text" name="title" placeholder="Title" />
         <input
-          ref={node => (title = node)}
-          type="text"
-          name="title"
-          placeholder="Title"
-        />
-        <input
-          ref={node => (body = node)}
+          ref={body}
           type="text"
           placeholder="Take a note..."
           autoComplete="off"

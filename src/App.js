@@ -80,11 +80,6 @@ class App extends React.Component {
     this.makeNote();
   };
 
-  changeColor = color => {
-    // document.forms.noteForm.style.backgroundColor = color;
-    this.setState({ color });
-  };
-
   changeView = () => {
     if (this.state.view === "list") {
       this.setState({ view: "grid" });
@@ -97,7 +92,9 @@ class App extends React.Component {
     // console.log(this.state.expanded);
 
     return (
-      <div className="App" onClick={this.handleClick}>
+      <div className="App" 
+      // onClick={this.handleClick}
+      >
         <Header view={this.state.view} changeView={this.changeView} />
 
         <main>
@@ -107,11 +104,11 @@ class App extends React.Component {
             notes={this.state.notes}
             view={this.state.view}
             expanded={this.state.expanded}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            expandForm={this.expandForm}
-            removeNote={this.removeNote}
-            makeNote={this.makeNote}
+            // handleChange={this.handleChange}
+            // handleSubmit={this.handleSubmit}
+            // expandForm={this.expandForm}
+            // removeNote={this.removeNote}
+            // makeNote={this.makeNote}
           />
         </main>
       </div>

@@ -6,16 +6,16 @@ import Toolbox from "../Toolbox/Toolbox";
 
 const Note = ({ title, body, color, deleteNote }) => {
   function handleMouseHover(e) {
-    const toolbox = e.currentTarget.children[0].children;
-    for (var tag of toolbox) {
-      if (tag.type === "button" || tag.tagName === "FOOTER") {
-        if (e.type === "mouseenter") {
-          tag.style.opacity = "1";
-        } else if (e.type === "mouseleave") {
-          tag.style.opacity = "0";
-        }
-      }
-    }
+    // const toolbox = e.currentTarget.children[0].children;
+    // for (var tag of toolbox) {
+    //   if (tag.type === "button" || tag.tagName === "FOOTER") {
+    //     if (e.type === "mouseenter") {
+    //       tag.style.opacity = "1";
+    //     } else if (e.type === "mouseleave") {
+    //       tag.style.opacity = "0";
+    //     }
+    //   }
+    // }
   }
 
   return (
