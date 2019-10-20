@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./Header.module.scss";
+import ChangeButton from "../../containers/ChangeButton";
+import { notesLayoutOptions } from '../../store/actions/actionTypes';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -10,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = props => {
+  // console.log(props)
   let iconView = "";
   switch (props.view) {
     case "grid":
@@ -21,7 +24,14 @@ const Header = props => {
   return (
     <header className={styles.Header}>
       <div>
-        <button type="button" className={styles.iconMenu}>
+        {/* <ToggleButton>
+          <FontAwesomeIcon icon={faBars} />
+        </ToggleButton> */}
+        <button
+          type="button"
+          className={styles.iconMenu}
+          onClick={props.toggleSidebar}
+        >
           <FontAwesomeIcon icon={faBars} />
         </button>
         <h1>Notes</h1>
@@ -34,9 +44,12 @@ const Header = props => {
           <input type="search" placeholder="Search" />
         </form>
         <div>
-          <button type="button" id="grid" onClick={props.changeView}>
+          {/* <button type="button" id="grid" onClick={props.changeView}>
             <FontAwesomeIcon icon={iconView} />
-          </button>
+          </button> */}
+          <ChangeButton notesLayout={notesLayoutOptions.LIST}>
+            <FontAwesomeIcon icon={iconView} />
+          </ChangeButton>
           <button type="button">
             <FontAwesomeIcon icon={faCog} />
           </button>

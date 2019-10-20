@@ -1,4 +1,4 @@
-import React, {createRef} from "react";
+import React, { createRef } from "react";
 import { connect } from "react-redux";
 import { addNote } from "../../store/actions/actions";
 import styles from "./NewNote.module.scss";
@@ -13,19 +13,21 @@ const NewNote = ({ dispatch }) => {
   //   noteForm.style.backgroundColor = color;
   // }
 
+  const onSubmitHandler = e => {
+    e.preventDefault();
+    if (!title.current.value.trim() && !body.current.value.trim()) return;
+    dispatch(addNote(title.current.value, body.current.value));
+    title.current.value = "";
+    body.current.value = "";
+  };
+
   return (
     <form
       ref={noteForm}
       name="noteForm"
       className={`note ${styles.NewNote}`}
       // onClick={expandForm}
-      onSubmit={e => {
-        e.preventDefault();
-        if (!title.current.value.trim() && !body.current.value.trim()) return;
-        dispatch(addNote(title.current.value, body.current.value));
-        title.current.value = "";
-        body.current.value = "";
-      }}
+      onSubmit={onSubmitHandler}
     >
       {/* <button type="button" onClick={() => changeColor("red")}>
         test

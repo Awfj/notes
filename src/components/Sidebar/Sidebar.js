@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./Sidenav.module.scss";
+import styles from "./Sidebar.module.scss";
 import FilterLink from "../../containers/FilterLink";
 import { visibilityFilters } from "../../store/actions/actionTypes";
 
 const Sidenav = () => {
   return (
-    <aside className={styles.Sidenav}>
+    <aside className={styles.Sidebar}>
       <ul>
         <li>
           <FilterLink filter={visibilityFilters.SHOW_ACTIVE}>Notes</FilterLink>

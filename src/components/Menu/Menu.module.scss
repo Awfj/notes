@@ -1,15 +1,28 @@
 .Menu {
-  background-color: white;
-  box-shadow: 0 0 5px gray;
+  // background-color: white;
+  // box-shadow: 0 0 5px gray;
+  // position: absolute;
   ul {
+    background-color: white;
+    box-shadow: 0 0 5px gray;
+    // position: absolute;
+
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    font-size: 0.875rem;
   }
   li {
-    border: 1px solid #000;
+    // border: 1px solid #000;
     button {
-      border: 1px solid red;
+      // border: 1px solid red;
+      padding: 0.35em 1em;
+      &:hover {
+        background-color: rgba(95, 99, 104, 0.2);
+      }
+      &:active {
+        background-color: rgba(95, 99, 104, 0.35);
+      }
     }
   }
   .list {

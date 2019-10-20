@@ -1,9 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheckCircle, faThumbtack } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  faThumbtack,
+  // faEllipsisV
+} from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./Toolbox.module.scss";
-import Menu from "../Menu/Menu";
+// import Menu from "../Menu/Menu";
 
 const Toolbox = props => {
   const { parent } = props;
@@ -32,7 +36,7 @@ const Toolbox = props => {
       <footer>
         <div>
           <div className={styles.colorSelector}>
-            <button type="button">Change Color</button>
+            <button type="button">Change</button>
             <div className={styles.colorList}>
               <button
                 className={styles.color}
@@ -43,9 +47,9 @@ const Toolbox = props => {
               </button>
             </div>
           </div>
-          <Menu view="list" options={["Delete", "Add"]}></Menu>
-          <button type="button" onClick={props.deleteNote}>
-            Delete note
+          <button type="button">
+            {/* <FontAwesomeIcon icon={faEllipsisV} /> */}
+            {/* <Menu view="list" options={["Delete", "Add"]}></Menu> */}
           </button>
         </div>
         {parentNewNote ? <button>Close</button> : null}

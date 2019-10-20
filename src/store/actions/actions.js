@@ -2,8 +2,11 @@ import {
   ADD_NOTE,
   ARCHIVE_NOTE,
   DELETE_NOTE,
-  SET_VIEW_OPTION,
-  SET_VISIBILITY_FILTER
+  // SET_VIEW_OPTION,
+  SET_VISIBILITY_FILTER,
+  TOGGLE_SIDEBAR,
+  CHANGE_NOTES_LAYOUT,
+  SEARCH_NOTES
 } from "./actionTypes";
 
 let nextNoteId = 0;
@@ -17,8 +20,15 @@ export const addNote = (title, body) => ({
 export const archiveNote = id => ({ type: ARCHIVE_NOTE, id });
 export const deleteNote = id => ({ type: DELETE_NOTE, id });
 
-export const setViewOption = () => ({ type: SET_VIEW_OPTION });
+// export const setViewOption = () => ({ type: SET_VIEW_OPTION });
 export const setVisibilityFilter = filter => ({
   type: SET_VISIBILITY_FILTER,
   filter
 });
+
+export const searchNotes = value => ({
+  type: SEARCH_NOTES,
+  value
+});
+export const toggleSidebar = () => ({ type: TOGGLE_SIDEBAR });
+export const changeNotesLayout = () => ({ type: CHANGE_NOTES_LAYOUT });
