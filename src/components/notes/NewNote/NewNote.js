@@ -1,8 +1,8 @@
 import React, { createRef } from "react";
 import { connect } from "react-redux";
-import { addNote } from "../../store/actions/actions";
+import { addNote } from "../../../store/actions/actions";
 import styles from "./NewNote.module.scss";
-import Toolbox from "../../components/Toolbox/Toolbox";
+import Toolbox from "../../shared/Toolbox/Toolbox";
 
 const NewNote = ({ dispatch }) => {
   const noteForm = createRef();

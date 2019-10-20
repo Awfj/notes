@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import header from "./header";
+import sidebar from "./sidebar";
 import notes from "./notes";
-import visibilityFilter from "./visibilityFilter";
+import notesVisibility from "./notesVisibility";
 
 export default combineReducers({
-  header,
+  sidebar,
   notes,
-  visibilityFilter
+  notesVisibility
 });

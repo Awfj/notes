@@ -28,6 +28,11 @@
   }
 }
 
-main {
-  display: flex;
+.App {
+  main {
+    display: flex;
+  }
+  .notes {
+    flex-grow: 7;
+  }
 }

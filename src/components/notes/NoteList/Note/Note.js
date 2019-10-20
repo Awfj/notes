@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import styles from "./Note.module.scss";
-import Toolbox from "../Toolbox/Toolbox";
+import Toolbox from "../../../shared/Toolbox/Toolbox";
 
 const Note = ({ title, body, color, deleteNote }) => {
   function handleMouseHover(e) {

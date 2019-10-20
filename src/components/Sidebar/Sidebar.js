@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./Sidebar.module.scss";
 import FilterLink from "../../containers/FilterLink";
-import { visibilityFilters } from "../../store/actions/actionTypes";
+import { notesVisibilityFilters } from "../../store/actions/actionTypes";
 
 const Sidenav = () => {
   return (
     <aside className={styles.Sidebar}>
       <ul>
         <li>
-          <FilterLink filter={visibilityFilters.SHOW_ACTIVE}>Notes</FilterLink>
+          <FilterLink filter={notesVisibilityFilters.SHOW_ACTIVE}>Notes</FilterLink>
         </li>
         {/* <li>
           <a href="#as">Reminders</a>
@@ -16,12 +16,12 @@ const Sidenav = () => {
       </ul>
       <ul>
         <li>
-          <FilterLink filter={visibilityFilters.SHOW_ARCHIVED}>
+          <FilterLink filter={notesVisibilityFilters.SHOW_ARCHIVED}>
             Archive
           </FilterLink>
         </li>
         <li>
-          <FilterLink filter={visibilityFilters.SHOW_DELETED}>Bin</FilterLink>
+          <FilterLink filter={notesVisibilityFilters.SHOW_DELETED}>Bin</FilterLink>
         </li>
       </ul>
     </aside>

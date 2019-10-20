@@ -2,7 +2,7 @@ import React from "react";
 // import PropTypes from "prop-types";
 
 import styles from "./NoteList.module.scss";
-import Note from "../Note/Note";
+import Note from "./Note/Note";
 
 const NoteList = ({ notes, deleteNote, view }) => {
   let classNotes = styles.NoteList;

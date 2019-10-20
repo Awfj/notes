@@ -1,15 +1,15 @@
 import { connect } from "react-redux";
-import NoteList from "../components/NoteList/NoteList";
+import NoteList from "../components/notes/NoteList/NoteList";
 import { archiveNote, deleteNote } from "../store/actions/actions";
-import { visibilityFilters } from "../store/actions/actionTypes";
+import { notesVisibilityFilters } from "../store/actions/actionTypes";
 
 const getVisibleNotes = (notes, filter) => {
   switch (filter) {
-    case visibilityFilters.SHOW_ACTIVE:
+    case notesVisibilityFilters.SHOW_ACTIVE:
       return notes.filter(note => note.status === 'active');
-    case visibilityFilters.SHOW_ARCHIVED:
+    case notesVisibilityFilters.SHOW_ARCHIVED:
       return notes.filter(note => note.status === 'archived');
-    case visibilityFilters.SHOW_DELETED:
+    case notesVisibilityFilters.SHOW_DELETED:
       return notes.filter(note => note.status === 'deleted');
     default:
       throw new Error("Unknown filter: " + filter);
@@ -17,7 +17,7 @@ const getVisibleNotes = (notes, filter) => {
 };
 
 const mapStateToProps = state => ({
-  notes: getVisibleNotes(state.notes, state.visibilityFilter)
+  notes: getVisibleNotes(state.notes, state.notesVisibility)
 });
 
 const mapDispatchToProps = dispatch => ({
