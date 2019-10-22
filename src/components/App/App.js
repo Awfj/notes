@@ -7,7 +7,7 @@ import NoteList from "../../containers/NoteList";
 import Sidebar from "../Sidebar/Sidebar";
 
 function App(props) {
-  console.log(props)
+  // console.log(props)
   // handleClick = e => {
   //   const noteForm = document.forms.noteForm;
   //   if (noteForm.contains(e.target)) return;

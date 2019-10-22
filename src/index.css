@@ -30,12 +30,18 @@ h4,
 h5,
 h6,
 p,
+dl,
+dd,
 ul {
   margin: 0;
 }
 
 ul {
   padding-left: 0;
+}
+
+dd {
+  margin: 0;
 }
 
 li {

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import ChangeButton from "../../containers/ChangeButton";
-import { notesLayoutOptions } from '../../store/actions/actionTypes';
+import { notesLayoutOptions } from "../../store/actions/actionTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -12,7 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = props => {
-  // console.log(props)
   let iconView = "";
   switch (props.view) {
     case "grid":
@@ -24,37 +23,34 @@ const Header = props => {
   return (
     <header className={styles.Header}>
       <div>
-        {/* <ToggleButton>
-          <FontAwesomeIcon icon={faBars} />
-        </ToggleButton> */}
         <button
           type="button"
-          className={styles.iconMenu}
+          className={styles.iconSidebar}
           onClick={props.toggleSidebar}
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
         <h1>Notes</h1>
       </div>
-      <div className={styles.tools}>
+      <div>
         <form>
           <button className={styles.iconSearch}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
           <input type="search" placeholder="Search" />
         </form>
-        <div>
-          {/* <button type="button" id="grid" onClick={props.changeView}>
+      </div>
+      <div>
+        {/* <button type="button" id="grid" onClick={props.changeView}>
             <FontAwesomeIcon icon={iconView} />
           </button> */}
-          <ChangeButton notesLayout={notesLayoutOptions.LIST}>
-            <FontAwesomeIcon icon={iconView} />
-          </ChangeButton>
-          <button type="button">
-            <FontAwesomeIcon icon={faCog} />
-          </button>
-          {/* <button type='button'>Enable Dark Theme</button> */}
-        </div>
+        <ChangeButton notesLayout={notesLayoutOptions.LIST}>
+          <FontAwesomeIcon icon={iconView} />
+        </ChangeButton>
+        <button type="button">
+          <FontAwesomeIcon icon={faCog} />
+        </button>
+        {/* <button type='button'>Enable Dark Theme</button> */}
       </div>
     </header>
   );

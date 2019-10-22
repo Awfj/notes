@@ -1,25 +1,30 @@
 .Sidebar {
-  border: 1px solid #000;
   min-height: 100vh;
   flex-grow: 1;
-  // max-width: 350px;
-  // width: 100%;
-  // display: flex;
-  // justify-content: flex-start;
-  li {
-    // display: grid;
-    // display: inline-block;
-    // border: 1px solid blue;
-    
+  display: none;
+  ul,
+  dl {
+    padding: 0.5em 0;
+  }
+  ul:not(:last-child),
+  dl {
+    border-bottom: 1px solid #ddd;
+  }
+  dt {
+    color: #5f6368;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  li,
+  dd {
     & > * {
       color: #202124;
       font-weight: 600;
-      font-size: .875rem;
-      padding: 1em;
-      border: 1px solid red;
+      font-size: 0.875rem;
       border: {
-        top-right-radius: 20px;
-        bottom-right-radius: 20px;
+        top-right-radius: 25px;
+        bottom-right-radius: 25px;
       }
       text-align: left;
       display: block;
@@ -27,9 +32,25 @@
       &:hover {
         background-color: #f1f3f4;
       }
-      &:active {
-        background-color: #feefc3;
-      }
     }
+  }
+  dt,
+  li > *,
+  dd > * {
+    padding: 1em 1em 1em 2em;
+  }
+  svg {
+    font-size: 1.3rem;
+    margin-right: 1em;
+  }
+}
+
+.active {
+  background-color: #feefc3;
+}
+
+@media (min-width: 1024px) {
+  .Sidebar {
+    display: block;
   }
 }

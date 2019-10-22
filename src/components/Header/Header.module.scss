@@ -1,42 +1,63 @@
 .Header {
-  // border-bottom: 1px solid grey;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 7fr 1fr;
+  grid-gap: 1em;
   box-shadow: 0 0 1px gray;
-  margin-bottom: 1.5em;
   padding: 0.5em 1em;
   div {
     display: flex;
     align-items: center;
   }
-  .tools {
+  & > div:last-child {
     justify-content: flex-end;
   }
   h1 {
     font-size: 1.375em;
   }
+  h1,
+  svg {
+    color: #5f6368;
+  }
   form {
+    display: flex;
+    align-items: center;
+    background-color: #f1f3f4;
     border-radius: 10px;
     padding-right: 2em;
-    border: 1px solid #000;
-    display: flex;
     width: 100%;
     max-width: 720px;
+    &:focus-within {
+      background-color: white;
+      box-shadow: 0 1px 3px gray;
+    }
+    input {
+      border: none;
+      background-color: transparent;
+      padding: 0.9em 0;
+      width: 100%;
+    }
   }
   button {
-    padding: 1em;
+    font-size: 1.25rem;
+    padding: 0.7em 0.75em;
   }
-  input {
-    border: none;
-  }
+
   svg {
-    font-size: 1.25em;
+    display: block;
   }
-  .iconMenu, .iconSearch {
-    &:hover{
+  .iconSidebar {
+    margin-right: 0.5em;
+  }
+  .iconSidebar,
+  .iconSearch {
+    border-radius: 50%;
+    &:hover {
       background-color: rgba(60,64,67,0.08);
-      // border-radius: 50%;
-      border: 1px solid #000;
     }
+  }
+  .iconSearch {
+    margin-left: .5em;
+    margin-right: .35em;
+    padding: 0.5em;
   }
 }
