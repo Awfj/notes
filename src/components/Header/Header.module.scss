@@ -4,19 +4,26 @@
   grid-gap: 1em;
   box-shadow: 0 0 1px gray;
   padding: 0.5em 1em;
-  div {
+  & > div {
     display: flex;
     align-items: center;
   }
   & > div:last-child {
     justify-content: flex-end;
+    button:hover svg {
+      opacity: 1;
+    }
   }
   h1 {
     font-size: 1.375em;
   }
+  svg {
+    display: block;
+  }
   h1,
   svg {
-    color: #5f6368;
+    color: black;
+    opacity: 0.6;
   }
   form {
     display: flex;
@@ -41,10 +48,6 @@
     font-size: 1.25rem;
     padding: 0.7em 0.75em;
   }
-
-  svg {
-    display: block;
-  }
   .iconSidebar {
     margin-right: 0.5em;
   }
@@ -52,12 +55,16 @@
   .iconSearch {
     border-radius: 50%;
     &:hover {
-      background-color: rgba(60,64,67,0.08);
+      background-color: rgba(60, 64, 67, 0.08);
     }
   }
   .iconSearch {
-    margin-left: .5em;
-    margin-right: .35em;
+    margin-left: 0.5em;
+    margin-right: 0.35em;
     padding: 0.5em;
+  }
+  .menuContainer {
+    position: relative;
+    border: 1px solid #000;
   }
 }

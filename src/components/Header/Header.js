@@ -1,7 +1,4 @@
 import React from "react";
-import styles from "./Header.module.scss";
-import ChangeButton from "../../containers/ChangeButton";
-import { notesLayoutOptions } from "../../store/actions/actionTypes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -10,6 +7,10 @@ import {
   faThList,
   faBars
 } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Header.module.scss";
+import ChangeButton from "../../containers/ChangeButton";
+import Menu from "../../components/shared/Menu/Menu";
+import { notesLayoutOptions } from "../../store/actions/actionTypes";
 
 const Header = props => {
   let iconView = "";
@@ -47,9 +48,17 @@ const Header = props => {
         <ChangeButton notesLayout={notesLayoutOptions.LIST}>
           <FontAwesomeIcon icon={iconView} />
         </ChangeButton>
-        <button type="button">
-          <FontAwesomeIcon icon={faCog} />
-        </button>
+        <div className={styles.menuContainer}>
+          <button type="button">
+            <FontAwesomeIcon icon={faCog} />
+          </button>
+          <Menu>
+            <ul className={styles.menu}>
+              <li><button type="button">Settings</button></li>
+              <li><button type="button">Enable Dark Theme</button></li>
+            </ul>
+          </Menu>
+        </div>
         {/* <button type='button'>Enable Dark Theme</button> */}
       </div>
     </header>
