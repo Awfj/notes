@@ -3,8 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
   faThumbtack,
-  // faEllipsisV
+  faFillDrip,
+  faEllipsisV,
+  faUndoAlt,
+  faRedoAlt
 } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "./Toolbox.module.scss";
 // import Menu from "../Menu/Menu";
@@ -14,9 +18,9 @@ const Toolbox = props => {
   const parentNote = parent === "Note";
   const parentNewNote = parent === "NewNote";
 
-  function changeColor(color) {
-    props.noteForm.style.backgroundColor = color;
-  }
+  // function changeColor(color) {
+  //   props.noteForm.style.backgroundColor = color;
+  // }
 
   let classToolbox = styles.Toolbox;
   if (parentNote) {
@@ -35,21 +39,27 @@ const Toolbox = props => {
       </button>
       <footer>
         <div>
-          <div className={styles.colorSelector}>
-            <button type="button">Change</button>
-            <div className={styles.colorList}>
-              <button
-                className={styles.color}
-                type="button"
-                onClick={() => changeColor("red")}
-              >
-                Red
-              </button>
-            </div>
+          <button type="button">
+            <FontAwesomeIcon icon={faBell} />
+          </button>
+          <div className={styles.menuContainer}>
+            <button type="button">
+              <FontAwesomeIcon icon={faFillDrip} />
+            </button>
+            {/* <Menu layout="grid" options={["white", "red"]} custom></Menu> */}
           </div>
           <button type="button">
-            {/* <FontAwesomeIcon icon={faEllipsisV} /> */}
+            <FontAwesomeIcon icon={faEllipsisV} />
             {/* <Menu view="list" options={["Delete", "Add"]}></Menu> */}
+          </button>
+          <button type="button">
+            <FontAwesomeIcon icon={faFolderOpen} />
+          </button>
+          <button type="button">
+            <FontAwesomeIcon icon={faUndoAlt} />
+          </button>
+          <button type="button">
+            <FontAwesomeIcon icon={faRedoAlt} />
           </button>
         </div>
         {parentNewNote ? <button>Close</button> : null}

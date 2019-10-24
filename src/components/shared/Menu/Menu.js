@@ -3,28 +3,28 @@ import PropTypes from "prop-types";
 import styles from "./Menu.module.scss";
 // import Option from "./Option/Option";
 
-const Menu = ({ children }) => {
+const Menu = ({ layout, options, children, custom }) => {
+  console.log(custom)
   return (
-    <div className={styles.Menu}>
-      {children}
-      {/* <ul className={styles[view]}>
+    <div className={styles.Menu} hidden>
+      <ul className={styles[layout]}>
         {options.map((option, index) => (
           <li key={index}>
-            <button type="button" onClick={onClick}>
-              {option}
-            </button>
+            <button type="button">{option}</button>
           </li>
         ))}
-      </ul> */}
+        {children}
+      </ul>
     </div>
   );
 };
 
 Menu.propTypes = {
-  // view: PropTypes.string.isRequired,
-  // options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  layout: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   // onClick: PropTypes.func
-  children: PropTypes.node.isRequired
+  children: PropTypes.node,
+
 };
 
 export default Menu;

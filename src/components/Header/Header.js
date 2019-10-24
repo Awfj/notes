@@ -52,12 +52,10 @@ const Header = props => {
           <button type="button">
             <FontAwesomeIcon icon={faCog} />
           </button>
-          <Menu>
-            <ul className={styles.menu}>
-              <li><button type="button">Settings</button></li>
-              <li><button type="button">Enable Dark Theme</button></li>
-            </ul>
-          </Menu>
+          <Menu
+            layout="list"
+            options={["Settings", "Enable dark theme"]}
+          ></Menu>
         </div>
         {/* <button type='button'>Enable Dark Theme</button> */}
       </div>

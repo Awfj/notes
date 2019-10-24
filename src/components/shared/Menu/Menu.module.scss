@@ -1,33 +1,18 @@
 .Menu {
-  // background-color: white;
-  // box-shadow: 0 0 5px gray;
   position: absolute;
   top: 100%;
   right: 0;
-  padding: 0.3em 0;
-  box-shadow: 0px 1px 2px 1px gray;
   background-color: white;
+  box-shadow: 0px 1px 2px 1px gray;
   border-radius: 5px;
-  // display: grid;
-  // width: 200px;
-  // display: none;
-  ul {
-    // position: absolute;
-    // display: grid;
-
-    // display: flex;
-    // flex-direction: column;
-    // flex-wrap: wrap;
-    // font-size: 0.875rem;
-  }
+  z-index: 1;
   li {
     button {
-      padding: 0.35em 1em;
+      padding: 0.5em 1em;
       font-size: 0.875rem;
-      text-align: left;
+      // text-align: left;
       white-space: nowrap;
-      // border: 1px solid #000;
-      width: 100%;
+      // width: 100%;
       &:hover {
         background-color: rgba(95, 99, 104, 0.2);
       }
