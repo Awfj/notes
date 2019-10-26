@@ -34,5 +34,14 @@
   }
   .notes {
     flex-grow: 9;
+    padding: 0 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .App {
+    .notes {
+      padding: 0;
+    }
   }
 }

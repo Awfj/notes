@@ -11,7 +11,7 @@ import {
 import { faBell, faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "./Toolbox.module.scss";
-// import Menu from "../Menu/Menu";
+import Menu from "../Menu/Menu";
 
 const Toolbox = props => {
   const { parent } = props;
@@ -30,37 +30,42 @@ const Toolbox = props => {
     <div className={classToolbox}>
       {parentNote ? (
         <button type="button" className={styles.select}>
-          <FontAwesomeIcon icon={faCheckCircle} size="lg" />
+          <FontAwesomeIcon icon={faCheckCircle} />
         </button>
       ) : null}
       <div>{props.children}</div>
       <button type="button" className={styles.pin}>
-        <FontAwesomeIcon icon={faThumbtack} size="lg" />
+        <FontAwesomeIcon icon={faThumbtack} />
       </button>
       <footer>
-        <div>
+        <div className={styles.tools}>
           <button type="button">
-            <FontAwesomeIcon icon={faBell} />
+            <FontAwesomeIcon icon={faBell} fixedWidth />
           </button>
-          <div className={styles.menuContainer}>
-            <button type="button">
-              <FontAwesomeIcon icon={faFillDrip} />
-            </button>
-            {/* <Menu layout="grid" options={["white", "red"]} custom></Menu> */}
-          </div>
+          <Menu
+            buttonValue={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
+            layout="grid"
+            options={["white", "red"]}
+          />
           <button type="button">
-            <FontAwesomeIcon icon={faEllipsisV} />
-            {/* <Menu view="list" options={["Delete", "Add"]}></Menu> */}
+            <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
           </button>
-          <button type="button">
-            <FontAwesomeIcon icon={faFolderOpen} />
-          </button>
-          <button type="button">
-            <FontAwesomeIcon icon={faUndoAlt} />
-          </button>
-          <button type="button">
-            <FontAwesomeIcon icon={faRedoAlt} />
-          </button>
+          <Menu
+            buttonValue={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
+            layout="list"
+            options={["Delete note", "Add label", "Make a copy"]}
+          />
+
+          {parentNewNote ? (
+            <>
+              <button type="button">
+                <FontAwesomeIcon icon={faUndoAlt} fixedWidth />
+              </button>
+              <button type="button">
+                <FontAwesomeIcon icon={faRedoAlt} fixedWidth />
+              </button>
+            </>
+          ) : null}
         </div>
         {parentNewNote ? <button>Close</button> : null}
       </footer>

@@ -1,6 +1,6 @@
-.Header {
+.header {
   display: grid;
-  grid-template-columns: 1fr 7fr 1fr;
+  grid-template-columns: auto auto;
   grid-gap: 1em;
   box-shadow: 0 0 1px gray;
   padding: 0.5em 1em;
@@ -25,7 +25,7 @@
     color: black;
     opacity: 0.6;
   }
-  form {
+  .search {
     display: flex;
     align-items: center;
     background-color: #f1f3f4;
@@ -67,3 +67,12 @@
     position: relative;
   }
 }
+
+@media (min-width: 768px) {
+  .header {
+    grid-template-columns: 1fr 7fr 1fr;
+    // .search {
+    //   display: flex;
+    // }
+  }
+} 

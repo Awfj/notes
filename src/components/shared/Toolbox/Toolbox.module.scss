@@ -2,8 +2,11 @@
   position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-gap: 0.5em;
+  gap: 0.5em;
   height: 100%;
+  button {
+    font-size: 0.875rem;
+  }
   .select {
     position: absolute;
     top: -1.5em;
@@ -13,25 +16,32 @@
   .pin {
     justify-self: end;
     align-self: start;
-    // grid-row: 1/ 2;
     grid-row: initial;
     padding: 0;
+  }
+  .select svg,
+  .pin svg {
+    font-size: 1.2rem;
   }
   footer {
     display: flex;
     justify-content: space-between;
-    // align-self: end;
-    div {
+    .tools {
       display: flex;
+      grid-gap: 0.8em;
+      div > button,
+      > button {
+        padding: 0.5em;
+      }
+    }
+    > button {
+      font-weight: 600;
     }
   }
   .select,
   .pin,
   footer {
     transition: all 0.3s ease-in-out;
-  }
-  .menuContainer {
-    position: relative;
   }
 }
 
