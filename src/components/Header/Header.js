@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -9,20 +10,9 @@ import {
   faSync
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Header.module.scss";
-import ChangeButton from "../../containers/ChangeButton";
 import Menu from "../../components/shared/Menu/Menu";
-import { notesLayoutOptions } from "../../store/actions/actionTypes";
 
 const Header = props => {
-  console.log(window.innerWidth < 768);
-  let iconView = "";
-  switch (props.view) {
-    case "grid":
-      iconView = faThList;
-      break;
-    default:
-      iconView = faTh;
-  }
   return (
     <header className={styles.header}>
       <div>
@@ -53,12 +43,12 @@ const Header = props => {
         <button type="button">
           <FontAwesomeIcon icon={faSync} />
         </button>
-        {/* <button id="grid" onClick={props.changeView}>
-          </button> */}
         {window.innerWidth >= 600 ? (
-          <ChangeButton notesLayout={notesLayoutOptions.LIST}>
-            <FontAwesomeIcon icon={iconView} />
-          </ChangeButton>
+          <button type="button" onClick={props.toggleNotesLayout}>
+            <FontAwesomeIcon
+              icon={props.notesLayout === "grid" ? faThList : faTh}
+            />
+          </button>
         ) : null}
 
         <Menu
@@ -69,6 +59,13 @@ const Header = props => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
+  notesLayout: PropTypes.string.isRequired,
+  toggleNotesLayout: PropTypes.func.isRequired,
+  toggleDarkTheme: PropTypes.func.isRequired
 };
 
 export default Header;

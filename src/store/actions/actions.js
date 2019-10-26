@@ -3,8 +3,6 @@ import {
   ARCHIVE_NOTE,
   DELETE_NOTE,
   CHANGE_NOTES_VISIBILITY,
-  TOGGLE_SIDEBAR,
-  CHANGE_NOTES_LAYOUT,
   SEARCH_NOTES
 } from "./actionTypes";
 
@@ -19,7 +17,6 @@ export const addNote = (title, body) => ({
 export const archiveNote = id => ({ type: ARCHIVE_NOTE, id });
 export const deleteNote = id => ({ type: DELETE_NOTE, id });
 
-export const changeNotesLayout = () => ({ type: CHANGE_NOTES_LAYOUT });
 export const changeNotesVisibility = filter => ({
   type: CHANGE_NOTES_VISIBILITY,
   filter
@@ -29,4 +26,3 @@ export const searchNotes = value => ({
   type: SEARCH_NOTES,
   value
 });
-export const toggleSidebar = () => ({ type: TOGGLE_SIDEBAR });

@@ -1,7 +1,7 @@
 .Sidebar {
   min-height: 100vh;
-  flex-grow: 1;
-  display: none;
+  max-width: 280px;
+  width: 100%;
   ul,
   dl {
     padding: 0.5em 0;
@@ -47,10 +47,4 @@
 
 .active {
   background-color: #feefc3;
-}
-
-@media (min-width: 1024px) {
-  .Sidebar {
-    display: block;
-  }
 }

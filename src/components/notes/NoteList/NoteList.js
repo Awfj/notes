@@ -1,13 +1,13 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import styles from "./NoteList.module.scss";
 import Note from "./Note/Note";
 
-const NoteList = ({ notes, deleteNote, view }) => {
+const NoteList = ({ notes, deleteNote, notesLayout }) => {
   let classNotes = styles.NoteList;
 
-  switch (view) {
+  switch (notesLayout) {
     case "grid":
       classNotes += ` ${styles.grid}`;
       break;
@@ -41,6 +41,7 @@ NoteList.propTypes = {
   //   }).isRequired
   // ).isRequired,
   // deleteNote: PropTypes.func.isRequired
+  notesLayout: PropTypes.string.isRequired
 };
 
 export default NoteList;
