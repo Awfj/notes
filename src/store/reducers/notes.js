@@ -1,9 +1,8 @@
 import {
   ADD_NOTE,
   ARCHIVE_NOTE,
-  DELETE_NOTE
-  // SET_VIEW_OPTION,
-  // viewOptions,
+  DELETE_NOTE,
+  SEARCH_NOTES
 } from "../actions/actionTypes";
 
 const initialState = [
@@ -46,7 +45,7 @@ const notes = (state = initialState, action) => {
           id: action.id,
           title: action.title,
           body: action.body,
-          color: "white",
+          color: action.color,
           status: "active"
         }
       ];
@@ -58,19 +57,16 @@ const notes = (state = initialState, action) => {
       return state.map(note =>
         note.id === action.id ? { ...note, status: "deleted" } : note
       );
+    case SEARCH_NOTES:
+      return [
+        ...state.filter(note => {
+          console.log(note)
+          return [];
+        })
+      ]
     default:
       return state;
   }
 };
 
 export default notes;
-
-// const { LIST } = viewOptions;
-// export function viewOption(state = LIST, action) {
-//   switch (action.type) {
-//     case SET_VIEW_OPTION:
-//       return action.type;
-//     default:
-//       return state;
-//   }
-// }

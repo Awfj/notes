@@ -10,12 +10,14 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [notesLayout, setNotesLayout] = useState("list");
   const [isDarkThemeActive, setIsDarkThemeActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // handleClick = e => {
   //   const noteForm = document.forms.noteForm;
   //   if (noteForm.contains(e.target)) return;
   //   this.makeNote();
   // };
+
   return (
     <div
       className={styles.App}
@@ -23,18 +25,20 @@ function App() {
       // onClick={this.handleClick}
     >
       <Header
-        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         notesLayout={notesLayout}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
         toggleNotesLayout={() =>
           setNotesLayout(notesLayout === "list" ? "grid" : "list")
         }
-        toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
+        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
       />
       <main>
         {window.innerWidth >= 1024 && isSidebarOpen ? <Sidebar /> : null}
         <div className={styles.notes}>
           <NewNote />
-          <NoteList notesLayout={notesLayout} />
+          <NoteList notesLayout={notesLayout} searchQuery={searchQuery} />
         </div>
       </main>
     </div>

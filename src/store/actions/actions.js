@@ -7,11 +7,12 @@ import {
 } from "./actionTypes";
 
 let nextNoteId = 0;
-export const addNote = (title, body) => ({
+export const addNote = (title, body, color) => ({
   type: ADD_NOTE,
   id: nextNoteId++,
   title,
-  body
+  body,
+  color
 });
 
 export const archiveNote = id => ({ type: ARCHIVE_NOTE, id });
@@ -22,7 +23,7 @@ export const changeNotesVisibility = filter => ({
   filter
 });
 
-export const searchNotes = value => ({
+export const searchNotes = query => ({
   type: SEARCH_NOTES,
-  value
+  query
 });

@@ -6,13 +6,12 @@ import Note from "./Note/Note";
 
 const NoteList = ({ notes, deleteNote, notesLayout }) => {
   let classNotes = styles.NoteList;
-
   switch (notesLayout) {
-    case "grid":
-      classNotes += ` ${styles.grid}`;
+    case "list":
+      classNotes += ` ${styles.list}`;
       break;
     default:
-      classNotes += ` ${styles.list}`;
+      classNotes += ` ${styles.grid}`;
   }
   return (
     <div className={classNotes}>

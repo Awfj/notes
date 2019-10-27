@@ -23,9 +23,9 @@ const Toolbox = props => {
   // }
 
   let classToolbox = styles.Toolbox;
-  if (parentNote) {
-    classToolbox += ` ${styles.hidden}`;
-  }
+  // if (parentNote) {
+  //   classToolbox += ` ${styles.hidden}`;
+  // }
   return (
     <div className={classToolbox}>
       {parentNote ? (

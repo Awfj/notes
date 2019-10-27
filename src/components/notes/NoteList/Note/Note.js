@@ -19,7 +19,7 @@ const Note = ({ title, body, color, deleteNote }) => {
   }
 
   return (
-    <article
+    <div
       className={`note ${styles.Note}`}
       style={{backgroundColor: color}}
       onMouseEnter={handleMouseHover}
@@ -29,7 +29,7 @@ const Note = ({ title, body, color, deleteNote }) => {
         {title ? <h2>{title}</h2> : null}
         {body ? <p>{body}</p> : null}
       </Toolbox>
-    </article>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,6 +13,9 @@ import styles from "./Header.module.scss";
 import Menu from "../../components/shared/Menu/Menu";
 
 const Header = props => {
+  // console.log(props);
+  const search = createRef();
+
   return (
     <header className={styles.header}>
       <div>
@@ -30,7 +33,15 @@ const Header = props => {
           <button className={styles.iconSearch}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
-          <input type="search" placeholder="Search" />
+          <input
+            type="search"
+            ref={search}
+            placeholder="Search"
+            value={props.searchQuery}
+            onChange={() =>
+              props.setSearchQuery(search.current.value.trim().toLowerCase())
+            }
+          />
         </form>
       ) : null}
 
@@ -62,10 +73,12 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired,
   notesLayout: PropTypes.string.isRequired,
+  searchQuery: PropTypes.string.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+  toggleDarkTheme: PropTypes.func.isRequired,
   toggleNotesLayout: PropTypes.func.isRequired,
-  toggleDarkTheme: PropTypes.func.isRequired
+  toggleSidebar: PropTypes.func.isRequired
 };
 
 export default Header;

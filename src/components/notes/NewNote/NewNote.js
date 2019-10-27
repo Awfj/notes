@@ -16,7 +16,7 @@ const NewNote = ({ dispatch }) => {
   const onSubmitHandler = e => {
     e.preventDefault();
     if (!title.current.value.trim() && !body.current.value.trim()) return;
-    dispatch(addNote(title.current.value, body.current.value));
+    dispatch(addNote(title.current.value, body.current.value, 'white'));
     title.current.value = "";
     body.current.value = "";
   };
