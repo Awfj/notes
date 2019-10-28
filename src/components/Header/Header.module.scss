@@ -25,25 +25,6 @@
     color: black;
     opacity: 0.6;
   }
-  .search {
-    display: flex;
-    align-items: center;
-    background-color: #f1f3f4;
-    border-radius: 10px;
-    padding-right: 2em;
-    width: 100%;
-    max-width: 720px;
-    &:focus-within {
-      background-color: white;
-      box-shadow: 0 1px 3px gray;
-    }
-    input {
-      border: none;
-      background-color: transparent;
-      padding: 0.9em 0;
-      width: 100%;
-    }
-  }
   button {
     font-size: 1.25rem;
     padding: 0.7em 0.75em;
@@ -51,17 +32,11 @@
   .iconSidebar {
     margin-right: 0.5em;
   }
-  .iconSidebar,
-  .iconSearch {
+  .iconSidebar {
     border-radius: 50%;
     &:hover {
       background-color: rgba(60, 64, 67, 0.08);
     }
-  }
-  .iconSearch {
-    margin-left: 0.5em;
-    margin-right: 0.35em;
-    padding: 0.5em;
   }
   .menuContainer {
     position: relative;
@@ -71,8 +46,5 @@
 @media (min-width: 768px) {
   .header {
     grid-template-columns: 1fr 7fr 1fr;
-    // .search {
-    //   display: flex;
-    // }
   }
-} 
+}

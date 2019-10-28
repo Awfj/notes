@@ -5,16 +5,12 @@ import styles from "./NoteList.module.scss";
 import Note from "./Note/Note";
 
 const NoteList = ({ notes, deleteNote, notesLayout }) => {
-  let classNotes = styles.NoteList;
-  switch (notesLayout) {
-    case "list":
-      classNotes += ` ${styles.list}`;
-      break;
-    default:
-      classNotes += ` ${styles.grid}`;
+  let classNoteList = styles.NoteList;
+  if (notesLayout === "list") {
+    classNoteList += ` ${styles.list}`;
   }
   return (
-    <div className={classNotes}>
+    <div className={classNoteList}>
       {notes.length > 0 ? (
         notes.map((note, index) => (
           <Note
@@ -39,7 +35,7 @@ NoteList.propTypes = {
   //     color: PropTypes.string.isRequired
   //   }).isRequired
   // ).isRequired,
-  // deleteNote: PropTypes.func.isRequired
+  deleteNote: PropTypes.func.isRequired,
   notesLayout: PropTypes.string.isRequired
 };
 

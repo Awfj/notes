@@ -1,0 +1,28 @@
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f4;
+  border-radius: 10px;
+  padding-right: 2em;
+  width: 100%;
+  max-width: 720px;
+  &:focus-within {
+    background-color: white;
+    box-shadow: 0 1px 3px gray;
+  }
+  input {
+    border: none;
+    background-color: transparent;
+    padding: 0.9em 0;
+    width: 100%;
+  }
+  button {
+    margin-left: 0.5em;
+    margin-right: 0.35em;
+    padding: 0.5em;
+    border-radius: 50%;
+    &:hover {
+      background-color: rgba(60, 64, 67, 0.08);
+    }
+  }
+}

@@ -10,7 +10,7 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [notesLayout, setNotesLayout] = useState("list");
   const [isDarkThemeActive, setIsDarkThemeActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   // handleClick = e => {
   //   const noteForm = document.forms.noteForm;
@@ -35,7 +35,7 @@ function App() {
         toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
       />
       <main>
-        {window.innerWidth >= 1024 && isSidebarOpen ? <Sidebar /> : null}
+        {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
         <div className={styles.notes}>
           <NewNote />
           <NoteList notesLayout={notesLayout} searchQuery={searchQuery} />

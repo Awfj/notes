@@ -1,9 +1,4 @@
-import {
-  ADD_NOTE,
-  ARCHIVE_NOTE,
-  DELETE_NOTE,
-  SEARCH_NOTES
-} from "../actions/actionTypes";
+import { ADD_NOTE, ARCHIVE_NOTE, DELETE_NOTE } from "../actions/actionTypes";
 
 const initialState = [
   {
@@ -57,13 +52,6 @@ const notes = (state = initialState, action) => {
       return state.map(note =>
         note.id === action.id ? { ...note, status: "deleted" } : note
       );
-    case SEARCH_NOTES:
-      return [
-        ...state.filter(note => {
-          console.log(note)
-          return [];
-        })
-      ]
     default:
       return state;
   }

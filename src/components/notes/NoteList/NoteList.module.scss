@@ -1,13 +1,9 @@
 .NoteList {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   grid-gap: 1em;
   margin: 0 auto;
-  
-}
-
-.grid {
-  flex-direction: row;
 }
 
 .list {

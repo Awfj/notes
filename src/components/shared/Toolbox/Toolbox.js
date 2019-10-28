@@ -17,6 +17,7 @@ const Toolbox = props => {
   const { parent } = props;
   const parentNote = parent === "Note";
   const parentNewNote = parent === "NewNote";
+  // console.log(props)
 
   // function changeColor(color) {
   //   props.noteForm.style.backgroundColor = color;
@@ -28,11 +29,11 @@ const Toolbox = props => {
   // }
   return (
     <div className={classToolbox}>
-      {parentNote ? (
+      {parentNote && (
         <button type="button" className={styles.select}>
           <FontAwesomeIcon icon={faCheckCircle} />
         </button>
-      ) : null}
+      )}
       <div>{props.children}</div>
       <button type="button" className={styles.pin}>
         <FontAwesomeIcon icon={faThumbtack} />
@@ -43,20 +44,30 @@ const Toolbox = props => {
             <FontAwesomeIcon icon={faBell} fixedWidth />
           </button>
           <Menu
-            buttonValue={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
+            mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
             layout="grid"
-            options={["white", "red"]}
+            options={[["white"], ["red"]]}
           />
           <button type="button">
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
           </button>
           <Menu
-            buttonValue={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
+            mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
             layout="list"
-            options={["Delete note", "Add label", "Make a copy"]}
-          />
+            options={[
+              ["Delete note", props.deleteNote],
+              ["Add label"],
+              ["Make a copy"]
+            ]}
+          >
+            {/* <ul>
+              <li><button type='button' onClick={props.deleteNote}>Delete note</button></li>
+              <li><button type='button'>Add label</button></li>
+              <li><button type='button'>Make a copy</button></li>
+            </ul> */}
+          </Menu>
 
-          {parentNewNote ? (
+          {parentNewNote && (
             <>
               <button type="button">
                 <FontAwesomeIcon icon={faUndoAlt} fixedWidth />
@@ -65,9 +76,9 @@ const Toolbox = props => {
                 <FontAwesomeIcon icon={faRedoAlt} fixedWidth />
               </button>
             </>
-          ) : null}
+          )}
         </div>
-        {parentNewNote ? <button>Close</button> : null}
+        {parentNewNote && <button>Close</button>}
       </footer>
     </div>
   );

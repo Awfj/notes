@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,10 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Header.module.scss";
 import Menu from "../../components/shared/Menu/Menu";
+import Search from '../../components/Search/Search'
 
 const Header = props => {
   // console.log(props);
-  const search = createRef();
 
   return (
     <header className={styles.header}>
@@ -28,44 +28,31 @@ const Header = props => {
         </button>
         <h1>Notes</h1>
       </div>
-      {window.innerWidth >= 768 ? (
-        <form className={styles.search}>
-          <button className={styles.iconSearch}>
-            <FontAwesomeIcon icon={faSearch} />
-          </button>
-          <input
-            type="search"
-            ref={search}
-            placeholder="Search"
-            value={props.searchQuery}
-            onChange={() =>
-              props.setSearchQuery(search.current.value.trim().toLowerCase())
-            }
-          />
-        </form>
-      ) : null}
+      {window.innerWidth >= 768 && (
+        <Search searchQuery={props.searchQuery} setSearchQuery={props.setSearchQuery} />
+      )}
 
       <div>
-        {window.innerWidth < 768 ? (
+        {window.innerWidth < 768 && (
           <button type="button">
             <FontAwesomeIcon icon={faSearch} />
           </button>
-        ) : null}
+        )}
         <button type="button">
           <FontAwesomeIcon icon={faSync} />
         </button>
-        {window.innerWidth >= 600 ? (
+        {window.innerWidth >= 600 && (
           <button type="button" onClick={props.toggleNotesLayout}>
             <FontAwesomeIcon
               icon={props.notesLayout === "grid" ? faThList : faTh}
             />
           </button>
-        ) : null}
+        )}
 
         <Menu
-          buttonValue={<FontAwesomeIcon icon={faCog} />}
+          mainButton={<FontAwesomeIcon icon={faCog} />}
           layout="list"
-          options={["Settings", "Enable dark theme"]}
+          options={[["Settings"], ["Enable dark theme"]]}
         />
       </div>
     </header>
