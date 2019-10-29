@@ -1,7 +1,6 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import styles from "./Menu.module.scss";
-// import Option from "./Option/Option";
 
 const Menu = ({ mainButton, layout, options, children }) => {
   const menuRef = createRef();
@@ -15,34 +14,41 @@ const Menu = ({ mainButton, layout, options, children }) => {
     }
   }
 
+  const test = true;
+
   return (
-    <div className={styles.container}>
-      <button type="button" onClick={toggleMenu}>
+    <div
+      className={styles.container}
+      onMouseEnter={test ? undefined : toggleMenu}
+      onMouseLeave={test ? undefined : toggleMenu}
+    >
+      <button type="button" onClick={test ? toggleMenu : undefined}>
         {mainButton}
       </button>
 
-      <div className={styles.menu} ref={menuRef} hidden>
+      <div id="menu" className={styles.menu} ref={menuRef} hidden>
         <ul className={styles[layout]}>
-          {options.map((option, index) => (
-            <li key={index}>
-              <button type="button" onClick={option[1]}>
-                {option[0]}
-              </button>
-            </li>
-          ))}
+          {options.map((option, index) => {
+            const [name, method] = option;
+            return (
+              <li key={index}>
+                <button type="button" onClick={method}>
+                  {name}
+                </button>
+              </li>
+            );
+          })}
+          {children}
         </ul>
-        {/* {children} */}
       </div>
     </div>
   );
 };
 
 Menu.propTypes = {
-  mainButton: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  mainButton: PropTypes.element.isRequired,
   layout: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
-  // onClick: PropTypes.func
   children: PropTypes.element
 };
 

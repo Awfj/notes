@@ -59,13 +59,7 @@ const Toolbox = props => {
               ["Add label"],
               ["Make a copy"]
             ]}
-          >
-            {/* <ul>
-              <li><button type='button' onClick={props.deleteNote}>Delete note</button></li>
-              <li><button type='button'>Add label</button></li>
-              <li><button type='button'>Make a copy</button></li>
-            </ul> */}
-          </Menu>
+          ></Menu>
 
           {parentNewNote && (
             <>
