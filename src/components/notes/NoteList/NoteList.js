@@ -4,7 +4,13 @@ import PropTypes from "prop-types";
 import styles from "./NoteList.module.scss";
 import Note from "./Note/Note";
 
-const NoteList = ({ notes, deleteNote, notesLayout }) => {
+const NoteList = ({
+  notes,
+  onArchiveNote,
+  onDeleteNote,
+  onChangeNoteColor,
+  notesLayout
+}) => {
   let classNoteList = styles.NoteList;
   if (notesLayout === "list") {
     classNoteList += ` ${styles.list}`;
@@ -16,7 +22,9 @@ const NoteList = ({ notes, deleteNote, notesLayout }) => {
           <Note
             key={index}
             {...note}
-            deleteNote={() => deleteNote(note.id)}
+            onArchiveNote={() => onArchiveNote(note.id)}
+            onDeleteNote={() => onDeleteNote(note.id)}
+            onChangeNoteColor={() => onChangeNoteColor(note.id)}
           ></Note>
         ))
       ) : (
@@ -35,7 +43,9 @@ NoteList.propTypes = {
   //     color: PropTypes.string.isRequired
   //   }).isRequired
   // ).isRequired,
-  deleteNote: PropTypes.func.isRequired,
+  onArchiveNote: PropTypes.func.isRequired,
+  onDeleteNote: PropTypes.func.isRequired,
+  onChangeNoteColor: PropTypes.func.isRequired,
   notesLayout: PropTypes.string.isRequired
 };
 

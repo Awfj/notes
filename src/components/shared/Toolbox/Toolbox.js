@@ -14,10 +14,10 @@ import styles from "./Toolbox.module.scss";
 import Menu from "../Menu/Menu";
 
 const Toolbox = props => {
+  // console.log(props)
   const { parent } = props;
   const parentNote = parent === "Note";
   const parentNewNote = parent === "NewNote";
-  // console.log(props)
 
   // function changeColor(color) {
   //   props.noteForm.style.backgroundColor = color;
@@ -45,17 +45,24 @@ const Toolbox = props => {
           </button>
           <Menu
             mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
-            layout="grid"
-            options={[["white"], ["red"]]}
+            options={[
+              ["white", props.onColorChange],
+              ["red", props.onColorChange],
+              ["blue", props.onColorChange],
+              ["green", props.onColorChange],
+              ["pink", props.onColorChange]
+            ]}
+            isGrid
+            isHoverable
+            isOptionPassesArgs
           />
-          <button type="button">
+          <button type="button" onClick={props.onArchiveNote}>
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
           </button>
           <Menu
             mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
-            layout="list"
             options={[
-              ["Delete note", props.deleteNote],
+              ["Delete note", props.onDeleteNote],
               ["Add label"],
               ["Make a copy"]
             ]}

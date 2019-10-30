@@ -1,54 +1,90 @@
-import React, { createRef } from "react";
+import React, { createRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./Menu.module.scss";
 
-const Menu = ({ mainButton, layout, options, children }) => {
+const Menu = ({
+  mainButton,
+  options,
+  isGrid = false,
+  isHoverable = false,
+  isOptionPassesArgs = false,
+  children
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
   const menuRef = createRef();
+  const mainButtonRef = createRef();
 
-  function toggleMenu() {
-    const menu = menuRef.current;
-    if (menu.hidden) {
-      menu.hidden = false;
-    } else {
-      menu.hidden = true;
-    }
+  function handleToggle() {
+    setIsOpen(!isOpen);
   }
 
-  const test = true;
+  function handleClose(e) {
+    if (
+      menuRef.current.contains(e.target) ||
+      mainButtonRef.current.contains(e.target)
+    ) {
+      return;
+    }
+    setIsOpen(false);
+  }
+
+  useEffect(() => {
+    if (isOpen && !isHoverable) {
+      document.addEventListener("mousedown", handleClose);
+      return () => {
+        document.removeEventListener("mousedown", handleClose);
+      };
+    }
+  });
 
   return (
     <div
       className={styles.container}
-      onMouseEnter={test ? undefined : toggleMenu}
-      onMouseLeave={test ? undefined : toggleMenu}
+      onMouseEnter={isHoverable ? handleToggle : undefined}
+      onMouseLeave={isHoverable ? handleToggle : undefined}
     >
-      <button type="button" onClick={test ? toggleMenu : undefined}>
+      <button
+        type="button"
+        ref={mainButtonRef}
+        onClick={isHoverable ? undefined : handleToggle}
+      >
         {mainButton}
       </button>
 
-      <div id="menu" className={styles.menu} ref={menuRef} hidden>
-        <ul className={styles[layout]}>
-          {options.map((option, index) => {
-            const [name, method] = option;
-            return (
-              <li key={index}>
-                <button type="button" onClick={method}>
-                  {name}
-                </button>
-              </li>
-            );
-          })}
-          {children}
-        </ul>
-      </div>
+      {isOpen && (
+        <div className={styles.menu} ref={menuRef}>
+          <ul className={styles[isGrid ? "grid" : "list"]}>
+            {options.map((option, index) => {
+              const [name, handleMethod] = option;
+              return (
+                <li key={index}>
+                  <button
+                    type="button"
+                    onClick={
+                      isOptionPassesArgs
+                        ? () => handleMethod(name)
+                        : handleMethod
+                    }
+                  >
+                    {name}
+                  </button>
+                </li>
+              );
+            })}
+            {children}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
 
 Menu.propTypes = {
   mainButton: PropTypes.element.isRequired,
-  layout: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
+  isGrid: PropTypes.bool,
+  isHoverable: PropTypes.bool,
+  isOptionPassesArgs: PropTypes.bool,
   children: PropTypes.element
 };
 

@@ -17,13 +17,6 @@ function App() {
   //   if (noteForm.contains(e.target)) return;
   //   this.makeNote();
   // };
-  
-  // const handleClose = e => {
-  //   const menu = document.querySelector("#menu");
-  //   // if (!menu.hidden && e.target !== menu) {
-  //   //   menu.hidden = true;
-  //   // }
-  // };
 
   return (
     <div

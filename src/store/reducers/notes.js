@@ -1,4 +1,9 @@
-import { ADD_NOTE, ARCHIVE_NOTE, DELETE_NOTE } from "../actions/actionTypes";
+import {
+  ADD_NOTE,
+  ARCHIVE_NOTE,
+  DELETE_NOTE,
+  CHANGE_NOTE_COLOR
+} from "../actions/actionTypes";
 
 const initialState = [
   {
@@ -49,8 +54,14 @@ const notes = (state = initialState, action) => {
         note.id === action.id ? { ...note, status: "archived" } : note
       );
     case DELETE_NOTE:
+        console.log(action.id)
       return state.map(note =>
         note.id === action.id ? { ...note, status: "deleted" } : note
+      );
+    case CHANGE_NOTE_COLOR:
+      console.log(action.id, action.color)
+      return state.map(note =>
+        note.id === action.id ? { ...note, color: action.color } : note
       );
     default:
       return state;

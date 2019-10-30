@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import NoteList from "../components/notes/NoteList/NoteList";
-import { archiveNote, deleteNote } from "../store/actions/actions";
+import {
+  archiveNote,
+  deleteNote,
+  changeNoteColor
+} from "../store/actions/actions";
 import { notesVisibilityFilters } from "../store/actions/actionTypes";
 
 const getVisibleNotes = (notes, filter) => {
@@ -23,7 +27,7 @@ const getFoundNotes = (notes, searchQuery) =>
         note.body.toLowerCase().includes(searchQuery)) &&
       note.status !== "deleted"
   );
-  
+
 const getNotes = (notes, filter, searchQuery) =>
   searchQuery.length > 0
     ? getFoundNotes(notes, searchQuery)
@@ -34,8 +38,9 @@ const mapStateToProps = (state, { searchQuery }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  archiveNote: id => dispatch(archiveNote(id)),
-  deleteNote: id => dispatch(deleteNote(id))
+  onArchiveNote: id => dispatch(archiveNote(id)),
+  onDeleteNote: id => dispatch(deleteNote(id)),
+  onChangeNoteColor: (id, color) => dispatch(changeNoteColor(id, color))
 });
 
 export default connect(

@@ -10,8 +10,8 @@ import {
   faSync
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Header.module.scss";
-import Menu from "../../components/shared/Menu/Menu";
-import Search from '../../components/Search/Search'
+import Menu from "../shared/Menu/Menu";
+import Search from "../../components/Search/Search";
 
 const Header = props => {
   // console.log(props);
@@ -29,7 +29,10 @@ const Header = props => {
         <h1>Notes</h1>
       </div>
       {window.innerWidth >= 768 && (
-        <Search searchQuery={props.searchQuery} setSearchQuery={props.setSearchQuery} />
+        <Search
+          searchQuery={props.searchQuery}
+          setSearchQuery={props.setSearchQuery}
+        />
       )}
 
       <div>
@@ -51,7 +54,6 @@ const Header = props => {
 
         <Menu
           mainButton={<FontAwesomeIcon icon={faCog} />}
-          layout="list"
           options={[["Settings"], ["Enable dark theme"]]}
         />
       </div>
