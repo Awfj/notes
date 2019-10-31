@@ -10,7 +10,7 @@ import {
   faSync
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Header.module.scss";
-import Menu from "../shared/Menu/Menu";
+import Dropdown from "../shared/Menu/Dropdown";
 import Search from "../../components/Search/Search";
 
 const Header = props => {
@@ -52,7 +52,7 @@ const Header = props => {
           </button>
         )}
 
-        <Menu
+        <Dropdown
           mainButton={<FontAwesomeIcon icon={faCog} />}
           options={[["Settings"], ["Enable dark theme"]]}
         />

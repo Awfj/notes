@@ -11,7 +11,8 @@ import {
 import { faBell, faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "./Toolbox.module.scss";
-import Menu from "../Menu/Menu";
+import ColorPicker from "../Menu/ColorPicker";
+import Dropdown from "../Menu/Dropdown";
 
 const Toolbox = props => {
   // console.log(props)
@@ -39,30 +40,34 @@ const Toolbox = props => {
           <button type="button">
             <FontAwesomeIcon icon={faBell} fixedWidth />
           </button>
-          <Menu
+          <ColorPicker
             mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
             options={[
               ["white", props.onChangeNoteColor],
               ["red", props.onChangeNoteColor],
-              ["blue", props.onChangeNoteColor],
+              ["orange", props.onChangeNoteColor],
+              ["yellow", props.onChangeNoteColor],
               ["green", props.onChangeNoteColor],
-              ["pink", props.onChangeNoteColor]
+              ["teal", props.onChangeNoteColor],
+              ["blue", props.onChangeNoteColor],
+              ["dark blue", props.onChangeNoteColor],
+              ["purple", props.onChangeNoteColor],
+              ["pink", props.onChangeNoteColor],
+              ["brown", props.onChangeNoteColor],
+              ["grey", props.onChangeNoteColor]
             ]}
-            isGrid
-            isHoverable
-            isOptionPassesArgs
           />
           <button type="button" onClick={props.onArchiveNote}>
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
           </button>
-          <Menu
+          <Dropdown
             mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
             options={[
               ["Delete note", props.onDeleteNote],
               ["Add label"],
               ["Make a copy"]
             ]}
-          ></Menu>
+          ></Dropdown>
 
           {parentNewNote && (
             <>

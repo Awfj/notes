@@ -2,11 +2,7 @@ import React, { createRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./Menu.module.scss";
 
-const Menu = ({
-  mainButton,
-  options,
-  children
-}) => {
+const Dropdown = ({ mainButton, options, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = createRef();
   const mainButtonRef = createRef();
@@ -35,14 +31,8 @@ const Menu = ({
   });
 
   return (
-    <div
-      className={styles.container}
-    >
-      <button
-        type="button"
-        ref={mainButtonRef}
-        onClick={handleToggle}
-      >
+    <div className={styles.container}>
+      <button type="button" ref={mainButtonRef} onClick={handleToggle}>
         {mainButton}
       </button>
 
@@ -67,10 +57,10 @@ const Menu = ({
   );
 };
 
-Menu.propTypes = {
+Dropdown.propTypes = {
   mainButton: PropTypes.element.isRequired,
   options: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
   children: PropTypes.element
 };
 
-export default Menu;
+export default Dropdown;
