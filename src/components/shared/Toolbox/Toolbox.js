@@ -19,10 +19,6 @@ const Toolbox = props => {
   const parentNote = parent === "Note";
   const parentNewNote = parent === "NewNote";
 
-  // function changeColor(color) {
-  //   props.noteForm.style.backgroundColor = color;
-  // }
-
   let classToolbox = styles.Toolbox;
   // if (parentNote) {
   //   classToolbox += ` ${styles.hidden}`;
@@ -46,11 +42,11 @@ const Toolbox = props => {
           <Menu
             mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
             options={[
-              ["white", props.onColorChange],
-              ["red", props.onColorChange],
-              ["blue", props.onColorChange],
-              ["green", props.onColorChange],
-              ["pink", props.onColorChange]
+              ["white", props.onChangeNoteColor],
+              ["red", props.onChangeNoteColor],
+              ["blue", props.onChangeNoteColor],
+              ["green", props.onChangeNoteColor],
+              ["pink", props.onChangeNoteColor]
             ]}
             isGrid
             isHoverable

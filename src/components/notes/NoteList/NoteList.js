@@ -24,7 +24,7 @@ const NoteList = ({
             {...note}
             onArchiveNote={() => onArchiveNote(note.id)}
             onDeleteNote={() => onDeleteNote(note.id)}
-            onChangeNoteColor={() => onChangeNoteColor(note.id)}
+            onChangeNoteColor={(color) => onChangeNoteColor(note.id, color)}
           ></Note>
         ))
       ) : (

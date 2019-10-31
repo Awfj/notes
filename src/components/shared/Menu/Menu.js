@@ -55,15 +55,15 @@ const Menu = ({
         <div className={styles.menu} ref={menuRef}>
           <ul className={styles[isGrid ? "grid" : "list"]}>
             {options.map((option, index) => {
-              const [name, handleMethod] = option;
+              const [name, onFunction] = option;
               return (
                 <li key={index}>
                   <button
                     type="button"
                     onClick={
                       isOptionPassesArgs
-                        ? () => handleMethod(name)
-                        : handleMethod
+                        ? () => onFunction(name)
+                        : onFunction
                     }
                   >
                     {name}

@@ -38,7 +38,7 @@ const Note = ({
         parent="Note"
         onArchiveNote={onArchiveNote}
         onDeleteNote={onDeleteNote}
-        onColorChange={onChangeNoteColor}
+        onChangeNoteColor={onChangeNoteColor}
       >
         {title ? <h2>{title}</h2> : null}
         {body ? <p>{body}</p> : null}

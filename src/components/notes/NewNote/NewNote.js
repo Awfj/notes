@@ -1,61 +1,88 @@
-import React, { createRef } from "react";
+import React, { createRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { addNote } from "../../../store/actions/actions";
 import styles from "./NewNote.module.scss";
 import Toolbox from "../../shared/Toolbox/Toolbox";
 
 const NewNote = ({ dispatch }) => {
-  const noteForm = createRef();
-  const title = createRef();
-  const body = createRef();
+  const [titleValue, setTitleValue] = useState("");
+  const [bodyValue, setBodyValue] = useState("");
+  const [isFormActive, setIsFormActive] = useState(false);
+  const noteFormRef = createRef();
 
-  // function changeColor(color) {
-  //   noteForm.style.backgroundColor = color;
-  // }
+  function handleChangeNoteColor(color) {
+    noteFormRef.current.style.backgroundColor = color;
+  }
 
-  const onSubmitHandler = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    if (!title.current.value.trim() && !body.current.value.trim()) return;
-    dispatch(addNote(title.current.value, body.current.value, 'white'));
-    title.current.value = "";
-    body.current.value = "";
+
+    // if (noteFormRef.current.contains(e.target)) return;
+    if (!titleValue.trim() && !bodyValue.trim()) {
+      setTitleValue("");
+      setBodyValue("");
+      setIsFormActive(false);
+      return;
+    }
+
+    dispatch(
+      addNote(titleValue, bodyValue, noteFormRef.current.style.backgroundColor)
+    );
+    noteFormRef.current.style.backgroundColor = "white";
+    setTitleValue("");
+    setBodyValue("");
+    setIsFormActive(false);
   };
+
+  useEffect(() => {
+    // if (isFormActive) {
+    //   document.addEventListener("mousedown", handleSubmit);
+    //   return () => {
+    //     document.removeEventListener("mousedown", handleSubmit);
+    //   };
+    // }
+  });
 
   return (
     <form
-      ref={noteForm}
+      ref={noteFormRef}
       name="noteForm"
       className={`note ${styles.NewNote}`}
-      // onClick={expandForm}
-      onSubmit={onSubmitHandler}
+      onSubmit={handleSubmit}
+      onClick={isFormActive ? undefined : () => setIsFormActive(true)}
+      // onClick={() => setIsFormActive(true)}
     >
-      {/* <button type="button" onClick={() => changeColor("red")}>
-        test
-      </button> */}
-      <Toolbox parent="NewNote">
-        <input ref={title} type="text" name="title" placeholder="Title" />
-        <input
-          ref={body}
-          type="text"
-          placeholder="Take a note..."
-          autoComplete="off"
-          name="body"
-          // value={value}
-          // onChange={handleChange}
-        />
+      <Toolbox parent="NewNote" onChangeNoteColor={handleChangeNoteColor}>
+        {isFormActive ? (
+          <>
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              autoComplete="off"
+              value={titleValue}
+              onChange={e => setTitleValue(e.target.value)}
+            />
+            <input
+              type="text"
+              name="body"
+              placeholder="Take a note..."
+              autoComplete="off"
+              value={bodyValue}
+              onChange={e => setBodyValue(e.target.value)}
+            />
+          </>
+        ) : (
+          <input
+            type="text"
+            name="body"
+            placeholder="Take a note..."
+            autoComplete="off"
+            value={bodyValue}
+            onChange={e => setBodyValue(e.target.value)}
+          />
+        )}
       </Toolbox>
-      {/* {props.expanded ? (
-      ) : (
-        <input
-          type="text"
-          placeholder="Take a note..."
-          autoComplete="off"
-          name="body"
-          value={props.value}
-          onChange={props.handleChange}
-          onClick={props.expandForm}
-        />
-      )} */}
     </form>
   );
 };
