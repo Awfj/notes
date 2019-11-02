@@ -1,34 +1,59 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./Menu.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle } from "@fortawesome/free-regular-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import styles from "./ColorPicker.module.scss";
 
-const ColorPicker = ({ mainButton, options }) => {
+const COLORS = [
+  "white",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "teal",
+  "blue",
+  "dark-blue",
+  "purple",
+  "pink",
+  "brown",
+  "grey"
+];
+
+const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  function handleToggle() {
-    setIsOpen(!isOpen);
-  }
   return (
     <div
       className={styles.container}
-      onMouseEnter={handleToggle}
-      onMouseLeave={handleToggle}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
     >
       <button type="button">{mainButton}</button>
 
       {isOpen && (
         <div className={styles.menu}>
-          <ul className={styles.grid}>
-            {options.map((option, index) => {
-              const [color, onColorChange] = option;
+          <ul>
+            {COLORS.map((color, index) => {
               return (
                 <li key={index}>
                   <button
                     type="button"
-                    className={styles[color]}
-                    onClick={() => onColorChange(color)}
+                    className={`${color} fa-layers`}
+                    onClick={() => onChangeNoteColor(color)}
                   >
-                    {color}
+                    <FontAwesomeIcon
+                      className={styles.circle}
+                      icon={faCircle}
+                    />
+                    {activeColor === color && (
+                      <FontAwesomeIcon
+                        className={styles.check}
+                        icon={faCheck}
+                        inverse
+                        transform="shrink-8"
+                      />
+                    )}
                   </button>
                 </li>
               );
@@ -42,7 +67,8 @@ const ColorPicker = ({ mainButton, options }) => {
 
 ColorPicker.propTypes = {
   mainButton: PropTypes.element.isRequired,
-  options: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired
+  onChangeNoteColor: PropTypes.func.isRequired,
+  activeColor: PropTypes.string.isRequired
 };
 
 export default ColorPicker;

@@ -5,14 +5,11 @@ import styles from "./NewNote.module.scss";
 import Toolbox from "../../shared/Toolbox/Toolbox";
 
 const NewNote = ({ dispatch }) => {
+  const [activeColor, setActiveColor] = useState("white");
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
-  const [isFormActive, setIsFormActive] = useState(false);
+  const [isFormActive, setIsFormActive] = useState(true);
   const noteFormRef = createRef();
-
-  function handleChangeNoteColor(color) {
-    noteFormRef.current.style.backgroundColor = color;
-  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,10 +22,8 @@ const NewNote = ({ dispatch }) => {
       return;
     }
 
-    dispatch(
-      addNote(titleValue, bodyValue, noteFormRef.current.style.backgroundColor)
-    );
-    noteFormRef.current.style.backgroundColor = "white";
+    dispatch(addNote(titleValue, bodyValue, activeColor));
+    setActiveColor("white");
     setTitleValue("");
     setBodyValue("");
     setIsFormActive(false);
@@ -47,12 +42,16 @@ const NewNote = ({ dispatch }) => {
     <form
       ref={noteFormRef}
       name="noteForm"
-      className={`note ${styles.NewNote}`}
+      className={`note ${styles.NewNote} ${activeColor}`}
       onSubmit={handleSubmit}
       onClick={isFormActive ? undefined : () => setIsFormActive(true)}
       // onClick={() => setIsFormActive(true)}
     >
-      <Toolbox parent="NewNote" onChangeNoteColor={handleChangeNoteColor}>
+      <Toolbox
+        activeColor={activeColor}
+        parent="NewNote"
+        onChangeNoteColor={setActiveColor}
+      >
         {isFormActive ? (
           <>
             <input

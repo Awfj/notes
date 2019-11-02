@@ -41,21 +41,9 @@ const Toolbox = props => {
             <FontAwesomeIcon icon={faBell} fixedWidth />
           </button>
           <ColorPicker
+            activeColor={props.activeColor}
             mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
-            options={[
-              ["white", props.onChangeNoteColor],
-              ["red", props.onChangeNoteColor],
-              ["orange", props.onChangeNoteColor],
-              ["yellow", props.onChangeNoteColor],
-              ["green", props.onChangeNoteColor],
-              ["teal", props.onChangeNoteColor],
-              ["blue", props.onChangeNoteColor],
-              ["dark blue", props.onChangeNoteColor],
-              ["purple", props.onChangeNoteColor],
-              ["pink", props.onChangeNoteColor],
-              ["brown", props.onChangeNoteColor],
-              ["grey", props.onChangeNoteColor]
-            ]}
+            onChangeNoteColor={props.onChangeNoteColor}
           />
           <button type="button" onClick={props.onArchiveNote}>
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />

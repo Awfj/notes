@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+}
+.menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0px 1px 3px gray;
+  border-radius: 3px;
+  z-index: 1;
+  ul {
+    padding: 0.4em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.3em;
+  }
+  button {
+    display: block;
+    font-size: 2rem;
+    margin: 0;
+    padding: 0;
+    cursor: default;
+  }
+  svg {
+    cursor: pointer;
+  }
+  button,
+  svg {
+    border-radius: 50%;
+  }
+  .circle {
+    color: #bebebe70;
+    &:hover {
+      color: rgb(80, 80, 80);
+    }
+  }
+  .check {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}

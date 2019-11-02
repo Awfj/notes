@@ -29,16 +29,16 @@ const Note = ({
   return (
     <div
       ref={noteRef}
-      className={`note ${styles.Note}`}
-      style={{ backgroundColor: color }}
+      className={`note ${styles.Note} ${color}`}
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
     >
       <Toolbox
+        activeColor={color}
         parent="Note"
         onArchiveNote={onArchiveNote}
-        onDeleteNote={onDeleteNote}
         onChangeNoteColor={onChangeNoteColor}
+        onDeleteNote={onDeleteNote}
       >
         {title ? <h2>{title}</h2> : null}
         {body ? <p>{body}</p> : null}

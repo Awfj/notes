@@ -16,18 +16,6 @@
       width: 100%;
     }
   }
-  .grid {
-    padding: 0.3em;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: .3em;
-    border: 1px solid red;
-    button {
-      border: 1px solid #000;
-      
-      
-    }
-  }
   li {
     button {
       padding: 0.5em 1em;
