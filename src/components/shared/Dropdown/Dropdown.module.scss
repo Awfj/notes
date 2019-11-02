@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 1px 3px gray;
+  border-radius: 5px;
+  z-index: 1;
+  ul {
+    padding: 0.3em 0;
+  }
+  button {
+    font-size: 0.875rem;
+    padding: 0.5em 1em;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    &:hover {
+      background-color: rgba(95, 99, 104, 0.2);
+    }
+    &:active {
+      background-color: rgba(95, 99, 104, 0.35);
+    }
+  }
+}

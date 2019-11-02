@@ -1,37 +1,41 @@
 import {
   ADD_NOTE,
   ARCHIVE_NOTE,
-  DELETE_NOTE,
-  CHANGE_NOTE_COLOR
+  CHANGE_NOTE_COLOR,
+  DELETE_NOTE
 } from "../actions/actionTypes";
 
 const initialState = [
   {
     id: 0,
     title: "Qwe!",
-    body: "gds active",
+    content: "gds active",
     color: "orange",
+    pinned: false,
     status: "active"
   },
   {
     id: 1,
     title: "",
-    body: "hrer archived",
+    content: "hrer archived",
     color: "yellow",
+    pinned: false,
     status: "archived"
   },
   {
     id: 2,
     title: "",
-    body: "erw deleted",
+    content: "erw deleted",
     color: "green",
+    pinned: false,
     status: "deleted"
   },
   {
     id: 3,
     title: "",
-    body: "Qrsghh& active",
+    content: "Qrsghh& active",
     color: "pink",
+    pinned: false,
     status: "active"
   }
 ];
@@ -44,8 +48,9 @@ const notes = (state = initialState, action) => {
         {
           id: action.id,
           title: action.title,
-          body: action.body,
+          content: action.content,
           color: action.color,
+          pinned: false,
           status: "active"
         }
       ];

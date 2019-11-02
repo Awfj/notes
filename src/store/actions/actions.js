@@ -1,9 +1,9 @@
 import {
   ADD_NOTE,
   ARCHIVE_NOTE,
-  DELETE_NOTE,
   CHANGE_NOTE_COLOR,
   CHANGE_NOTES_VISIBILITY,
+  DELETE_NOTE,
   SEARCH_NOTES
 } from "./actionTypes";
 

@@ -4,8 +4,9 @@ export const TOGGLE_SETTINGS = "TOGGLE_SETTINGS";
 // notes
 export const ADD_NOTE = "ADD_NOTE";
 export const ARCHIVE_NOTE = "ARCHIVE_NOTE";
-export const DELETE_NOTE = "DELETE_NOTE";
 export const CHANGE_NOTE_COLOR = "CHANGE_NOTE_COLOR";
+export const DELETE_NOTE = "DELETE_NOTE";
+
 export const SEARCH_NOTES = "SEARCH_NOTES";
 export const REFRESH_NOTES = "REFRESH_NOTES";
 

@@ -11,8 +11,8 @@ import {
 import { faBell, faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 
 import styles from "./Toolbox.module.scss";
-import ColorPicker from "../Menu/ColorPicker";
-import Dropdown from "../Menu/Dropdown";
+import ColorPicker from "../ColorPicker/ColorPicker";
+import Dropdown from "../Dropdown/Dropdown";
 
 const Toolbox = props => {
   // console.log(props)
@@ -53,7 +53,7 @@ const Toolbox = props => {
             options={[
               ["Delete note", props.onDeleteNote],
               ["Add label"],
-              ["Make a copy"]
+              ["Make a copy", props.onAddNote]
             ]}
           ></Dropdown>
 

@@ -6,11 +6,12 @@ import Toolbox from "../../../shared/Toolbox/Toolbox";
 
 const Note = ({
   title,
-  body,
+  content,
   color,
+  onAddNote,
   onArchiveNote,
-  onDeleteNote,
-  onChangeNoteColor
+  onChangeNoteColor,
+  onDeleteNote
 }) => {
   const noteRef = createRef();
   function handleMouseHover(e) {
@@ -36,12 +37,13 @@ const Note = ({
       <Toolbox
         activeColor={color}
         parent="Note"
+        onAddNote={onAddNote}
         onArchiveNote={onArchiveNote}
         onChangeNoteColor={onChangeNoteColor}
         onDeleteNote={onDeleteNote}
       >
-        {title ? <h2>{title}</h2> : null}
-        {body ? <p>{body}</p> : null}
+        {title && <h3>{title}</h3>}
+        {content && <p>{content}</p>}
       </Toolbox>
     </div>
   );
@@ -49,10 +51,11 @@ const Note = ({
 
 Note.propTypes = {
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  onAddNote: PropTypes.func.isRequired,
   onArchiveNote: PropTypes.func.isRequired,
-  onDeleteNote: PropTypes.func.isRequired,
-  onChangeNoteColor: PropTypes.func.isRequired
+  onChangeNoteColor: PropTypes.func.isRequired,
+  onDeleteNote: PropTypes.func.isRequired
 };
 
 export default Note;

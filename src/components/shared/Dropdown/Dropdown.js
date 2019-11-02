@@ -1,15 +1,11 @@
 import React, { createRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import styles from "./Menu.module.scss";
+import styles from "./Dropdown.module.scss";
 
 const Dropdown = ({ mainButton, options, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = createRef();
   const mainButtonRef = createRef();
-
-  function handleToggle() {
-    setIsOpen(!isOpen);
-  }
 
   function handleClose(e) {
     if (
@@ -32,13 +28,17 @@ const Dropdown = ({ mainButton, options, children }) => {
 
   return (
     <div className={styles.container}>
-      <button type="button" ref={mainButtonRef} onClick={handleToggle}>
+      <button
+        type="button"
+        ref={mainButtonRef}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {mainButton}
       </button>
 
       {isOpen && (
         <div className={styles.menu} ref={menuRef}>
-          <ul className={styles.list}>
+          <ul>
             {options.map((option, index) => {
               const [name, onFunction] = option;
               return (
