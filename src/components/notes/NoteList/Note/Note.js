@@ -14,6 +14,7 @@ const Note = ({
   onDeleteNote
 }) => {
   const noteRef = createRef();
+  
   function handleMouseHover(e) {
     // const toolbox = e.currentTarget.children[0].children;
     // for (var tag of toolbox) {

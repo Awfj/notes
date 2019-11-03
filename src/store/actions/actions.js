@@ -8,11 +8,11 @@ import {
 } from "./actionTypes";
 
 let nextNoteId = 4; // 0
-export const addNote = (title, body, color) => ({
+export const addNote = (title, content, color) => ({
   type: ADD_NOTE,
   id: nextNoteId++,
   title,
-  body,
+  content,
   color
 });
 
