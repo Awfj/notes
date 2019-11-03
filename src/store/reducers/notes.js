@@ -1,5 +1,6 @@
 import {
   ADD_NOTE,
+  ADD_NOTE_LABEL,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
   DELETE_NOTE
@@ -8,9 +9,10 @@ import {
 const initialState = [
   {
     id: 0,
-    title: "Qwe!",
+    title: "Project",
     content: "gds active",
     color: "orange",
+    labels: ["qqq", "gqe"],
     pinned: false,
     status: "active"
   },
@@ -19,6 +21,7 @@ const initialState = [
     title: "",
     content: "hrer archived",
     color: "yellow",
+    labels: [],
     pinned: false,
     status: "archived"
   },
@@ -27,6 +30,7 @@ const initialState = [
     title: "",
     content: "erw deleted",
     color: "green",
+    labels: [],
     pinned: false,
     status: "deleted"
   },
@@ -35,6 +39,7 @@ const initialState = [
     title: "",
     content: "Qrsghh& active",
     color: "pink",
+    labels: [],
     pinned: false,
     status: "active"
   }
@@ -50,6 +55,7 @@ const notes = (state = initialState, action) => {
           title: action.title,
           content: action.content,
           color: action.color,
+          labels: action.labels,
           pinned: false,
           status: "active"
         }
@@ -65,6 +71,12 @@ const notes = (state = initialState, action) => {
     case CHANGE_NOTE_COLOR:
       return state.map(note =>
         note.id === action.id ? { ...note, color: action.color } : note
+      );
+    case ADD_NOTE_LABEL:
+      return state.map(note =>
+        note.id === action.id
+          ? { ...note, labels: [...state.labels, action.label] }
+          : note
       );
     default:
       return state;

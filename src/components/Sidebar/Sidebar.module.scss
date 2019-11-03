@@ -2,22 +2,13 @@
   min-height: 100%;
   max-width: 280px;
   width: 100%;
-  ul,
-  dl {
+  ul, section {
     padding: 0.5em 0;
   }
-  ul:not(:last-child),
-  dl {
+  ul:not(:last-child), section {
     border-bottom: 1px solid #ddd;
   }
-  dt {
-    color: #5f6368;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-  }
-
-  li,
-  dd {
+  li {
     & > * {
       color: #202124;
       font-weight: 600;
@@ -34,9 +25,7 @@
       }
     }
   }
-  dt,
-  li > *,
-  dd > * {
+  li > * {
     padding: 1em 1em 1em 2em;
   }
   svg {

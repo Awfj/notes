@@ -30,7 +30,9 @@ const NoteList = ({
           <Note
             key={index}
             {...note}
-            onAddNote={() => onAddNote(note.title, note.content, note.color)}
+            onAddNote={() =>
+              onAddNote(note.title, note.content, note.color, note.labels)
+            }
             onArchiveNote={() => onArchiveNote(note.id)}
             onChangeNoteColor={color => onChangeNoteColor(note.id, color)}
             onDeleteNote={() => onDeleteNote(note.id)}
@@ -50,6 +52,7 @@ NoteList.propTypes = {
       title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,
+      labels: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
       pinned: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired,

@@ -22,7 +22,7 @@ const NewNote = ({ dispatch }) => {
       return;
     }
 
-    dispatch(addNote(titleValue, bodyValue, activeColor));
+    dispatch(addNote(titleValue, bodyValue, activeColor, []));
     setActiveColor("white");
     setTitleValue("");
     setBodyValue("");
