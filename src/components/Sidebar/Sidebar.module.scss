@@ -2,10 +2,18 @@
   min-height: 100%;
   max-width: 280px;
   width: 100%;
-  ul, section {
+  h2 {
+    color: #5f6368;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: normal;
+    padding: 1em 1em 1em 2em;
+  }
+  > ul {
     padding: 0.5em 0;
   }
-  ul:not(:last-child), section {
+  ul:not(:last-child),
+  section {
     border-bottom: 1px solid #ddd;
   }
   li {
