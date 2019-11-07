@@ -1,9 +1,9 @@
 import {
   CHANGE_NOTES_VISIBILITY,
-  notesVisibilityFilters
+  VISIBILITY_FILTERS
 } from "../actions/actionTypes";
 
-const notesVisibility = (state = notesVisibilityFilters.SHOW_ACTIVE, action) => {
+const notesVisibility = (state = VISIBILITY_FILTERS.SHOW_ACTIVE, action) => {
   switch (action.type) {
     case CHANGE_NOTES_VISIBILITY:
       return action.filter;

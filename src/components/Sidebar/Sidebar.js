@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Sidebar.module.scss";
-import { notesVisibilityFilters } from "../../redux/actions/actionTypes";
+import { VISIBILITY_FILTERS } from "../../redux/actions/actionTypes";
 import FilterLink from "../../containers/FilterLink";
 
 const Sidebar = ({ labels }) => {
@@ -19,7 +19,7 @@ const Sidebar = ({ labels }) => {
     <aside className={styles.Sidebar}>
       <ul>
         <li>
-          <FilterLink filter={notesVisibilityFilters.SHOW_ACTIVE}>
+          <FilterLink filter={VISIBILITY_FILTERS.SHOW_ACTIVE}>
             <FontAwesomeIcon icon={faLightbulb} fixedWidth />
             Notes
           </FilterLink>
@@ -53,13 +53,13 @@ const Sidebar = ({ labels }) => {
       </section>
       <ul>
         <li>
-          <FilterLink filter={notesVisibilityFilters.SHOW_ARCHIVED}>
+          <FilterLink filter={VISIBILITY_FILTERS.SHOW_ARCHIVED}>
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
             Archive
           </FilterLink>
         </li>
         <li>
-          <FilterLink filter={notesVisibilityFilters.SHOW_DELETED}>
+          <FilterLink filter={VISIBILITY_FILTERS.SHOW_DELETED}>
             <FontAwesomeIcon icon={faTrashAlt} fixedWidth />
             Bin
           </FilterLink>
@@ -71,7 +71,7 @@ const Sidebar = ({ labels }) => {
 
 Sidebar.propTypes = {
   labels: PropTypes.array
-}
+};
 
 const mapStateToProps = state => ({
   labels: state.labels

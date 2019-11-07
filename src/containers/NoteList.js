@@ -5,47 +5,27 @@ import {
   archiveNote,
   changeNoteColor,
   deleteNote
-} from "../redux/actions/actions";
-import { notesVisibilityFilters } from "../redux/actions/actionTypes";
+} from "../redux/actions/actionCreators";
+import { getNotesByVisibilityFilter, getNotesBySearchQuery } from "../redux/selectors";
 
-const getVisibleNotes = (notes, filter) => {
-  switch (filter) {
-    case notesVisibilityFilters.SHOW_ACTIVE:
-      return notes.filter(note => note.status === "active");
-    case notesVisibilityFilters.SHOW_ARCHIVED:
-      return notes.filter(note => note.status === "archived");
-    case notesVisibilityFilters.SHOW_DELETED:
-      return notes.filter(note => note.status === "deleted");
-    default:
-      throw new Error("Unknown filter: " + filter);
-  }
-};
-
-const getFoundNotes = (notes, searchQuery) =>
-  notes.filter(
-    note =>
-      (note.title.toLowerCase().includes(searchQuery) ||
-        note.content.toLowerCase().includes(searchQuery)) &&
-      note.status !== "deleted"
-  );
-
-const getNotes = (notes, filter, searchQuery) =>
+const getNotes = (state, filter, searchQuery) =>
   searchQuery.length > 0
-    ? getFoundNotes(notes, searchQuery)
-    : getVisibleNotes(notes, filter);
+    ? getNotesBySearchQuery(state, searchQuery)
+    : getNotesByVisibilityFilter(state, filter);
 
 const mapStateToProps = (state, { searchQuery }) => ({
-  notes: getNotes(state.notes, state.notesVisibility, searchQuery)
+  notes: getNotes(state, state.notesVisibility, searchQuery)
+  // notes: getNotesByVisibilityFilter(state, state.notesVisibility)
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   onAddNote: (title, content, color) => dispatch(addNote(title, content, color)),
-//   onArchiveNote: id => dispatch(archiveNote(id)),
-//   onDeleteNote: id => dispatch(deleteNote(id)),
-//   onChangeNoteColor: (id, color) => dispatch(changeNoteColor(id, color))
-// });
+const mapDispatchToProps = {
+  addNote,
+  archiveNote,
+  deleteNote,
+  changeNoteColor
+};
 
 export default connect(
   mapStateToProps,
-  { addNote, archiveNote, deleteNote, changeNoteColor }
+  mapDispatchToProps
 )(NoteList);

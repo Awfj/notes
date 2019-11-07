@@ -6,59 +6,59 @@ import {
   DELETE_NOTE
 } from "../actions/actionTypes";
 
-const initialState = [
-  {
-    id: 0,
-    title: "Project",
-    content: "gds active",
-    color: "orange",
-    labels: ["qqq", "gqe"],
-    pinned: false,
-    status: "active"
-  },
-  {
-    id: 1,
-    title: "",
-    content: "hrer archived",
-    color: "yellow",
-    labels: [],
-    pinned: false,
-    status: "archived"
-  },
-  {
-    id: 2,
-    title: "",
-    content: "erw deleted",
-    color: "green",
-    labels: [],
-    pinned: false,
-    status: "deleted"
-  },
-  {
-    id: 3,
-    title: "",
-    content: "Qrsghh& active",
-    color: "pink",
-    labels: [],
-    pinned: false,
-    status: "active"
-  }
-];
-
-// const initialState = {
-//   byId: {
-//     0: {
-//       id: 0,
-//       title: "Project",
-//       content: "gds active",
-//       color: "orange",
-//       labels: ["qqq", "gqe"],
-//       pinned: false,
-//       status: "active"
-//     }
+// const initialState = [
+//   {
+//     id: 0,
+//     title: "Project",
+//     content: "gds active",
+//     color: "orange",
+//     labels: ["qqq", "gqe"],
+//     pinned: false,
+//     status: "active"
 //   },
-//   allIds: [1]
-// };
+//   {
+//     id: 1,
+//     title: "",
+//     content: "hrer archived",
+//     color: "yellow",
+//     labels: [],
+//     pinned: false,
+//     status: "archived"
+//   },
+//   {
+//     id: 2,
+//     title: "",
+//     content: "erw deleted",
+//     color: "green",
+//     labels: [],
+//     pinned: false,
+//     status: "deleted"
+//   },
+//   {
+//     id: 3,
+//     title: "",
+//     content: "Qrsghh& active",
+//     color: "pink",
+//     labels: [],
+//     pinned: false,
+//     status: "active"
+//   }
+// ];
+
+const initialState = {
+  byId: {
+    1: {
+      id: 1,
+      title: "Project",
+      content: "gds active",
+      color: "orange",
+      labels: ["qqq", "gqe"],
+      pinned: false,
+      status: "active"
+    }
+  },
+  allIds: [1]
+};
 
 const notes = (state = initialState, action) => {
   switch (action.type) {

@@ -14,11 +14,13 @@ import {
 let nextNoteId = 4; // 0
 export const addNote = (title, content, color, labels) => ({
   type: ADD_NOTE,
-  id: nextNoteId++,
-  title,
-  content,
-  color,
-  labels
+  payload: {
+    id: nextNoteId++,
+    title,
+    content,
+    color,
+    labels
+  }
 });
 
 export const addNoteLabel = (id, label) => ({
