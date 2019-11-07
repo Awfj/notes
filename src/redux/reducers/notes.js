@@ -45,6 +45,21 @@ const initialState = [
   }
 ];
 
+// const initialState = {
+//   byId: {
+//     0: {
+//       id: 0,
+//       title: "Project",
+//       content: "gds active",
+//       color: "orange",
+//       labels: ["qqq", "gqe"],
+//       pinned: false,
+//       status: "active"
+//     }
+//   },
+//   allIds: [1]
+// };
+
 const notes = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE:

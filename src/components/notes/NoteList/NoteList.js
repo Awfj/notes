@@ -6,10 +6,10 @@ import Note from "./Note/Note";
 
 const NoteList = ({
   notes,
-  onAddNote,
-  onArchiveNote,
-  onChangeNoteColor,
-  onDeleteNote,
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote,
   notesLayout
 }) => {
   let classNoteList = styles.NoteList;
@@ -31,11 +31,11 @@ const NoteList = ({
             key={index}
             {...note}
             onAddNote={() =>
-              onAddNote(note.title, note.content, note.color, note.labels)
+              addNote(note.title, note.content, note.color, note.labels)
             }
-            onArchiveNote={() => onArchiveNote(note.id)}
-            onChangeNoteColor={color => onChangeNoteColor(note.id, color)}
-            onDeleteNote={() => onDeleteNote(note.id)}
+            onArchiveNote={() => archiveNote(note.id)}
+            onChangeNoteColor={color => changeNoteColor(note.id, color)}
+            onDeleteNote={() => deleteNote(note.id)}
           ></Note>
         ))
       ) : (
@@ -56,10 +56,10 @@ NoteList.propTypes = {
       pinned: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired,
-  onAddNote: PropTypes.func.isRequired,
-  onArchiveNote: PropTypes.func.isRequired,
-  onChangeNoteColor: PropTypes.func.isRequired,
-  onDeleteNote: PropTypes.func.isRequired,
+  addNote: PropTypes.func.isRequired,
+  archiveNote: PropTypes.func.isRequired,
+  changeNoteColor: PropTypes.func.isRequired,
+  deleteNote: PropTypes.func.isRequired,
   notesLayout: PropTypes.string.isRequired
 };
 

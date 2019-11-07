@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Sidebar.module.scss";
-import { notesVisibilityFilters } from "../../store/actions/actionTypes";
+import { notesVisibilityFilters } from "../../redux/actions/actionTypes";
 import FilterLink from "../../containers/FilterLink";
 
 const Sidebar = ({ labels }) => {

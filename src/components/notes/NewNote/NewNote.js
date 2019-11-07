@@ -1,6 +1,6 @@
 import React, { createRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addNote } from "../../../store/actions/actions";
+import { addNote } from "../../../redux/actions/actions";
 import styles from "./NewNote.module.scss";
 import Toolbox from "../../shared/Toolbox/Toolbox";
 

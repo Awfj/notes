@@ -5,8 +5,8 @@ import {
   archiveNote,
   changeNoteColor,
   deleteNote
-} from "../store/actions/actions";
-import { notesVisibilityFilters } from "../store/actions/actionTypes";
+} from "../redux/actions/actions";
+import { notesVisibilityFilters } from "../redux/actions/actionTypes";
 
 const getVisibleNotes = (notes, filter) => {
   switch (filter) {
@@ -38,14 +38,14 @@ const mapStateToProps = (state, { searchQuery }) => ({
   notes: getNotes(state.notes, state.notesVisibility, searchQuery)
 });
 
-const mapDispatchToProps = dispatch => ({
-  onAddNote: (title, content, color) => dispatch(addNote(title, content, color)),
-  onArchiveNote: id => dispatch(archiveNote(id)),
-  onDeleteNote: id => dispatch(deleteNote(id)),
-  onChangeNoteColor: (id, color) => dispatch(changeNoteColor(id, color))
-});
+// const mapDispatchToProps = dispatch => ({
+//   onAddNote: (title, content, color) => dispatch(addNote(title, content, color)),
+//   onArchiveNote: id => dispatch(archiveNote(id)),
+//   onDeleteNote: id => dispatch(deleteNote(id)),
+//   onChangeNoteColor: (id, color) => dispatch(changeNoteColor(id, color))
+// });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { addNote, archiveNote, deleteNote, changeNoteColor }
 )(NoteList);
