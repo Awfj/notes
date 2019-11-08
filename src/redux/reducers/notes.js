@@ -46,7 +46,7 @@ import {
 // ];
 
 const initialState = {
-  byId: {
+  byIds: {
     1: {
       id: 1,
       title: "Project",
@@ -55,30 +55,68 @@ const initialState = {
       labels: ["qqq", "gqe"],
       pinned: false,
       status: "active"
+    },
+    2: {
+      id: 2,
+      title: "",
+      content: "hrer archived",
+      color: "yellow",
+      labels: [],
+      pinned: false,
+      status: "archived"
+    },
+    3: {
+      id: 3,
+      title: "",
+      content: "erw deleted",
+      color: "green",
+      labels: [],
+      pinned: false,
+      status: "deleted"
+    },
+    4: {
+      id: 4,
+      title: "",
+      content: "Qrsghh& active",
+      color: "pink",
+      labels: [],
+      pinned: false,
+      status: "active"
     }
   },
-  allIds: [1]
+  allIds: [1, 2, 3, 4]
 };
 
 const notes = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE:
-      return [
+      return {
         ...state,
-        {
-          id: action.id,
-          title: action.title,
-          content: action.content,
-          color: action.color,
-          labels: action.labels,
-          pinned: false,
-          status: "active"
-        }
-      ];
+        byIds: {
+          ...state.byIds,
+          [action.id]: {
+            id: action.id,
+            title: action.title,
+            content: action.content,
+            color: action.color,
+            labels: action.labels,
+            pinned: false,
+            status: "active"
+          }
+        },
+        allIds: [...state.allIds, action.id]
+      };
     case ARCHIVE_NOTE:
-      return state.map(note =>
-        note.id === action.id ? { ...note, status: "archived" } : note
-      );
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [action.id]: {
+            ...state.byIds[action.id],
+            status: "archived"
+          }
+        }
+      };
     case DELETE_NOTE:
       return state.map(note =>
         note.id === action.id ? { ...note, status: "deleted" } : note

@@ -1,18 +1,12 @@
 import { VISIBILITY_FILTERS } from "../redux/actions/actionTypes";
 
-const getNotesState = store => store.notes;
-const getNoteList = store =>
-  getNotesState(store) ? getNotesState(store).allIds : [];
-const getNoteById = (store, id) =>
-  getNotesState(store) ? { ...getNotesState(store).byId[id] } : {};
+const getNoteIds = notes => (notes ? notes.allIds : []);
+const getNoteById = (notes, id) => (notes ? { ...notes.byIds[id] } : {});
+const getNotes = notesState =>
+  getNoteIds(notesState).map(id => getNoteById(notesState, id));
 
-export const getNotes = store =>
-  getNoteList(store).map(id => getNoteById(store, id));
-
-export const getNotesByVisibilityFilter = (store, visibilityFilter) => {
-  const allNotes = getNotes(store);
-  console.log(store.notes)
-  console.log(getNotesState(store))
+export const getNotesByVisibilityFilter = (notesState, visibilityFilter) => {
+  const allNotes = getNotes(notesState);
   switch (visibilityFilter) {
     case VISIBILITY_FILTERS.SHOW_ACTIVE:
       return allNotes.filter(note => note.status === "active");
@@ -25,8 +19,8 @@ export const getNotesByVisibilityFilter = (store, visibilityFilter) => {
   }
 };
 
-export const getNotesBySearchQuery = (store, searchQuery) => {
-  const allNotes = getNotes(store);
+export const getNotesBySearchQuery = (notes, searchQuery) => {
+  const allNotes = getNotes(notes);
   return allNotes.filter(
     note =>
       (note.title.toLowerCase().includes(searchQuery) ||

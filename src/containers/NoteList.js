@@ -6,26 +6,23 @@ import {
   changeNoteColor,
   deleteNote
 } from "../redux/actions/actionCreators";
-import { getNotesByVisibilityFilter, getNotesBySearchQuery } from "../redux/selectors";
-
-const getNotes = (state, filter, searchQuery) =>
-  searchQuery.length > 0
-    ? getNotesBySearchQuery(state, searchQuery)
-    : getNotesByVisibilityFilter(state, filter);
+import {
+  getNotesByVisibilityFilter,
+  getNotesBySearchQuery
+} from "../redux/selectors";
 
 const mapStateToProps = (state, { searchQuery }) => ({
-  notes: getNotes(state, state.notesVisibility, searchQuery)
-  // notes: getNotesByVisibilityFilter(state, state.notesVisibility)
+  notes: searchQuery
+    ? getNotesBySearchQuery(state.notes, searchQuery)
+    : getNotesByVisibilityFilter(state.notes, state.notesVisibility)
 });
-
-const mapDispatchToProps = {
-  addNote,
-  archiveNote,
-  deleteNote,
-  changeNoteColor
-};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    addNote,
+    archiveNote,
+    deleteNote,
+    changeNoteColor
+  }
 )(NoteList);
