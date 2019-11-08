@@ -89,34 +89,38 @@ const initialState = {
 
 const notes = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_NOTE:
+    case ADD_NOTE: {
+      const { id, title, content, color, labels } = action;
       return {
         ...state,
         byIds: {
           ...state.byIds,
-          [action.id]: {
-            id: action.id,
-            title: action.title,
-            content: action.content,
-            color: action.color,
-            labels: action.labels,
+          [id]: {
+            id,
+            title,
+            content,
+            color,
+            labels,
             pinned: false,
             status: "active"
           }
         },
-        allIds: [...state.allIds, action.id]
+        allIds: [...state.allIds, id]
       };
-    case ARCHIVE_NOTE:
+    }
+    case ARCHIVE_NOTE: {
+      const { id } = action;
       return {
         ...state,
         byIds: {
           ...state.byIds,
-          [action.id]: {
-            ...state.byIds[action.id],
+          [id]: {
+            ...state.byIds[id],
             status: "archived"
           }
         }
       };
+    }
     case DELETE_NOTE:
       return state.map(note =>
         note.id === action.id ? { ...note, status: "deleted" } : note
