@@ -10,7 +10,7 @@ import {
   faSync
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Header.module.scss";
-import Dropdown from "../shared/Dropdown/Dropdown";
+import Dropdown from "../Dropdown/Dropdown";
 import Search from "../../components/Search/Search";
 
 const Header = props => {

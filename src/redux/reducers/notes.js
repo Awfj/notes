@@ -121,14 +121,32 @@ const notes = (state = initialState, action) => {
         }
       };
     }
-    case DELETE_NOTE:
-      return state.map(note =>
-        note.id === action.id ? { ...note, status: "deleted" } : note
-      );
-    case CHANGE_NOTE_COLOR:
-      return state.map(note =>
-        note.id === action.id ? { ...note, color: action.color } : note
-      );
+    case DELETE_NOTE: {
+      const { id } = action;
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [id]: {
+            ...state.byIds[id],
+            status: "deleted"
+          }
+        }
+      };
+    }
+    case CHANGE_NOTE_COLOR: {
+      const { id, color } = action;
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [id]: {
+            ...state.byIds[id],
+            color
+          }
+        }
+      };
+    }
     case ADD_NOTE_LABEL:
       return state.map(note =>
         note.id === action.id

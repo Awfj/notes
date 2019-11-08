@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import "normalize.css";
 import "./index.css";
 import { Provider } from "react-redux";
-import App from "./containers/App";
+import App from "./components/App/App";
 import configureStore from "./redux/configureStore";
 import * as serviceWorker from "./serviceWorker";
 
@@ -18,7 +18,7 @@ const renderApp = () =>
   );
 
 if (process.env.NOTE_ENV !== "production" && module.hot) {
-  module.hot.accept("./containers/App", renderApp);
+  module.hot.accept("./components/App/App", renderApp);
 }
 renderApp();
 

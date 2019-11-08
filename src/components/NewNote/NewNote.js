@@ -1,8 +1,8 @@
 import React, { createRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addNote } from "../../../redux/actions/actionCreators";
 import styles from "./NewNote.module.scss";
-import Toolbox from "../../shared/Toolbox/Toolbox";
+import Toolbox from "../Toolbox/Toolbox";
+import { addNote } from "../../redux/actions/actionCreators";
 
 const NewNote = ({ dispatch }) => {
   const [activeColor, setActiveColor] = useState("white");

@@ -1,20 +1,12 @@
 import React, { createRef } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import styles from "./Note.module.scss";
-import Toolbox from "../../../shared/Toolbox/Toolbox";
+import Toolbox from "../Toolbox/Toolbox";
 
-const Note = ({
-  title,
-  content,
-  color,
-  labels,
-  onAddNote,
-  onArchiveNote,
-  onChangeNoteColor,
-  onDeleteNote
-}) => {
-  const noteRef = createRef();
+const Note = ({ note }) => {
+  const noteRef = createRef();  
+  const { title, content, color, labels } = note;
 
   function handleMouseHover(e) {
     // const toolbox = e.currentTarget.children[0].children;
@@ -36,14 +28,7 @@ const Note = ({
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
     >
-      <Toolbox
-        activeColor={color}
-        parent="Note"
-        onAddNote={onAddNote}
-        onArchiveNote={onArchiveNote}
-        onChangeNoteColor={onChangeNoteColor}
-        onDeleteNote={onDeleteNote}
-      >
+      <Toolbox activeColor={color} parent="Note" note={note}>
         {title && <h3>{title}</h3>}
         {content && <p>{content}</p>}
         {labels.length > 0 && (
@@ -59,14 +44,11 @@ const Note = ({
 };
 
 Note.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  labels: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onAddNote: PropTypes.func.isRequired,
-  onArchiveNote: PropTypes.func.isRequired,
-  onChangeNoteColor: PropTypes.func.isRequired,
-  onDeleteNote: PropTypes.func.isRequired
+  // id: PropTypes.number.isRequired,
+  // title: PropTypes.string.isRequired,
+  // content: PropTypes.string.isRequired,
+  // color: PropTypes.string.isRequired,
+  // labels: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
 export default Note;

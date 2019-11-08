@@ -1,17 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import styles from "./NoteList.module.scss";
-import Note from "./Note/Note";
+import Note from "../Note/Note";
+import {
+  getNotesByVisibilityFilter,
+  getNotesBySearchQuery
+} from "../../redux/selectors";
 
-const NoteList = ({
-  notes,
-  addNote,
-  archiveNote,
-  changeNoteColor,
-  deleteNote,
-  notesLayout
-}) => {
+const NoteList = ({ notes, notesLayout }) => {
   let classNoteList = styles.NoteList;
   if (notesLayout === "list") {
     classNoteList += ` ${styles.list}`;
@@ -26,18 +24,7 @@ const NoteList = ({
       </div> */}
 
       {notes.length > 0 ? (
-        notes.map((note, index) => (
-          <Note
-            key={index}
-            {...note}
-            onAddNote={() =>
-              addNote(note.title, note.content, note.color, note.labels)
-            }
-            onArchiveNote={() => archiveNote(note.id)}
-            onChangeNoteColor={color => changeNoteColor(note.id, color)}
-            onDeleteNote={() => deleteNote(note.id)}
-          ></Note>
-        ))
+        notes.map((note, index) => <Note key={index} note={note}></Note>)
       ) : (
         <p>There are no notes</p>
       )}
@@ -56,11 +43,13 @@ NoteList.propTypes = {
       pinned: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired,
-  addNote: PropTypes.func.isRequired,
-  archiveNote: PropTypes.func.isRequired,
-  changeNoteColor: PropTypes.func.isRequired,
-  deleteNote: PropTypes.func.isRequired,
   notesLayout: PropTypes.string.isRequired
 };
 
-export default NoteList;
+const mapStateToProps = (state, { searchQuery }) => ({
+  notes: searchQuery
+    ? getNotesBySearchQuery(state.notes, searchQuery)
+    : getNotesByVisibilityFilter(state.notes, state.notesVisibility)
+});
+
+export default connect(mapStateToProps)(NoteList);
