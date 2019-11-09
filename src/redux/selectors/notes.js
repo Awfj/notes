@@ -1,12 +1,10 @@
-import { VISIBILITY_FILTERS } from "../redux/actions/actionTypes";
+import { getSlice } from "./generics";
+import { VISIBILITY_FILTERS } from "../actions/actionTypes";
 
-const getNoteIds = notes => (notes ? notes.allIds : []);
-const getNoteById = (notes, id) => (notes ? { ...notes.byIds[id] } : {});
-const getNotes = notesState =>
-  getNoteIds(notesState).map(id => getNoteById(notesState, id));
+const getNotes = notes => getSlice(notes);
 
-export const getNotesByVisibilityFilter = (notesState, visibilityFilter) => {
-  const allNotes = getNotes(notesState);
+export const getNotesByVisibilityFilter = (notes, visibilityFilter) => {
+  const allNotes = getNotes(notes);
   switch (visibilityFilter) {
     case VISIBILITY_FILTERS.SHOW_ACTIVE:
       return allNotes.filter(note => note.status === "active");
@@ -28,3 +26,8 @@ export const getNotesBySearchQuery = (notes, searchQuery) => {
       note.status !== "deleted"
   );
 };
+
+export const getNotesByLabel = (notes, label) => {
+  const allNotes = getNotes(notes);
+  return allNotes;
+}

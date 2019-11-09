@@ -7,7 +7,7 @@ import Note from "../Note/Note";
 import {
   getNotesByVisibilityFilter,
   getNotesBySearchQuery
-} from "../../redux/selectors";
+} from "../../redux/selectors/notes";
 import {
   addNote,
   archiveNote,
