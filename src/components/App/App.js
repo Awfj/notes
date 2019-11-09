@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import styles from "./App.module.scss";
-import Header from "../../containers/Header";
+import Header from "../Header/Header";
 import NewNote from "../NewNote/NewNote";
 import NoteList from "../NoteList/NoteList";
 import Sidebar from "../Sidebar/Sidebar";

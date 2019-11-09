@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+// import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-regular-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ColorPicker.module.scss";
+// import { changeNoteColor } from "../../redux/actions/actionCreators";
 
 const COLORS = [
   "white",

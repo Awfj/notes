@@ -1,6 +1,8 @@
 import React, { createRef, useState, useEffect } from "react";
+// import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles from "./Dropdown.module.scss";
+// import { addNote, deleteNote } from "../../redux/actions/actionCreators";
 
 const Dropdown = ({ mainButton, options, children }) => {
   const [isOpen, setIsOpen] = useState(false);

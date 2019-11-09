@@ -8,8 +8,21 @@ import {
   getNotesByVisibilityFilter,
   getNotesBySearchQuery
 } from "../../redux/selectors";
+import {
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote
+} from "../../redux/actions/actionCreators";
 
-const NoteList = ({ notes, notesLayout }) => {
+const NoteList = ({
+  notes,
+  notesLayout,
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote
+}) => {
   let classNoteList = styles.NoteList;
   if (notesLayout === "list") {
     classNoteList += ` ${styles.list}`;
@@ -24,7 +37,19 @@ const NoteList = ({ notes, notesLayout }) => {
       </div> */}
 
       {notes.length > 0 ? (
-        notes.map((note, index) => <Note key={index} note={note}></Note>)
+        notes.map((note, index) => {
+          const { id, title, content, color, labels } = note;
+          return (
+            <Note
+              key={index}
+              currentNote={note}
+              onAddNote={() => addNote(title, content, color, labels)}
+              onArchiveNote={() => archiveNote(id)}
+              onChangeNoteColor={newColor => changeNoteColor(id, newColor)}
+              onDeleteNote={() => deleteNote(id)}
+            ></Note>
+          );
+        })
       ) : (
         <p>There are no notes</p>
       )}
@@ -43,7 +68,11 @@ NoteList.propTypes = {
       pinned: PropTypes.bool.isRequired
     }).isRequired
   ).isRequired,
-  notesLayout: PropTypes.string.isRequired
+  notesLayout: PropTypes.string.isRequired,
+  addNote: PropTypes.func.isRequired,
+  archiveNote: PropTypes.func.isRequired,
+  changeNoteColor: PropTypes.func.isRequired,
+  deleteNote: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, { searchQuery }) => ({
@@ -52,4 +81,7 @@ const mapStateToProps = (state, { searchQuery }) => ({
     : getNotesByVisibilityFilter(state.notes, state.notesVisibility)
 });
 
-export default connect(mapStateToProps)(NoteList);
+export default connect(
+  mapStateToProps,
+  { addNote, archiveNote, changeNoteColor, deleteNote }
+)(NoteList);

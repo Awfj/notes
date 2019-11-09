@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckCircle,
@@ -14,32 +14,32 @@ import { faBell, faFolderOpen } from "@fortawesome/free-regular-svg-icons";
 import styles from "./Toolbox.module.scss";
 import ColorPicker from "../ColorPicker/ColorPicker";
 import Dropdown from "../Dropdown/Dropdown";
-import {
-  addNote,
-  archiveNote,
-  changeNoteColor,
-  deleteNote
-} from "../../redux/actions/actionCreators";
 
-const Toolbox = props => {
-  // const { id, title, content, color, labels } = props.note;
-
-  const { parent } = props;
-  const parentNote = parent === "Note";
-  const parentNewNote = parent === "NewNote";
+const Toolbox = ({
+  parent,
+  children,
+  activeColor,
+  onAddNote,
+  onArchiveNote,
+  onChangeNoteColor,
+  onDeleteNote
+}) => {
+  const isNewNoteParent = parent === "NewNote";
+  const isNoteParent = parent === "Note";
+  // const isEditNoteParent = parent === "EditNote";
 
   let classToolbox = styles.Toolbox;
-  // if (parentNote) {
+  // if (isNoteParent) {
   //   classToolbox += ` ${styles.hidden}`;
   // }
   return (
     <div className={classToolbox}>
-      {parentNote && (
+      {isNoteParent && (
         <button type="button" className={styles.select}>
           <FontAwesomeIcon icon={faCheckCircle} />
         </button>
       )}
-      <div>{props.children}</div>
+      <div>{children}</div>
       <button type="button" className={styles.pin}>
         <FontAwesomeIcon icon={faThumbtack} />
       </button>
@@ -49,37 +49,23 @@ const Toolbox = props => {
             <FontAwesomeIcon icon={faBell} fixedWidth />
           </button>
           <ColorPicker
-            activeColor={props.activeColor}
+            activeColor={activeColor}
             mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
-            onChangeNoteColor={color =>
-              props.changeNoteColor(props.note.id, color)
-            }
+            onChangeNoteColor={onChangeNoteColor}
           />
-          <button
-            type="button"
-            onClick={() => props.archiveNote(props.note.id)}
-          >
+          <button type="button" onClick={onArchiveNote}>
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
           </button>
           <Dropdown
             mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
             options={[
-              ["Delete note", () => props.deleteNote(props.note.id)],
+              ["Delete note", onDeleteNote],
               ["Add label"],
-              [
-                "Make a copy",
-                () =>
-                  props.addNote(
-                    props.note.title,
-                    props.note.content,
-                    props.note.color,
-                    props.note.labels
-                  )
-              ]
+              ["Make a copy", onAddNote]
             ]}
           ></Dropdown>
 
-          {parentNewNote && (
+          {isNewNoteParent && (
             <>
               <button type="button">
                 <FontAwesomeIcon icon={faUndoAlt} fixedWidth />
@@ -90,13 +76,18 @@ const Toolbox = props => {
             </>
           )}
         </div>
-        {parentNewNote && <button>Close</button>}
+        {isNewNoteParent && <button>Close</button>}
       </footer>
     </div>
   );
 };
 
-export default connect(
-  null,
-  { addNote, archiveNote, changeNoteColor, deleteNote }
-)(Toolbox);
+Toolbox.propTypes = {
+  parent: PropTypes.string.isRequired,
+  onAddNote: PropTypes.func,
+  onArchiveNote: PropTypes.func,
+  onChangeNoteColor: PropTypes.func.isRequired,
+  onDeleteNote: PropTypes.func
+};
+
+export default Toolbox;

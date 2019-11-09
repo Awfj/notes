@@ -4,7 +4,7 @@ import styles from "./NewNote.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
 import { addNote } from "../../redux/actions/actionCreators";
 
-const NewNote = ({ dispatch }) => {
+const NewNote = ({ addNote }) => {
   const [activeColor, setActiveColor] = useState("white");
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
@@ -22,7 +22,7 @@ const NewNote = ({ dispatch }) => {
       return;
     }
 
-    dispatch(addNote(titleValue, bodyValue, activeColor, []));
+    addNote(titleValue, bodyValue, activeColor, []);
     setActiveColor("white");
     setTitleValue("");
     setBodyValue("");
@@ -86,4 +86,7 @@ const NewNote = ({ dispatch }) => {
   );
 };
 
-export default connect()(NewNote);
+export default connect(
+  null,
+  { addNote }
+)(NewNote);
