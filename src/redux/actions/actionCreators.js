@@ -1,13 +1,13 @@
 import {
-  ADD_LABEL,
   ADD_NOTE,
   ADD_NOTE_LABEL,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
   CHANGE_NOTES_VISIBILITY,
-  DELETE_LABEL,
   DELETE_NOTE,
-  SEARCH_NOTES
+  SEARCH_NOTES,
+  ADD_LABEL,
+  DELETE_LABEL
 } from "./actionTypes";
 
 // notes
@@ -39,16 +39,16 @@ export const changeNotesVisibility = filter => ({
   filter
 });
 
-export const searchNotes = query => ({
+export const searchNotes = searchQuery => ({
   type: SEARCH_NOTES,
-  query
+  searchQuery
 });
 
 // labels
-let nextLabelId = 3; // 0
+let nextLabelId = 2; // 0
 export const addLabel = label => ({
   type: ADD_LABEL,
-  id: nextLabelId++,
+  id: ++nextLabelId,
   label
 });
 

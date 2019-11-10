@@ -1,51 +1,52 @@
+import { combineReducers } from "redux";
 import { ADD_LABEL, DELETE_LABEL } from "../actions/actionTypes";
 
 const initialState = {
-  byIds: {
-    1: {
-      id: 1,
-      label: "zzz",
-      notes: [1, 3]
-    },
-    2: {
-      id: 2,
-      label: "abc",
-      notes: [1, 2]
-    }
+  1: {
+    id: 1,
+    label: "zzz",
+    notes: [1, 3]
   },
-  allIds: [1, 2]
+  2: {
+    id: 2,
+    label: "abc",
+    notes: [1, 2]
+  }
 };
 
-const labels = (state = initialState, action) => {
+const allLabels = (state = [1, 2], action) => {
+  switch (action.type) {
+    case ADD_LABEL:
+      return [...state, action.id];
+    case DELETE_LABEL:
+      return [...state.filter(id => action.id !== id)];
+    default:
+      return state;
+  }
+};
+
+const labelsById = (state = initialState, action) => {
   switch (action.type) {
     case ADD_LABEL: {
       const { id, label } = action;
       return {
         ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            id,
-            label,
-            notes: []
-          }
-        },
-        allIds: [...state.allIds, id]
+        [id]: {
+          id,
+          label,
+          notes: []
+        }
       };
     }
     case DELETE_LABEL: {
       const { id } = action;
-      return {
-        ...state,
-        byIds: {
-          ...state.byIds
-        },
-        allIds: [...state.allIds.filter(Iid => Iid !== id)]
-      };
+      const newState = { ...state };
+      delete newState[id];
+      return newState;
     }
     default:
       return state;
   }
 };
 
-export default labels;
+export default combineReducers({ allIds: allLabels, byId: labelsById });

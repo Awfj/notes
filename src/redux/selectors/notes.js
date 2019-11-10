@@ -1,10 +1,10 @@
 import { getSlice } from "./generics";
 import { VISIBILITY_FILTERS } from "../actions/actionTypes";
 
-const getNotes = notes => getSlice(notes);
+export const getNotes = storedNotes => getSlice(storedNotes);
 
-export const getNotesByVisibilityFilter = (notes, visibilityFilter) => {
-  const allNotes = getNotes(notes);
+export const getNotesByVisibilityFilter = (storedNotes, visibilityFilter) => {
+  const allNotes = getNotes(storedNotes);
   switch (visibilityFilter) {
     case VISIBILITY_FILTERS.SHOW_ACTIVE:
       return allNotes.filter(note => note.status === "active");
@@ -17,8 +17,8 @@ export const getNotesByVisibilityFilter = (notes, visibilityFilter) => {
   }
 };
 
-export const getNotesBySearchQuery = (notes, searchQuery) => {
-  const allNotes = getNotes(notes);
+export const getNotesBySearchQuery = (storedNotes, searchQuery) => {
+  const allNotes = getNotes(storedNotes);
   return allNotes.filter(
     note =>
       (note.title.toLowerCase().includes(searchQuery) ||

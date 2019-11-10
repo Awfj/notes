@@ -1,3 +1,4 @@
+import { combineReducers } from "redux";
 import {
   ADD_NOTE,
   ADD_NOTE_LABEL,
@@ -6,118 +7,78 @@ import {
   DELETE_NOTE
 } from "../actions/actionTypes";
 
-// const initialState = [
-//   {
-//     id: 0,
-//     title: "Project",
-//     content: "gds active",
-//     color: "orange",
-//     labels: ["qqq", "gqe"],
-//     pinned: false,
-//     status: "active"
-//   },
-//   {
-//     id: 1,
-//     title: "",
-//     content: "hrer archived",
-//     color: "yellow",
-//     labels: [],
-//     pinned: false,
-//     status: "archived"
-//   },
-//   {
-//     id: 2,
-//     title: "",
-//     content: "erw deleted",
-//     color: "green",
-//     labels: [],
-//     pinned: false,
-//     status: "deleted"
-//   },
-//   {
-//     id: 3,
-//     title: "",
-//     content: "Qrsghh& active",
-//     color: "pink",
-//     labels: [],
-//     pinned: false,
-//     status: "active"
-//   }
-// ];
-
 const initialState = {
-  byIds: {
-    1: {
-      id: 1,
-      title: "Project",
-      content: "gds active",
-      color: "orange",
-      labels: ["qqq", "gqe"],
-      pinned: false,
-      status: "active"
-    },
-    2: {
-      id: 2,
-      title: "",
-      content: "hrer archived",
-      color: "yellow",
-      labels: [],
-      pinned: false,
-      status: "archived"
-    },
-    3: {
-      id: 3,
-      title: "",
-      content: "erw deleted",
-      color: "green",
-      labels: [],
-      pinned: false,
-      status: "deleted"
-    },
-    4: {
-      id: 4,
-      title: "",
-      content: "Qrsghh& active",
-      color: "pink",
-      labels: [],
-      pinned: false,
-      status: "active"
-    }
+  1: {
+    id: 1,
+    title: "Project",
+    content: "gds active",
+    color: "orange",
+    labels: ["qqq", "gqe"],
+    pinned: false,
+    status: "active"
   },
-  allIds: [1, 2, 3, 4]
+  2: {
+    id: 2,
+    title: "",
+    content: "hrer archived",
+    color: "yellow",
+    labels: [],
+    pinned: false,
+    status: "archived"
+  },
+  3: {
+    id: 3,
+    title: "",
+    content: "erw deleted",
+    color: "green",
+    labels: [],
+    pinned: false,
+    status: "deleted"
+  },
+  4: {
+    id: 4,
+    title: "",
+    content: "Qrsghh& active",
+    color: "pink",
+    labels: [],
+    pinned: false,
+    status: "active"
+  }
 };
 
-const notes = (state = initialState, action) => {
+const allNotes = (state = [1, 2, 3, 4], action) => {
+  switch (action.type) {
+    case ADD_NOTE:
+      return [...state, action.id];
+    default:
+      return state;
+  }
+};
+
+const notesById = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE: {
       const { id, title, content, color, labels } = action;
       return {
         ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            id,
-            title,
-            content,
-            color,
-            labels,
-            pinned: false,
-            status: "active"
-          }
-        },
-        allIds: [...state.allIds, id]
+        [id]: {
+          id,
+          title,
+          content,
+          color,
+          labels,
+          pinned: false,
+          status: "active"
+        }
       };
     }
     case ARCHIVE_NOTE: {
       const { id } = action;
       return {
         ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            ...state.byIds[id],
-            status: "archived"
-          }
+        [id]: {
+          ...state[id],
+          status: "archived"
         }
       };
     }
@@ -125,12 +86,9 @@ const notes = (state = initialState, action) => {
       const { id } = action;
       return {
         ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            ...state.byIds[id],
-            status: "deleted"
-          }
+        [id]: {
+          ...state[id],
+          status: "deleted"
         }
       };
     }
@@ -138,24 +96,26 @@ const notes = (state = initialState, action) => {
       const { id, color } = action;
       return {
         ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            ...state.byIds[id],
-            color
-          }
+        [id]: {
+          ...state[id],
+          color
         }
       };
     }
-    case ADD_NOTE_LABEL:
-      return state.map(note =>
-        note.id === action.id
-          ? { ...note, labels: [...state.labels, action.label] }
-          : note
-      );
+    case ADD_NOTE_LABEL: {
+      const { noteId, labelId } = action;
+      const note = state[noteId];
+      return {
+        ...state,
+        [noteId]: {
+          ...note,
+          labels: note.labels.concat(labelId)
+        }
+      };
+    }
     default:
       return state;
   }
 };
 
-export default notes;
+export default combineReducers({ allIds: allNotes, byId: notesById });

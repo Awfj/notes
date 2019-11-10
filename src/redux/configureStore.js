@@ -14,11 +14,11 @@ export default function configureStore(preloadedState) {
   const composedEnhancers = composeWithDevTools(...enhancers);
   const store = createStore(rootReducer, preloadedState, composedEnhancers);
 
-  if (process.env.NOTE_ENV !== "production" && module.hot) {
-    module.hot.accept("./reducers/reducers", () =>
-      store.replaceReducer(rootReducer)
-    );
-  }
+  // if (process.env.NOTE_ENV !== "production" && module.hot) {
+  //   module.hot.accept("./reducers/reducers", () =>
+  //     store.replaceReducer(rootReducer)
+  //   );
+  // }
 
   return store;
 }

@@ -13,8 +13,10 @@ import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Sidebar.module.scss";
 import { VISIBILITY_FILTERS } from "../../redux/actions/actionTypes";
 import FilterLink from "../../containers/FilterLink";
+import { getLabels } from "../../redux/selectors/labels";
+import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
 
-const Sidebar = ({ labels }) => {
+const Sidebar = ({ labels, addLabel, deleteLabel }) => {
   return (
     <aside className={styles.Sidebar}>
       <ul>
@@ -37,14 +39,14 @@ const Sidebar = ({ labels }) => {
           {labels.length > 0 &&
             labels.map(label => (
               <li key={label.id}>
-                <button type="button">
+                <button type="button" onClick={() => deleteLabel(label.id)}>
                   <FontAwesomeIcon icon={faHashtag} fixedWidth /> {label.label}
                 </button>
               </li>
             ))}
 
           <li>
-            <button type="button">
+            <button type="button" onClick={() => addLabel("asf")}>
               <FontAwesomeIcon icon={faEdit} fixedWidth />
               Edit labels
             </button>
@@ -70,11 +72,16 @@ const Sidebar = ({ labels }) => {
 };
 
 Sidebar.propTypes = {
-  labels: PropTypes.array
+  labels: PropTypes.array,
+  addLabel: PropTypes.func.isRequired,
+  deleteLabel: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  labels: state.labels
+  labels: getLabels(state.labels)
 });
 
-export default connect(mapStateToProps)(Sidebar);
+export default connect(
+  mapStateToProps,
+  { addLabel, deleteLabel }
+)(Sidebar);

@@ -17,9 +17,9 @@ const renderApp = () =>
     document.getElementById("root")
   );
 
-if (process.env.NOTE_ENV !== "production" && module.hot) {
-  module.hot.accept("./components/App/App", renderApp);
-}
+// if (process.env.NOTE_ENV !== "production" && module.hot) {
+//   module.hot.accept("./components/App/App", renderApp);
+// }
 renderApp();
 
 // If you want your app to work offline and load faster, you can change
