@@ -3,7 +3,7 @@ import {
   ADD_NOTE_LABEL,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
-  CHANGE_NOTES_VISIBILITY,
+  CHANGE_VISIBILITY_FILTER,
   DELETE_NOTE,
   SEARCH_NOTES,
   ADD_LABEL,
@@ -34,8 +34,8 @@ export const changeNoteColor = (id, color) => ({
   color
 });
 
-export const changeNotesVisibility = filter => ({
-  type: CHANGE_NOTES_VISIBILITY,
+export const changeVisibilityFilter = filter => ({
+  type: CHANGE_VISIBILITY_FILTER,
   filter
 });
 

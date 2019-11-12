@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 
 import styles from "./NoteList.module.scss";
 import Note from "../Note/Note";
-import {
-  getNotesByVisibilityFilter,
-  getNotesBySearchQuery
-} from "../../redux/selectors/notes";
+import { getNotesByVisibilityFilter } from "../../redux/selectors/notes";
 import {
   addNote,
   archiveNote,
@@ -76,12 +73,12 @@ NoteList.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  notes: props.searchQuery
-    ? getNotesBySearchQuery(state, props)
-    : getNotesByVisibilityFilter(state)
+  notes: getNotesByVisibilityFilter(state, props)
 });
 
-export default connect(
-  mapStateToProps,
-  { addNote, archiveNote, changeNoteColor, deleteNote }
-)(NoteList);
+export default connect(mapStateToProps, {
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote
+})(NoteList);

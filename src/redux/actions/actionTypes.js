@@ -8,12 +8,15 @@ export const DELETE_NOTE = "DELETE_NOTE";
 export const SEARCH_NOTES = "SEARCH_NOTES";
 export const REFRESH_NOTES = "REFRESH_NOTES";
 
-export const CHANGE_NOTES_VISIBILITY = "CHANGE_NOTES_VISIBILITY";
+export const CHANGE_VISIBILITY_FILTER = "CHANGE_VISIBILITY_FILTER";
 
 export const VISIBILITY_FILTERS = {
-  SHOW_ACTIVE: "SHOW_ACTIVE",
-  SHOW_ARCHIVED: "SHOW_ARCHIVED",
-  SHOW_DELETED: "SHOW_DELETED"
+  active: "active",
+  archived: "archived",
+  deleted: "deleted",
+  labels: "labels",
+  reminders: "reminders",
+  search: "search"
 };
 
 // labels
