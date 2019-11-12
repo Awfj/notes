@@ -75,10 +75,10 @@ NoteList.propTypes = {
   deleteNote: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state, { searchQuery }) => ({
-  notes: searchQuery
-    ? getNotesBySearchQuery(state.notes, searchQuery)
-    : getNotesByVisibilityFilter(state.notes, state.notesVisibility)
+const mapStateToProps = (state, props) => ({
+  notes: props.searchQuery
+    ? getNotesBySearchQuery(state, props)
+    : getNotesByVisibilityFilter(state)
 });
 
 export default connect(

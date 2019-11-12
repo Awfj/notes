@@ -38,7 +38,7 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
         <ul>
           {labels.length > 0 &&
             labels.map(label => (
-              <li key={label.id}>
+              <li key={label.id} label={label.id}>
                 <button type="button" onClick={() => deleteLabel(label.id)}>
                   <FontAwesomeIcon icon={faHashtag} fixedWidth /> {label.label}
                 </button>
