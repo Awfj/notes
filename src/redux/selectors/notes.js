@@ -1,10 +1,29 @@
 import { createSelector } from "reselect";
-import { getSlice } from "./generics";
+import { getSliceIds, getSliceById } from "./generics";
 import { VISIBILITY_FILTERS } from "../actions/actionTypes";
 
-// export const getNotes = storedNotes => getSlice(storedNotes);
+const getNoteById = (storedNotes, storedLabels, id) => {
+  const note = storedNotes.byId[id];
+  return {
+    ...note,
+    labels: note.labels.map(
+      labelId => getSliceById(storedLabels, labelId).label
+    )
+  };
+};
 
-const getNotes = state => getSlice(state.notes);
+const getStoredLabels = state => state.labels;
+const getStoredNotes = state => state.notes;
+
+const getNotes = createSelector(
+  [getStoredNotes, getStoredLabels],
+  (storedNotes, storedLabels) => {
+    return getSliceIds(storedNotes).map(id =>
+      getNoteById(storedNotes, storedLabels, id)
+    );
+  }
+);
+
 const getVisibilityFilter = state => state.visibilityFilter;
 const getSearchQuery = (_, props) => props.searchQuery;
 
@@ -35,7 +54,7 @@ export const getNotesByVisibilityFilter = createSelector(
               note.status !== deleted)
         );
       case labels:
-        console.log(visibilityFilter)
+        console.log(visibilityFilter);
         return notes;
       case reminders:
         return notes;

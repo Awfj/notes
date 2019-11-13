@@ -13,7 +13,7 @@ const initialState = {
     title: "Project",
     content: "gds active",
     color: "orange",
-    labels: ["qqq", "gqe"],
+    labels: [1, 2],
     pinned: false,
     status: "active"
   },

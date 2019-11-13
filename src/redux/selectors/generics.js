@@ -1,11 +1,11 @@
 import { createSelector } from "reselect";
 
-const getSliceIds = slice => (slice ? slice.allIds : []);
-const getSliceById = (slice, id) => (slice ? { ...slice.byId[id] } : {});
+export const getSliceIds = storedSlice => (storedSlice ? storedSlice.allIds : []);
+export const getSliceById = (storedSlice, id) => (storedSlice ? { ...storedSlice.byId[id] } : {});
 
 export const getSlice = createSelector(
-  [slice => slice],
-  slice => getSliceIds(slice).map(id => getSliceById(slice, id))
+  [storedSlice => storedSlice],
+  storedSlice => getSliceIds(storedSlice).map(id => getSliceById(storedSlice, id))
 );
 
 // export const getSlice = slice =>
