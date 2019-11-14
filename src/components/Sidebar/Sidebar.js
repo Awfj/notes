@@ -12,7 +12,7 @@ import {
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Sidebar.module.scss";
 import { VISIBILITY_FILTERS } from "../../redux/actions/actionTypes";
-import FilterLink from "../../containers/FilterLink";
+import FilterLink from "../FilterLink/FilterLink";
 import { getLabels } from "../../redux/selectors/labels";
 import {
   addLabel,
@@ -21,17 +21,18 @@ import {
 } from "../../redux/actions/actionCreators";
 
 const Sidebar = ({ labels, addLabel, deleteLabel, changeVisibilityFilter }) => {
+  // console.warn('Sidebar')
   return (
     <aside className={styles.Sidebar}>
       <ul>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.active}>
+          <FilterLink filter={VISIBILITY_FILTERS.active} to='notes'>
             <FontAwesomeIcon icon={faLightbulb} fixedWidth />
             Notes
           </FilterLink>
         </li>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.reminders}>
+          <FilterLink filter={VISIBILITY_FILTERS.reminders} to='reminders'>
             <FontAwesomeIcon icon={faBell} fixedWidth />
             Reminders
           </FilterLink>
@@ -59,13 +60,13 @@ const Sidebar = ({ labels, addLabel, deleteLabel, changeVisibilityFilter }) => {
       </section>
       <ul>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.archived}>
+          <FilterLink filter={VISIBILITY_FILTERS.archived} to='archive'>
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
             Archive
           </FilterLink>
         </li>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.deleted}>
+          <FilterLink filter={VISIBILITY_FILTERS.deleted} to='bin'>
             <FontAwesomeIcon icon={faTrashAlt} fixedWidth />
             Bin
           </FilterLink>
@@ -82,7 +83,7 @@ Sidebar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  labels: getLabels(state.labels)
+  labels: getLabels(state)
 });
 
 export default connect(mapStateToProps, {

@@ -1,3 +1,8 @@
+import { createSelector } from "reselect";
 import { getSlice } from "./generics";
 
-export const getLabels = storedLabels => getSlice(storedLabels);
+const getStoredLabels = state => state.labels;
+
+export const getLabels = createSelector([getStoredLabels], storedLabels =>
+  getSlice(storedLabels)
+);

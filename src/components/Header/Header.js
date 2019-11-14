@@ -14,7 +14,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import Search from "../../components/Search/Search";
 
 const Header = props => {
-  // console.log(props);
+  // console.warn('Header');
 
   return (
     <header className={styles.header}>

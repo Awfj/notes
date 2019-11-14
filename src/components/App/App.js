@@ -7,6 +7,7 @@ import NoteList from "../NoteList/NoteList";
 import Sidebar from "../Sidebar/Sidebar";
 
 function App() {
+  // console.warn('App')
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [notesLayout, setNotesLayout] = useState("list");
   const [isDarkThemeActive, setIsDarkThemeActive] = useState(false);
