@@ -5,14 +5,15 @@ import styles from "./Note.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
 
 const Note = ({
-  currentNote,
+  note,
   onAddNote,
   onArchiveNote,
   onChangeNoteColor,
-  onDeleteNote
+  onDeleteNote,
+  onPinNote
 }) => {
   const noteRef = createRef();
-  const { title, content, color, labels } = currentNote;
+  const { title, content, color, labels, isPinned } = note;
 
   function handleMouseHover(e) {
     // const toolbox = e.currentTarget.children[0].children;
@@ -41,8 +42,10 @@ const Note = ({
           ["Add label"],
           ["Make a copy", onAddNote]
         ]}
+        isPinned={isPinned}
         onArchiveNote={onArchiveNote}
         onChangeNoteColor={onChangeNoteColor}
+        onPinNote={onPinNote}
         parent="Note"
       >
         {title && <h3>{title}</h3>}
@@ -60,18 +63,19 @@ const Note = ({
 };
 
 Note.propTypes = {
-  currentNote: PropTypes.shape({
+  note: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
     labels: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    pinned: PropTypes.bool.isRequired
+    isPinned: PropTypes.bool.isRequired
   }).isRequired,
   onAddNote: PropTypes.func.isRequired,
   onArchiveNote: PropTypes.func.isRequired,
   onChangeNoteColor: PropTypes.func.isRequired,
-  onDeleteNote: PropTypes.func.isRequired
+  onDeleteNote: PropTypes.func.isRequired,
+  onPinNote: PropTypes.func.isRequired
 };
 
 export default Note;

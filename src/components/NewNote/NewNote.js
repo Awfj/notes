@@ -5,7 +5,7 @@ import Toolbox from "../Toolbox/Toolbox";
 import {
   addNote,
   archiveNote,
-  deleteNote
+  deleteNote,
 } from "../../redux/actions/actionCreators";
 
 const NewNote = ({ addNote, archiveNote, deleteNote }) => {
@@ -13,6 +13,7 @@ const NewNote = ({ addNote, archiveNote, deleteNote }) => {
   const [activeColor, setActiveColor] = useState("white");
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
+  const [isPinned, setIsPinned] = useState(false);
   const [isFormActive, setIsFormActive] = useState(true);
   const noteFormRef = createRef();
 
@@ -23,14 +24,16 @@ const NewNote = ({ addNote, archiveNote, deleteNote }) => {
     if (!titleValue.trim() && !bodyValue.trim()) {
       setTitleValue("");
       setBodyValue("");
+      setIsPinned(false);
       setIsFormActive(false);
       return;
     }
 
-    addNote(titleValue, bodyValue, activeColor, []);
+    addNote(titleValue, bodyValue, activeColor, [], isPinned);
     setActiveColor("white");
     setTitleValue("");
     setBodyValue("");
+    setIsPinned(false);
     setIsFormActive(false);
   };
 
@@ -67,8 +70,10 @@ const NewNote = ({ addNote, archiveNote, deleteNote }) => {
       <Toolbox
         activeColor={activeColor}
         dropdownOptions={dropdownOptions}
+        isPinned={isPinned}
         onArchiveNote={archiveNote}
         onChangeNoteColor={setActiveColor}
+        onPinNote={() => setIsPinned(!isPinned)}
         parent="NewNote"
       >
         {isFormActive ? (

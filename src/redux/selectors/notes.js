@@ -48,7 +48,19 @@ export const getNotesByVisibilityFilter = createSelector(
 
     switch (visibilityFilter) {
       case active:
-        return notes.filter(note => note.status === active);
+        // return notes.filter(note => note.status === active);
+        const pinned = [];
+        const others = [];
+        notes.forEach(note => {
+          if (note.status === active) {
+            if (note.isPinned) {
+              pinned.push(note);
+            } else {
+              others.push(note);
+            }
+          }
+        });
+        return { pinned, others };
       case archived:
         return notes.filter(note => note.status === archived);
       case deleted:

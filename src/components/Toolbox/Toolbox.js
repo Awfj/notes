@@ -19,8 +19,10 @@ const Toolbox = ({
   activeColor,
   children,
   dropdownOptions,
+  isPinned,
   onArchiveNote,
   onChangeNoteColor,
+  onPinNote,
   parent
 }) => {
   const isNewNoteParent = parent === "NewNote";
@@ -39,8 +41,12 @@ const Toolbox = ({
         </button>
       )}
       <div>{children}</div>
-      <button type="button" className={styles.pin}>
-        <FontAwesomeIcon icon={faThumbtack} />
+      <button type="button" className={styles.pin} onClick={onPinNote}>
+        {isPinned ? (
+          <FontAwesomeIcon icon={faThumbtack} />
+        ) : (
+          <FontAwesomeIcon icon={faThumbtack} rotation={90} />
+        )}
       </button>
       <footer>
         <div className={styles.tools}>
@@ -81,8 +87,10 @@ Toolbox.propTypes = {
   activeColor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   dropdownOptions: PropTypes.array.isRequired,
+  isPinned: PropTypes.bool.isRequired,
   onArchiveNote: PropTypes.func.isRequired,
   onChangeNoteColor: PropTypes.func.isRequired,
+  onPinNote: PropTypes.func.isRequired,
   parent: PropTypes.string.isRequired
 };
 

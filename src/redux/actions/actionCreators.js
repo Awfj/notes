@@ -5,6 +5,7 @@ import {
   CHANGE_NOTE_COLOR,
   CHANGE_VISIBILITY_FILTER,
   DELETE_NOTE,
+  PIN_NOTE,
   SEARCH_NOTES,
   ADD_LABEL,
   DELETE_LABEL
@@ -12,13 +13,14 @@ import {
 
 // notes
 let nextNoteId = 4; // 0
-export const addNote = (title, content, color, labels) => ({
+export const addNote = (title, content, color, labels, isPinned) => ({
   type: ADD_NOTE,
   id: ++nextNoteId,
   title,
   content,
   color,
-  labels
+  labels,
+  isPinned
 });
 
 export const labelNote = (id, label) => ({
@@ -33,6 +35,7 @@ export const changeNoteColor = (id, color) => ({
   id,
   color
 });
+export const pinNote = id => ({ type: PIN_NOTE, id });
 
 export const changeVisibilityFilter = filter => ({
   type: CHANGE_VISIBILITY_FILTER,

@@ -4,6 +4,7 @@ import {
   LABEL_NOTE,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
+  PIN_NOTE,
   DELETE_NOTE
 } from "../actions/actionTypes";
 
@@ -13,8 +14,8 @@ const initialState = {
     title: "Project",
     content: "gds active",
     color: "orange",
-    labels: ['a', 'b'],
-    pinned: false,
+    labels: ["a", "b"],
+    isPinned: true,
     status: "active"
   },
   2: {
@@ -23,7 +24,7 @@ const initialState = {
     content: "hrer archived",
     color: "yellow",
     labels: [],
-    pinned: false,
+    isPinned: false,
     status: "archived"
   },
   3: {
@@ -32,7 +33,7 @@ const initialState = {
     content: "erw deleted",
     color: "green",
     labels: [],
-    pinned: false,
+    isPinned: false,
     status: "deleted"
   },
   4: {
@@ -41,7 +42,7 @@ const initialState = {
     content: "Qrsghh& active",
     color: "pink",
     labels: [],
-    pinned: false,
+    isPinned: false,
     status: "active"
   }
 };
@@ -58,7 +59,7 @@ const allNotes = (state = [1, 2, 3, 4], action) => {
 const notesById = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE: {
-      const { id, title, content, color, labels } = action;
+      const { id, title, content, color, labels, isPinned } = action;
       return {
         ...state,
         [id]: {
@@ -67,7 +68,7 @@ const notesById = (state = initialState, action) => {
           content,
           color,
           labels,
-          pinned: false,
+          isPinned,
           status: "active"
         }
       };
@@ -78,6 +79,7 @@ const notesById = (state = initialState, action) => {
         ...state,
         [id]: {
           ...state[id],
+          isPinned: false,
           status: "archived"
         }
       };
@@ -88,6 +90,7 @@ const notesById = (state = initialState, action) => {
         ...state,
         [id]: {
           ...state[id],
+          isPinned: false,
           status: "deleted"
         }
       };
@@ -110,6 +113,17 @@ const notesById = (state = initialState, action) => {
         [noteId]: {
           ...note,
           labels: note.labels.concat(labelId)
+        }
+      };
+    }
+    case PIN_NOTE: {
+      const { id } = action;
+      const note = state[id];
+      return {
+        ...state,
+        [id]: {
+          ...note,
+          isPinned: !note.isPinned
         }
       };
     }
