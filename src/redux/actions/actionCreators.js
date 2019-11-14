@@ -1,6 +1,6 @@
 import {
   ADD_NOTE,
-  ADD_NOTE_LABEL,
+  LABEL_NOTE,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
   CHANGE_VISIBILITY_FILTER,
@@ -21,8 +21,8 @@ export const addNote = (title, content, color, labels) => ({
   labels
 });
 
-export const addNoteLabel = (id, label) => ({
-  type: ADD_NOTE_LABEL,
+export const labelNote = (id, label) => ({
+  type: LABEL_NOTE,
   id,
   label
 });
@@ -45,7 +45,7 @@ export const searchNotes = searchQuery => ({
 });
 
 // labels
-let nextLabelId = 2; // 0
+let nextLabelId = 3; // 0
 export const addLabel = label => ({
   type: ADD_LABEL,
   id: ++nextLabelId,

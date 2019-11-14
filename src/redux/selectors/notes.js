@@ -1,27 +1,34 @@
 import { createSelector } from "reselect";
-import { getSliceIds, getSliceById } from "./generics";
+import {
+  getSlice
+  // getSliceIds, getSliceById
+} from "./generics";
 import { VISIBILITY_FILTERS } from "../actions/actionTypes";
 
-const getNoteById = (storedNotes, storedLabels, id) => {
-  const note = storedNotes.byId[id];
-  return {
-    ...note,
-    labels: note.labels.map(
-      labelId => getSliceById(storedLabels, labelId).label
-    )
-  };
-};
-
-const getStoredLabels = state => state.labels;
+// const getStoredLabels = state => state.labels;
 const getStoredNotes = state => state.notes;
 
-const getNotes = createSelector(
-  [getStoredNotes, getStoredLabels],
-  (storedNotes, storedLabels) => {
-    return getSliceIds(storedNotes).map(id =>
-      getNoteById(storedNotes, storedLabels, id)
-    );
-  }
+// const getNoteById = (storedNotes, storedLabels, id) => {
+//   const note = storedNotes.byId[id];
+//   return {
+//     ...note,
+//     labels: note.labels.map(
+//       labelId => getSliceById(storedLabels, labelId).label
+//     )
+//   };
+// };
+
+// const getNotes = createSelector(
+//   [getStoredNotes, getStoredLabels],
+//   (storedNotes, storedLabels) => {
+//     return getSliceIds(storedNotes).map(id =>
+//       getNoteById(storedNotes, storedLabels, id)
+//     );
+//   }
+// );
+
+const getNotes = createSelector([getStoredNotes], storedNotes =>
+  getSlice(storedNotes)
 );
 
 const getVisibilityFilter = state => state.visibilityFilter;

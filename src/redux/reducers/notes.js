@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import {
   ADD_NOTE,
-  ADD_NOTE_LABEL,
+  LABEL_NOTE,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
   DELETE_NOTE
@@ -13,7 +13,7 @@ const initialState = {
     title: "Project",
     content: "gds active",
     color: "orange",
-    labels: [1, 2],
+    labels: ['a', 'b'],
     pinned: false,
     status: "active"
   },
@@ -102,7 +102,7 @@ const notesById = (state = initialState, action) => {
         }
       };
     }
-    case ADD_NOTE_LABEL: {
+    case LABEL_NOTE: {
       const { noteId, labelId } = action;
       const note = state[noteId];
       return {

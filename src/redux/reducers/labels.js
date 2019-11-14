@@ -11,10 +11,15 @@ const initialState = {
     id: 2,
     label: "abc",
     notes: [1, 2]
+  },
+  3: {
+    id: 3,
+    label: "bbbb",
+    notes: []
   }
 };
 
-const allLabels = (state = [1, 2], action) => {
+const allLabels = (state = [1, 2, 3], action) => {
   switch (action.type) {
     case ADD_LABEL:
       return [...state, action.id];
@@ -49,4 +54,7 @@ const labelsById = (state = initialState, action) => {
   }
 };
 
-export default combineReducers({ allIds: allLabels, byId: labelsById });
+export default combineReducers({
+  allIds: allLabels,
+  byId: labelsById
+});
