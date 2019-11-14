@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styles from "./Dropdown.module.scss";
 
 const Dropdown = ({ mainButton, options, children }) => {
-  // console.warn("Dropdown");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuRef = createRef();
   const mainButtonRef = createRef();

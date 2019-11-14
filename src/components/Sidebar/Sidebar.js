@@ -14,25 +14,21 @@ import styles from "./Sidebar.module.scss";
 import { VISIBILITY_FILTERS } from "../../redux/actions/actionTypes";
 import FilterLink from "../FilterLink/FilterLink";
 import { getLabels } from "../../redux/selectors/labels";
-import {
-  addLabel,
-  deleteLabel,
-  changeVisibilityFilter
-} from "../../redux/actions/actionCreators";
+import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
 
-const Sidebar = ({ labels, addLabel, deleteLabel, changeVisibilityFilter }) => {
+const Sidebar = ({ labels, addLabel, deleteLabel }) => {
   // console.warn('Sidebar')
   return (
     <aside className={styles.Sidebar}>
       <ul>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.active} to='notes'>
+          <FilterLink filter={VISIBILITY_FILTERS.active} to="notes">
             <FontAwesomeIcon icon={faLightbulb} fixedWidth />
             Notes
           </FilterLink>
         </li>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.reminders} to='reminders'>
+          <FilterLink filter={VISIBILITY_FILTERS.reminders} to="reminders">
             <FontAwesomeIcon icon={faBell} fixedWidth />
             Reminders
           </FilterLink>
@@ -43,10 +39,13 @@ const Sidebar = ({ labels, addLabel, deleteLabel, changeVisibilityFilter }) => {
         <ul>
           {labels.length > 0 &&
             labels.map(label => (
-              <li key={label.id} label={label.id} onClick={() => changeVisibilityFilter(`${VISIBILITY_FILTERS.labels}.${label.id}`)}>
-                <button type="button">
+              <li key={label.id}>
+                <FilterLink
+                  to={`label/${label.label}`}
+                  filter={`${VISIBILITY_FILTERS.labels}.${label.id}`}
+                >
                   <FontAwesomeIcon icon={faHashtag} fixedWidth /> {label.label}
-                </button>
+                </FilterLink>
               </li>
             ))}
 
@@ -60,13 +59,13 @@ const Sidebar = ({ labels, addLabel, deleteLabel, changeVisibilityFilter }) => {
       </section>
       <ul>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.archived} to='archive'>
+          <FilterLink filter={VISIBILITY_FILTERS.archived} to="archive">
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
             Archive
           </FilterLink>
         </li>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.deleted} to='bin'>
+          <FilterLink filter={VISIBILITY_FILTERS.deleted} to="bin">
             <FontAwesomeIcon icon={faTrashAlt} fixedWidth />
             Bin
           </FilterLink>
@@ -88,6 +87,5 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {
   addLabel,
-  deleteLabel,
-  changeVisibilityFilter
+  deleteLabel
 })(Sidebar);

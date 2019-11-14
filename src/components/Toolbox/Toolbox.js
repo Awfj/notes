@@ -58,7 +58,6 @@ const Toolbox = ({
           <Dropdown
             mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
             options={dropdownOptions}
-            
           ></Dropdown>
 
           {isNewNoteParent && (
