@@ -2,9 +2,14 @@ import React, { createRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import styles from "./NewNote.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
-import { addNote } from "../../redux/actions/actionCreators";
+import {
+  addNote,
+  archiveNote,
+  deleteNote
+} from "../../redux/actions/actionCreators";
 
-const NewNote = ({ addNote }) => {
+const NewNote = ({ addNote, archiveNote, deleteNote }) => {
+  // console.warn('NewNote')
   const [activeColor, setActiveColor] = useState("white");
   const [titleValue, setTitleValue] = useState("");
   const [bodyValue, setBodyValue] = useState("");
@@ -29,6 +34,7 @@ const NewNote = ({ addNote }) => {
     setIsFormActive(false);
   };
 
+
   useEffect(() => {
     // if (isFormActive) {
     //   document.addEventListener("mousedown", handleSubmit);
@@ -37,6 +43,17 @@ const NewNote = ({ addNote }) => {
     //   };
     // }
   });
+
+  const test = Boolean(titleValue.trim() || bodyValue.trim());
+
+  let dropdownOptions = [["Add label"]];
+  if (test) {
+    dropdownOptions = [
+      ["Delete note", deleteNote],
+      ...dropdownOptions,
+      ["Make a copy", addNote]
+    ];
+  }
 
   return (
     <form
@@ -49,8 +66,10 @@ const NewNote = ({ addNote }) => {
     >
       <Toolbox
         activeColor={activeColor}
-        parent="NewNote"
+        dropdownOptions={dropdownOptions}
+        onArchiveNote={archiveNote}
         onChangeNoteColor={setActiveColor}
+        parent="NewNote"
       >
         {isFormActive ? (
           <>
@@ -86,7 +105,4 @@ const NewNote = ({ addNote }) => {
   );
 };
 
-export default connect(
-  null,
-  { addNote }
-)(NewNote);
+export default connect(null, { addNote, archiveNote, deleteNote })(NewNote);

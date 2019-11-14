@@ -1,11 +1,10 @@
 import React, { createRef, useState, useEffect } from "react";
-// import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles from "./Dropdown.module.scss";
-// import { addNote, deleteNote } from "../../redux/actions/actionCreators";
 
 const Dropdown = ({ mainButton, options, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  // console.warn("Dropdown");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const menuRef = createRef();
   const mainButtonRef = createRef();
 
@@ -16,11 +15,16 @@ const Dropdown = ({ mainButton, options, children }) => {
     ) {
       return;
     }
-    setIsOpen(false);
+    setIsDropdownOpen(false);
+  }
+
+  function handleOptionFunction(optionFunction) {
+    optionFunction();
+    setIsDropdownOpen(false);
   }
 
   useEffect(() => {
-    if (isOpen) {
+    if (isDropdownOpen) {
       document.addEventListener("mousedown", handleClose);
       return () => {
         document.removeEventListener("mousedown", handleClose);
@@ -33,27 +37,28 @@ const Dropdown = ({ mainButton, options, children }) => {
       <button
         type="button"
         ref={mainButtonRef}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         {mainButton}
       </button>
 
-      {isOpen && (
-        <div className={styles.menu} ref={menuRef}>
-          <ul>
-            {options.map((option, index) => {
-              const [name, onFunction] = option;
-              return (
-                <li key={index}>
-                  <button type="button" onClick={onFunction}>
-                    {name}
-                  </button>
-                </li>
-              );
-            })}
-            {children}
-          </ul>
-        </div>
+      {isDropdownOpen && (
+        <ul className={styles.menu} ref={menuRef}>
+          {options.map((option, index) => {
+            const [name, optionFunction] = option;
+            return (
+              <li key={index}>
+                <button
+                  type="button"
+                  onClick={() => handleOptionFunction(optionFunction)}
+                >
+                  {name}
+                </button>
+              </li>
+            );
+          })}
+          {children}
+        </ul>
       )}
     </div>
   );
@@ -62,7 +67,7 @@ const Dropdown = ({ mainButton, options, children }) => {
 Dropdown.propTypes = {
   mainButton: PropTypes.element.isRequired,
   options: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
-  children: PropTypes.element
+  children: PropTypes.node
 };
 
 export default Dropdown;

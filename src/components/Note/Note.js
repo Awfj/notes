@@ -36,11 +36,14 @@ const Note = ({
     >
       <Toolbox
         activeColor={color}
-        parent="Note"
-        onAddNote={onAddNote}
+        dropdownOptions={[
+          ["Delete note", onDeleteNote],
+          ["Add label"],
+          ["Make a copy", onAddNote]
+        ]}
         onArchiveNote={onArchiveNote}
         onChangeNoteColor={onChangeNoteColor}
-        onDeleteNote={onDeleteNote}
+        parent="Note"
       >
         {title && <h3>{title}</h3>}
         {content && <p>{content}</p>}

@@ -16,13 +16,12 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 import Dropdown from "../Dropdown/Dropdown";
 
 const Toolbox = ({
-  parent,
-  children,
   activeColor,
-  onAddNote,
+  children,
+  dropdownOptions,
   onArchiveNote,
   onChangeNoteColor,
-  onDeleteNote
+  parent
 }) => {
   const isNewNoteParent = parent === "NewNote";
   const isNoteParent = parent === "Note";
@@ -58,11 +57,8 @@ const Toolbox = ({
           </button>
           <Dropdown
             mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
-            options={[
-              ["Delete note", onDeleteNote],
-              ["Add label"],
-              ["Make a copy", onAddNote]
-            ]}
+            options={dropdownOptions}
+            
           ></Dropdown>
 
           {isNewNoteParent && (
@@ -83,11 +79,12 @@ const Toolbox = ({
 };
 
 Toolbox.propTypes = {
-  parent: PropTypes.string.isRequired,
-  onAddNote: PropTypes.func,
-  onArchiveNote: PropTypes.func,
+  activeColor: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  dropdownOptions: PropTypes.array.isRequired,
+  onArchiveNote: PropTypes.func.isRequired,
   onChangeNoteColor: PropTypes.func.isRequired,
-  onDeleteNote: PropTypes.func
+  parent: PropTypes.string.isRequired
 };
 
 export default Toolbox;
