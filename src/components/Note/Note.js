@@ -1,19 +1,27 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import styles from "./Note.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
+import {
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote,
+  pinNote
+} from "../../redux/actions/actionCreators";
 
 const Note = ({
   note,
-  onAddNote,
-  onArchiveNote,
-  onChangeNoteColor,
-  onDeleteNote,
-  onPinNote
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote,
+  pinNote
 }) => {
   const noteRef = createRef();
-  const { title, content, color, labels, isPinned } = note;
+  const { id, title, content, color, labels, isPinned } = note;
 
   function handleMouseHover(e) {
     // const toolbox = e.currentTarget.children[0].children;
@@ -38,14 +46,14 @@ const Note = ({
       <Toolbox
         activeColor={color}
         dropdownOptions={[
-          ["Delete note", onDeleteNote],
+          ["Delete note", () => deleteNote(id)],
           ["Add label"],
-          ["Make a copy", onAddNote]
+          ["Make a copy", () => addNote(title, content, color, labels)]
         ]}
         isPinned={isPinned}
-        onArchiveNote={onArchiveNote}
-        onChangeNoteColor={onChangeNoteColor}
-        onPinNote={onPinNote}
+        onArchiveNote={() => archiveNote(id)}
+        onChangeNoteColor={newColor => changeNoteColor(id, newColor)}
+        onPinNote={() => pinNote(id)}
         parent="Note"
       >
         {title && <h3>{title}</h3>}
@@ -71,11 +79,17 @@ Note.propTypes = {
     labels: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     isPinned: PropTypes.bool.isRequired
   }).isRequired,
-  onAddNote: PropTypes.func.isRequired,
-  onArchiveNote: PropTypes.func.isRequired,
-  onChangeNoteColor: PropTypes.func.isRequired,
-  onDeleteNote: PropTypes.func.isRequired,
-  onPinNote: PropTypes.func.isRequired
+  addNote: PropTypes.func.isRequired,
+  archiveNote: PropTypes.func.isRequired,
+  changeNoteColor: PropTypes.func.isRequired,
+  deleteNote: PropTypes.func.isRequired,
+  pinNote: PropTypes.func.isRequired
 };
 
-export default Note;
+export default connect(null, {
+  addNote,
+  archiveNote,
+  changeNoteColor,
+  deleteNote,
+  pinNote
+})(Note);
