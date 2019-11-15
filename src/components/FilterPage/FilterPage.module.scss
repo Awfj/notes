@@ -1,0 +1,10 @@
+.FilterPage {
+  padding: 0 10px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .FilterPage {
+    padding: 0 4em;
+  }
+}

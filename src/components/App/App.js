@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import styles from "./App.module.scss";
 import Header from "../Header/Header";
-import NewNote from "../NewNote/NewNote";
-import NoteList from "../NoteList/NoteList";
+
 import Sidebar from "../Sidebar/Sidebar";
+import FilterPage from "../FilterPage/FilterPage";
 
 function App() {
   // console.warn('App')
@@ -37,10 +37,7 @@ function App() {
       />
       <main>
         {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
-        <div className={styles.notes}>
-          <NewNote />
-          <NoteList notesLayout={notesLayout} searchQuery={searchQuery} />
-        </div>
+        <FilterPage notesLayout={notesLayout} searchQuery={searchQuery} />
       </main>
     </div>
   );

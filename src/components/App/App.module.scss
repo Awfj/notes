@@ -2,18 +2,6 @@
   main {
     display: flex;
   }
-  .notes {
-    padding: 0 10px;
-    width: 100%;
-  }
-}
-
-@media (min-width: 1024px) {
-  .App {
-    .notes {
-      padding: 0 4em;
-    }
-  }
 }
 
 // .App-logo {

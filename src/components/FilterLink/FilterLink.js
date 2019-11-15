@@ -5,14 +5,23 @@ import styles from "./FilterLink.module.scss";
 import { changeVisibilityFilter } from "../../redux/actions/actionCreators";
 
 const FilterLink = ({
-  active,
+  // active,
   changeVisibilityFilter,
   children,
   filter,
   to
 }) => {
+  const location = window.location.hash;
+  let active = location === `#${to}`;
+
   let styledFilterLink = styles.FilterLink;
   if (active) styledFilterLink += ` ${styles.active}`;
+
+  // useEffect(() => {
+  //   const location = window.location.hash;
+  // let active = location === `#${to}`;
+  // if (active) styledFilterLink += ` ${styles.active}`;
+  // });
 
   return (
     <a
@@ -26,7 +35,7 @@ const FilterLink = ({
 };
 
 FilterLink.propTypes = {
-  active: PropTypes.bool.isRequired,
+  // active: PropTypes.bool.isRequired,
   changeVisibilityFilter: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   filter: PropTypes.string.isRequired,
@@ -34,7 +43,7 @@ FilterLink.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.visibilityFilter
+  // active: ownProps.filter === state.visibilityFilter
 });
 
 export default connect(mapStateToProps, { changeVisibilityFilter })(FilterLink);
