@@ -3,7 +3,7 @@ import {
   getSlice
   // getSliceIds, getSliceById
 } from "./generics";
-import { VISIBILITY_FILTERS } from "../actions/actionTypes";
+import { VISIBILITY_FILTERS } from "../../constants";
 
 // const getStoredLabels = state => state.labels;
 const getStoredNotes = state => state.notes;

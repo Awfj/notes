@@ -11,7 +11,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Sidebar.module.scss";
-import { VISIBILITY_FILTERS } from "../../redux/actions/actionTypes";
+import { VISIBILITY_FILTERS } from "../../constants";
 import FilterLink from "../FilterLink/FilterLink";
 import { getLabels } from "../../redux/selectors/labels";
 import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";

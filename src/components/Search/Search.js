@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { changeVisibilityFilter } from "../../redux/actions/actionCreators";
-import { VISIBILITY_FILTERS } from "../../redux/actions/actionTypes";
+import { VISIBILITY_FILTERS } from "../../constants";
 
 import styles from "./Search.module.scss";
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import styles from "./App.module.scss";
 import Header from "../Header/Header";
-
 import Sidebar from "../Sidebar/Sidebar";
 import FilterPage from "../FilterPage/FilterPage";
 
@@ -37,7 +36,10 @@ function App() {
       />
       <main>
         {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
-        <FilterPage notesLayout={notesLayout} searchQuery={searchQuery} />
+        <FilterPage
+          notesLayout={notesLayout}
+          searchQuery={searchQuery}
+        />
       </main>
     </div>
   );

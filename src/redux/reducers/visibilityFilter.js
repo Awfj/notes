@@ -1,7 +1,5 @@
-import {
-  CHANGE_VISIBILITY_FILTER,
-  VISIBILITY_FILTERS
-} from "../actions/actionTypes";
+import { CHANGE_VISIBILITY_FILTER } from "../actions/actionTypes";
+import { VISIBILITY_FILTERS } from "../../constants";
 
 const visibilityFilter = (state = VISIBILITY_FILTERS.active, action) => {
   switch (action.type) {

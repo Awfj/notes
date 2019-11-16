@@ -4,11 +4,11 @@ import styles from "./FilterPage.module.scss";
 import NewNote from "../NewNote/NewNote";
 import NoteList from "../NoteList/NoteList";
 
-const FilterPage = ({ searchQuery, notesLayout }) => {
+const FilterPage = ({ searchQuery, notesLayout, visibilityFilter }) => {
   return (
     <div className={styles.FilterPage}>
       <NewNote />
-      <NoteList notesLayout={notesLayout} searchQuery={searchQuery} />
+      <NoteList notesLayout={notesLayout} searchQuery={searchQuery} visibilityFilter={visibilityFilter} />
     </div>
   );
 };
