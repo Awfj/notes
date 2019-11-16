@@ -1,3 +1,5 @@
+@import-normalize;
+
 html {
   box-sizing: border-box;
 }
@@ -26,10 +28,12 @@ button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-family: inherit;
 }
 
 input {
   background-color: transparent;
+  font-family: inherit;
 }
 
 h1,
