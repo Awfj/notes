@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,12 +12,16 @@ import {
 import styles from "./Header.module.scss";
 import Dropdown from "../Dropdown/Dropdown";
 import Search from "../../components/Search/Search";
+import Settings from "../../components/Modal/Settings/Settings";
 
 const Header = props => {
-  // console.warn('Header');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <header className={styles.header}>
+      {isSettingsOpen && (
+        <Settings onCloseModal={() => setIsSettingsOpen(false)} />
+      )}
       <div>
         <button
           type="button"
@@ -54,7 +58,10 @@ const Header = props => {
 
         <Dropdown
           mainButton={<FontAwesomeIcon icon={faCog} />}
-          options={[["Settings"], ["Enable dark theme"]]}
+          options={[
+            ["Settings", () => setIsSettingsOpen(true)],
+            ["Enable dark theme"]
+          ]}
         />
       </div>
     </header>

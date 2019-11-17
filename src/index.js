@@ -13,7 +13,7 @@ const renderApp = () =>
     <Provider store={store}>
       <App />
     </Provider>,
-    document.getElementById("root")
+    document.getElementById("app-root")
   );
 
 // if (process.env.NOTE_ENV !== "production" && module.hot) {
