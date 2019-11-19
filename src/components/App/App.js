@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import styles from "./App.module.scss";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
-import FilterPage from "../FilterPage/FilterPage";
+import Home from "../FilterPage/Home";
+import Archive from "../FilterPage/Archive";
+import Bin from "../FilterPage/Bin";
 
 function App() {
   // console.warn('App')
@@ -19,29 +22,39 @@ function App() {
   // };
 
   return (
-    <div
-      className={styles.App}
-      style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
-      // onClick={handleClose}
-    >
-      <Header
-        notesLayout={notesLayout}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
-        toggleNotesLayout={() =>
-          setNotesLayout(notesLayout === "list" ? "grid" : "list")
-        }
-        toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-      />
-      <main>
-        {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
-        <FilterPage
+    <Router>
+      <div
+        className={styles.App}
+        style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
+        // onClick={handleClose}
+      >
+        <Header
           notesLayout={notesLayout}
           searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
+          toggleNotesLayout={() =>
+            setNotesLayout(notesLayout === "list" ? "grid" : "list")
+          }
+          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
         />
-      </main>
-    </div>
+        <main>
+          {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
+
+          <Switch>
+            <Route path="/home">
+              <Home notesLayout={notesLayout} />
+            </Route>
+            <Route path="/archive">
+              <Archive notesLayout={notesLayout} />
+            </Route>
+            <Route path="/bin">
+              <Bin notesLayout={notesLayout} />
+            </Route>
+          </Switch>
+        </main>
+      </div>
+    </Router>
   );
 }
 

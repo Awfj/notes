@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,8 +12,6 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Sidebar.module.scss";
-import { VISIBILITY_FILTERS } from "../../constants";
-import FilterLink from "../FilterLink/FilterLink";
 import { getLabels } from "../../redux/selectors/labels";
 import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
 
@@ -22,16 +21,16 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
     <aside className={styles.Sidebar}>
       <ul>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.active} to="notes">
+          <Link to="/home">
             <FontAwesomeIcon icon={faLightbulb} fixedWidth />
             Notes
-          </FilterLink>
+          </Link>
         </li>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.reminders} to="reminders">
+          <Link to="/reminders">
             <FontAwesomeIcon icon={faBell} fixedWidth />
             Reminders
-          </FilterLink>
+          </Link>
         </li>
       </ul>
       <section className={styles.labels}>
@@ -40,12 +39,9 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
           {labels.length > 0 &&
             labels.map(label => (
               <li key={label.id}>
-                <FilterLink
-                  to={`label/${label.label}`}
-                  filter={`${VISIBILITY_FILTERS.labels}.${label.id}`}
-                >
+                <Link to={`/label/${label.label}`}>
                   <FontAwesomeIcon icon={faHashtag} fixedWidth /> {label.label}
-                </FilterLink>
+                </Link>
               </li>
             ))}
 
@@ -59,16 +55,16 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
       </section>
       <ul>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.archived} to="archive">
+          <Link to="/archive">
             <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
             Archive
-          </FilterLink>
+          </Link>
         </li>
         <li>
-          <FilterLink filter={VISIBILITY_FILTERS.deleted} to="bin">
+          <Link to="/bin">
             <FontAwesomeIcon icon={faTrashAlt} fixedWidth />
             Bin
-          </FilterLink>
+          </Link>
         </li>
       </ul>
     </aside>

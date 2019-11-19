@@ -7,6 +7,9 @@ import {
   PIN_NOTE,
   DELETE_NOTE
 } from "../actions/actionTypes";
+import { NOTE_STATUS } from "../../constants";
+
+const { ACTIVE, ARCHIVED, DELETED } = NOTE_STATUS;
 
 const initialState = {
   1: {
@@ -16,7 +19,7 @@ const initialState = {
     color: "orange",
     labels: ["a", "b"],
     isPinned: true,
-    status: "active"
+    status: ACTIVE
   },
   2: {
     id: 2,
@@ -25,7 +28,7 @@ const initialState = {
     color: "yellow",
     labels: [],
     isPinned: false,
-    status: "archived"
+    status: ARCHIVED
   },
   3: {
     id: 3,
@@ -34,7 +37,7 @@ const initialState = {
     color: "green",
     labels: [],
     isPinned: false,
-    status: "deleted"
+    status: ARCHIVED
   },
   4: {
     id: 4,
@@ -43,7 +46,7 @@ const initialState = {
     color: "pink",
     labels: [],
     isPinned: false,
-    status: "active"
+    status: ACTIVE
   }
 };
 
@@ -69,7 +72,7 @@ const notesById = (state = initialState, action) => {
           color,
           labels,
           isPinned,
-          status: "active"
+          status: ACTIVE
         }
       };
     }
@@ -80,7 +83,7 @@ const notesById = (state = initialState, action) => {
         [id]: {
           ...state[id],
           isPinned: false,
-          status: "archived"
+          status: ARCHIVED
         }
       };
     }
@@ -91,7 +94,7 @@ const notesById = (state = initialState, action) => {
         [id]: {
           ...state[id],
           isPinned: false,
-          status: "deleted"
+          status: DELETED
         }
       };
     }

@@ -3,7 +3,7 @@ import {
   getSlice
   // getSliceIds, getSliceById
 } from "./generics";
-import { VISIBILITY_FILTERS } from "../../constants";
+import { NOTE_STATUS } from "../../constants";
 
 // const getStoredLabels = state => state.labels;
 const getStoredNotes = state => state.notes;
@@ -27,44 +27,38 @@ const getStoredNotes = state => state.notes;
 //   }
 // );
 
-const getNotes = createSelector([getStoredNotes], storedNotes =>
+export const getNotes = createSelector([getStoredNotes], storedNotes =>
   getSlice(storedNotes)
 );
 
-const getVisibilityFilter = state => state.visibilityFilter;
 const getSearchQuery = (_, props) => props.searchQuery;
+// const getNoteStatus = (_, props) => props.status;
+const getArg = (_, arg) => arg;
 
-export const getNotesByVisibilityFilter = createSelector(
-  [getVisibilityFilter, getNotes, getSearchQuery],
-  (visibilityFilter, notes, searchQuery) => {
-    const {
-      active,
-      archived,
-      deleted,
-      search,
-      labels,
-      reminders
-    } = VISIBILITY_FILTERS;
+export const getNotesByStatus = createSelector(
+  [getArg, getNotes],
+  (noteStatus, notes) => {
+    const { ACTIVE, ARCHIVED, DELETED } = NOTE_STATUS;
 
-    switch (visibilityFilter) {
-      case active:
-        return notes.filter(note => note.status === active);
-      case archived:
-        return notes.filter(note => note.status === archived);
-      case deleted:
-        return notes.filter(note => note.status === deleted);
-      case search:
-        return notes.filter(
-          note =>
-            note.title.toLowerCase().includes(searchQuery) ||
-            (note.content.toLowerCase().includes(searchQuery) &&
-              note.status !== deleted)
-        );
-      case labels:
-        console.log(visibilityFilter);
-        return notes;
-      case reminders:
-        return notes;
+    switch (noteStatus) {
+      case ACTIVE:
+        return notes.filter(note => note.status === ACTIVE);
+      case ARCHIVED:
+        return notes.filter(note => note.status === ARCHIVED);
+      case DELETED:
+        return notes.filter(note => note.status === DELETED);
+      // case search:
+      //   return notes.filter(
+      //     note =>
+      //       note.title.toLowerCase().includes(searchQuery) ||
+      //       (note.content.toLowerCase().includes(searchQuery) &&
+      //         note.status !== deleted)
+      //   );
+      // case labels:
+      //   console.log(visibilityFilter);
+      //   return notes;
+      // case reminders:
+      //   return notes;
       default:
         return notes;
     }

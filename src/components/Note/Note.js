@@ -13,11 +13,11 @@ import {
 } from "../../redux/actions/actionCreators";
 
 const Note = ({
-  note,
   addNote,
   archiveNote,
   changeNoteColor,
   deleteNote,
+  note,
   pinNote
 }) => {
   const noteRef = createRef();
@@ -48,7 +48,7 @@ const Note = ({
         dropdownOptions={[
           ["Delete note", () => deleteNote(id)],
           ["Add label"],
-          ["Make a copy", () => addNote(title, content, color, labels)]
+          ["Make a copy", () => addNote(title, content, color, labels, isPinned)]
         ]}
         isPinned={isPinned}
         onArchiveNote={() => archiveNote(id)}

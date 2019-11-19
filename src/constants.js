@@ -1,8 +1,5 @@
-export const VISIBILITY_FILTERS = {
-  active: "active",
-  archived: "archived",
-  deleted: "deleted",
-  labels: "labels",
-  reminders: "reminders",
-  search: "search"
+export const NOTE_STATUS = {
+  ACTIVE: "ACTIVE",
+  ARCHIVED: "ARCHIVED",
+  DELETED: "DELETED"
 };

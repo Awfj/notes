@@ -1,14 +1,11 @@
 import React, { createRef } from "react";
-import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
-import { changeVisibilityFilter } from "../../redux/actions/actionCreators";
-import { VISIBILITY_FILTERS } from "../../constants";
 
 import styles from "./Search.module.scss";
 
-const Search = ({ searchQuery, setSearchQuery, changeVisibilityFilter }) => {
+const Search = ({ searchQuery, setSearchQuery }) => {
   const search = createRef();
   return (
     <form className={styles.search}>
@@ -20,7 +17,6 @@ const Search = ({ searchQuery, setSearchQuery, changeVisibilityFilter }) => {
         type="search"
         placeholder="Search"
         value={searchQuery}
-        onClick={() => changeVisibilityFilter(VISIBILITY_FILTERS.search)}
         onChange={() =>
           setSearchQuery(search.current.value.trim().toLowerCase())
         }
@@ -34,4 +30,4 @@ Search.propTypes = {
   setSearchQuery: PropTypes.func.isRequired
 };
 
-export default connect(null, { changeVisibilityFilter })(Search);
+export default Search;

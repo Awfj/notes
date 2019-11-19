@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
 import styles from "./NoteList.module.scss";
 import Note from "../Note/Note";
-import { getNotesByVisibilityFilter } from "../../redux/selectors/notes";
 
 const NoteList = ({ notes, notesLayout }) => {
   let styledNoteList = styles.NoteList;
@@ -14,8 +12,8 @@ const NoteList = ({ notes, notesLayout }) => {
 
   return (
     <div className={styledNoteList}>
-      {notes.map((note, index) => {
-        return <Note key={index} note={note} />;
+      {notes.map(note => {
+        return <Note key={note.id} note={note} />;
       })}
     </div>
   );
@@ -26,12 +24,7 @@ NoteList.propTypes = {
     PropTypes.object.isRequired,
     PropTypes.array.isRequired
   ]).isRequired,
-  notesLayout: PropTypes.string.isRequired,
-  searchQuery: PropTypes.string.isRequired
+  notesLayout: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state, props) => ({
-  notes: getNotesByVisibilityFilter(state, props)
-});
-
-export default connect(mapStateToProps)(NoteList);
+export default NoteList;

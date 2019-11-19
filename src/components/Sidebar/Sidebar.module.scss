@@ -23,4 +23,23 @@
     font-size: 1.3rem;
     margin-right: 1em;
   }
+  a {
+    border: {
+      top-right-radius: 25px;
+      bottom-right-radius: 25px;
+    }
+    color: #202124;
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-align: left;
+    width: 100%;
+    &:hover:not([class*="active"]) {
+      background-color: #f1f3f4;
+    }
+  }
+}
+
+.active {
+  background-color: #feefc3;
 }
