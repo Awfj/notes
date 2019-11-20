@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import styles from "./NoteList.module.scss";
-import Note from "../Note/Note";
+import ViewNote from "../ViewNote/ViewNote";
 
 const NoteList = ({ notes, notesLayout }) => {
   let styledNoteList = styles.NoteList;
@@ -13,7 +13,7 @@ const NoteList = ({ notes, notesLayout }) => {
   return (
     <div className={styledNoteList}>
       {notes.map(note => {
-        return <Note key={note.id} note={note} />;
+        return <ViewNote key={note.id} note={note} />;
       })}
     </div>
   );

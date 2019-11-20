@@ -1,18 +1,15 @@
 import React, { createRef, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import styles from "./NewNote.module.scss";
-import Toolbox from "../Toolbox/Toolbox";
-import {
-  addNote,
-  archiveNote,
-  deleteNote,
-} from "../../redux/actions/actionCreators";
+// import styles from "./NewNote.module.scss";
+import NoteForm from "../NoteForm/NoteForm";
+import { addNote } from "../../redux/actions/actionCreators";
+import { NOTE_STATUS } from "../../constants";
 
-const NewNote = ({ addNote, archiveNote, deleteNote }) => {
-  // console.warn('NewNote')
-  const [activeColor, setActiveColor] = useState("white");
-  const [titleValue, setTitleValue] = useState("");
-  const [bodyValue, setBodyValue] = useState("");
+const NewNote = ({ addNote }) => {
+  const [color, setColor] = useState("white");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
   const [isPinned, setIsPinned] = useState(false);
   const [isFormActive, setIsFormActive] = useState(true);
   const noteFormRef = createRef();
@@ -21,22 +18,21 @@ const NewNote = ({ addNote, archiveNote, deleteNote }) => {
     e.preventDefault();
 
     // if (noteFormRef.current.contains(e.target)) return;
-    if (!titleValue.trim() && !bodyValue.trim()) {
-      setTitleValue("");
-      setBodyValue("");
+    if (!title.trim() && !content.trim()) {
+      setTitle("");
+      setContent("");
       setIsPinned(false);
       setIsFormActive(false);
       return;
     }
 
-    addNote(titleValue, bodyValue, activeColor, [], isPinned);
-    setActiveColor("white");
-    setTitleValue("");
-    setBodyValue("");
+    addNote(title, content, color, [], isPinned, NOTE_STATUS.ACTIVE);
+    setColor("white");
+    setTitle("");
+    setContent("");
     setIsPinned(false);
     setIsFormActive(false);
   };
-
 
   useEffect(() => {
     // if (isFormActive) {
@@ -47,67 +43,55 @@ const NewNote = ({ addNote, archiveNote, deleteNote }) => {
     // }
   });
 
-  const test = Boolean(titleValue.trim() || bodyValue.trim());
+  const handleArchiveNote = () => {
+    addNote(title, content, color, [], isPinned, NOTE_STATUS.ARCHIVED);
+  };
 
-  let dropdownOptions = [["Add label"]];
-  if (test) {
-    dropdownOptions = [
-      ["Delete note", deleteNote],
-      ...dropdownOptions,
-      ["Make a copy", addNote]
-    ];
-  }
+  const handleDeleteNote = () => {
+    addNote(title, content, color, [], isPinned, NOTE_STATUS.DELETED);
+  };
 
   return (
-    <form
-      ref={noteFormRef}
-      name="noteForm"
-      className={`note ${styles.NewNote} ${activeColor}`}
-      onSubmit={handleSubmit}
-      onClick={isFormActive ? undefined : () => setIsFormActive(true)}
-      // onClick={() => setIsFormActive(true)}
-    >
-      <Toolbox
-        activeColor={activeColor}
-        dropdownOptions={dropdownOptions}
-        isPinned={isPinned}
-        onArchiveNote={archiveNote}
-        onChangeNoteColor={setActiveColor}
-        onPinNote={() => setIsPinned(!isPinned)}
-        parent="NewNote"
-      >
-        {isFormActive ? (
-          <>
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              autoComplete="off"
-              value={titleValue}
-              onChange={e => setTitleValue(e.target.value)}
-            />
-            <input
-              type="text"
-              name="body"
-              placeholder="Take a note..."
-              autoComplete="off"
-              value={bodyValue}
-              onChange={e => setBodyValue(e.target.value)}
-            />
-          </>
-        ) : (
-          <input
-            type="text"
-            name="body"
+    <>
+      {isFormActive ? (
+        <NoteForm
+          title={title}
+          content={content}
+          color={color}
+          onSetTitle={setTitle}
+          onSetContent={setContent}
+          onSetColor={setColor}
+          onSubmit={handleSubmit}
+          addNote={addNote}
+          archiveNote={handleArchiveNote}
+          deleteNote={handleDeleteNote}
+        />
+      ) : (
+        <form>
+          <textarea
+            name="content"
             placeholder="Take a note..."
-            autoComplete="off"
-            value={bodyValue}
-            onChange={e => setBodyValue(e.target.value)}
+            value={content}
+            onChange={e => setContent(e.target.value)}
           />
-        )}
-      </Toolbox>
-    </form>
+        </form>
+      )}
+    </>
   );
 };
 
-export default connect(null, { addNote, archiveNote, deleteNote })(NewNote);
+export default connect(null, { addNote })(NewNote);
+
+/* <Toolbox
+  activeColor={activeColor}
+  isPinned={isPinned}
+  onChangeNoteColor={setActiveColor}
+  onPinNote={() => setIsPinned(!isPinned)}
+></Toolbox>; */
+
+/* <form
+  ref={noteFormRef}
+  className={`note ${styles.NewNote} ${activeColor}`}
+  onClick={isFormActive ? undefined : () => setIsFormActive(true)}
+  // onClick={() => setIsFormActive(true)}
+></form> */

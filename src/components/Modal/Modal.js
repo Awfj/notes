@@ -1,4 +1,3 @@
-// import React, { useEffect, createRef } from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
@@ -7,8 +6,6 @@ import styles from "./Modal.module.scss";
 const modalRoot = document.querySelector("#modal-root");
 
 const Modal = ({ children, onCloseModal }) => {
-  // const modalRef = createRef();
-
   const modal = document.createElement("div");
   modal.setAttribute("class", styles.Modal);
 
@@ -27,17 +24,10 @@ const Modal = ({ children, onCloseModal }) => {
     };
   });
   return ReactDOM.createPortal(children, modal);
-
-  // return ReactDOM.createPortal(
-  //   <div ref={modalRef} className={styles.Modal} onClick={handleClose}>
-  //     {children}
-  //   </div>,
-  //   modalRoot
-  // );
 };
 
 Modal.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
   onCloseModal: PropTypes.func.isRequired
 };
 

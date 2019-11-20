@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import {
   ADD_NOTE,
+  EDIT_NOTE,
   LABEL_NOTE,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
@@ -62,7 +63,7 @@ const allNotes = (state = [1, 2, 3, 4], action) => {
 const notesById = (state = initialState, action) => {
   switch (action.type) {
     case ADD_NOTE: {
-      const { id, title, content, color, labels, isPinned } = action;
+      const { id, title, content, color, labels, isPinned, status } = action;
       return {
         ...state,
         [id]: {
@@ -72,7 +73,7 @@ const notesById = (state = initialState, action) => {
           color,
           labels,
           isPinned,
-          status: ACTIVE
+          status
         }
       };
     }
@@ -97,6 +98,21 @@ const notesById = (state = initialState, action) => {
           status: DELETED
         }
       };
+    }
+    case EDIT_NOTE: {
+      const { id, title, content, color, labels, isPinned, status } = action;
+      return {
+        ...state,
+        [id]: {
+          id,
+          title,
+          content,
+          color,
+          labels,
+          isPinned,
+          status
+        }
+      }
     }
     case CHANGE_NOTE_COLOR: {
       const { id, color } = action;

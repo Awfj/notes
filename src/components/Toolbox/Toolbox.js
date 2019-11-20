@@ -23,19 +23,18 @@ const Toolbox = ({
   onArchiveNote,
   onChangeNoteColor,
   onPinNote,
-  parent
+  role
 }) => {
-  const isNewNoteParent = parent === "NewNote";
-  const isNoteParent = parent === "Note";
-  // const isEditNoteParent = parent === "EditNote";
+  const isEdit = role === "edit";
+  const isView = role === "view";
 
   let classToolbox = styles.Toolbox;
-  // if (isNoteParent) {
+  // if (isView) {
   //   classToolbox += ` ${styles.hidden}`;
   // }
   return (
     <div className={classToolbox}>
-      {isNoteParent && (
+      {isView && (
         <button type="button" className={styles.select}>
           <FontAwesomeIcon icon={faCheckCircle} />
         </button>
@@ -66,7 +65,7 @@ const Toolbox = ({
             options={dropdownOptions}
           ></Dropdown>
 
-          {isNewNoteParent && (
+          {isEdit && (
             <>
               <button type="button">
                 <FontAwesomeIcon icon={faUndoAlt} fixedWidth />
@@ -77,7 +76,7 @@ const Toolbox = ({
             </>
           )}
         </div>
-        {isNewNoteParent && <button>Close</button>}
+        {isEdit && <button>Close</button>}
       </footer>
     </div>
   );
@@ -91,7 +90,7 @@ Toolbox.propTypes = {
   onArchiveNote: PropTypes.func.isRequired,
   onChangeNoteColor: PropTypes.func.isRequired,
   onPinNote: PropTypes.func.isRequired,
-  parent: PropTypes.string.isRequired
+  role: PropTypes.string.isRequired
 };
 
 export default Toolbox;

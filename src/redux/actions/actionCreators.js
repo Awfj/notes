@@ -1,5 +1,6 @@
 import {
   ADD_NOTE,
+  EDIT_NOTE,
   LABEL_NOTE,
   ARCHIVE_NOTE,
   CHANGE_NOTE_COLOR,
@@ -13,20 +14,39 @@ import {
 
 // notes
 let nextNoteId = 4; // 0
-export const addNote = (title, content, color, labels, isPinned) => ({
+export const addNote = (title, content, color, labels, isPinned, status) => ({
   type: ADD_NOTE,
   id: ++nextNoteId,
   title,
   content,
   color,
   labels,
-  isPinned
+  isPinned,
+  status
 });
 
 export const labelNote = (id, label) => ({
   type: LABEL_NOTE,
   id,
   label
+});
+export const editNote = (
+  id,
+  title,
+  content,
+  color,
+  labels,
+  isPinned,
+  status
+) => ({
+  type: EDIT_NOTE,
+  id,
+  title,
+  content,
+  color,
+  labels,
+  isPinned,
+  status
 });
 export const archiveNote = id => ({ type: ARCHIVE_NOTE, id });
 export const deleteNote = id => ({ type: DELETE_NOTE, id });

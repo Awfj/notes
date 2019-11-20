@@ -1,0 +1,26 @@
+.ViewNote {
+  // transition: all 0.1s ease-in-out;
+  &:hover {
+    box-shadow: 0 0 5px gray;
+  }
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+  }
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+.labels {
+  display: flex;
+  gap: 0.5em;
+  margin-top: 1em;
+  li {
+    background-color: rgba(0, 0, 0, 0.08);
+    border-radius: 25px;
+    font-size: 0.875rem;
+    padding: 0.5em 1em;
+  }
+}

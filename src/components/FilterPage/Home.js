@@ -8,6 +8,7 @@ import FilterPage from "./FilterPage";
 import NewNote from "../NewNote/NewNote";
 import NoteList from "../NoteList/NoteList";
 import FilterMessage from "../FilterMessage/FilterMessage";
+import EditNote from "../EditNote/EditNote";
 
 import { getNotesByStatus } from "../../redux/selectors/notes";
 import { NOTE_STATUS } from "../../constants";
@@ -16,6 +17,7 @@ const Home = ({ notes, notesLayout }) => {
   return (
     <FilterPage>
       <NewNote />
+      <EditNote note={notes[0]} />
       {notes.length > 0 ? (
         <NoteList notes={notes} notesLayout={notesLayout} />
       ) : (
