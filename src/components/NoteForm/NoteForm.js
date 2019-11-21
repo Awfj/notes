@@ -1,21 +1,43 @@
-import React, { createRef } from "react";
+import React, { createRef, useEffect } from "react";
 import PropTypes from "prop-types";
-import Toolbox from "../Toolbox/Toolbox";
 import styles from "./NoteForm.module.scss";
+import Toolbox from "../Toolbox/Toolbox";
+// import NoteBorder from "../NoteBorder/NoteBorder";
 
 const NoteForm = ({
+  formIsActive,
   title,
   content,
   color,
   onSetTitle,
   onSetContent,
   onSetColor,
+  onSetFormIsActive,
   onSubmit,
   addNote,
   archiveNote,
   deleteNote
 }) => {
   const noteFormRef = createRef();
+
+  useEffect(() => {
+    if (formIsActive) {
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    }
+  });
+
+  const handleClick = e => {
+    if (noteFormRef.current.contains(e.target)) return;
+    onSubmit();
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    onSubmit();
+  };
 
   const test = Boolean(title.trim() || content.trim());
   let dropdownOptions = [["Add label"]];
@@ -31,8 +53,9 @@ const NoteForm = ({
     <form
       name="noteForm"
       ref={noteFormRef}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       className={`note ${styles.NoteForm} ${color}`}
+      onClick={() => onSetFormIsActive(true)}
     >
       <Toolbox
         activeColor={color}
@@ -59,12 +82,14 @@ const NoteForm = ({
 };
 
 NoteForm.propTypes = {
+  formIsActive: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   onSetTitle: PropTypes.func.isRequired,
   onSetContent: PropTypes.func.isRequired,
   onSetColor: PropTypes.func.isRequired,
+  onSetFormIsActive: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   addNote: PropTypes.func.isRequired,
   archiveNote: PropTypes.func.isRequired,

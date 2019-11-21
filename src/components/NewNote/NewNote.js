@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-// import styles from "./NewNote.module.scss";
+
 import NoteForm from "../NoteForm/NoteForm";
 import { addNote } from "../../redux/actions/actionCreators";
 import { NOTE_STATUS } from "../../constants";
@@ -11,33 +11,13 @@ const NewNote = ({ addNote }) => {
   const [content, setContent] = useState("");
 
   const [isPinned, setIsPinned] = useState(false);
-  const [isFormActive, setIsFormActive] = useState(true);
-
-  useEffect(() => {
-    if (isFormActive) {
-      document.addEventListener("click", handleClick);
-      return () => {
-        document.removeEventListener("click", handleClick);
-      };
-    }
-  });
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    addNewNote();
-  };
-
-  const handleClick = e => {
-    if (document.forms["noteForm"].contains(e.target)) return;
-    addNewNote();
-  };
+  const [formIsActive, setFormIsActive] = useState(false);
 
   const addNewNote = () => {
     if (!validateForm()) {
       resetForm();
       return;
     }
-
     addNote(title, content, color, [], isPinned, NOTE_STATUS.ACTIVE);
     resetForm();
   };
@@ -58,24 +38,27 @@ const NewNote = ({ addNote }) => {
     setTitle("");
     setContent("");
     setIsPinned(false);
-    // setIsFormActive(false);
+    setFormIsActive(false);
   };
 
+  // console.log('new', formIsActive);
   return (
     <>
       <NoteForm
+        formIsActive={formIsActive}
         title={title}
         content={content}
         color={color}
         onSetTitle={setTitle}
         onSetContent={setContent}
         onSetColor={setColor}
-        onSubmit={handleSubmit}
+        onSetFormIsActive={setFormIsActive}
+        onSubmit={addNewNote}
         addNote={() => handleAddNote(NOTE_STATUS.ACTIVE)}
         archiveNote={() => handleAddNote(NOTE_STATUS.ARCHIVED)}
         deleteNote={() => handleAddNote(NOTE_STATUS.DELETED)}
       />
-      {/* {isFormActive ? (
+      {/* {formIsActive ? (
       ) : (
         <form>
           <textarea
@@ -93,14 +76,6 @@ const NewNote = ({ addNote }) => {
 export default connect(null, { addNote })(NewNote);
 
 /* <Toolbox
-  activeColor={activeColor}
   isPinned={isPinned}
-  onChangeNoteColor={setActiveColor}
   onPinNote={() => setIsPinned(!isPinned)}
 ></Toolbox>; */
-
-/* <form
-  className={`note ${styles.NewNote} ${activeColor}`}
-  onClick={isFormActive ? undefined : () => setIsFormActive(true)}
-  // onClick={() => setIsFormActive(true)}
-></form> */

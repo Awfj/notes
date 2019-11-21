@@ -9,31 +9,37 @@ import NoteForm from "../NoteForm/NoteForm";
 import {
   addNote,
   archiveNote,
+  editNote,
   deleteNote
 } from "../../redux/actions/actionCreators";
 
-const EditNote = ({ note, onEditNote, addNote, archiveNote, deleteNote }) => {
+const EditNote = ({ note, addNote, archiveNote, editNote, deleteNote }) => {
   const { id, title, content, color, labels, isPinned, status } = note;
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
   const [newColor, setNewColor] = useState(color);
+  const [formIsActive, setFormIsActive] = useState(false);
 
   const handleEditNote = () => {
     if (title !== newTitle || content !== newContent || color !== newColor) {
-      onEditNote();
+      editNote(id, newTitle, newContent, newColor, labels, isPinned, status);
     }
+    setFormIsActive(false);
   };
 
+  // console.log('edit', formIsActive)
   return (
     // <Modal>
     <NoteForm
-      title={title}
-      content={content}
-      color={color}
+      formIsActive={formIsActive}
+      title={newTitle}
+      content={newContent}
+      color={newColor}
       onSetTitle={setNewTitle}
       onSetContent={setNewContent}
       onSetColor={setNewColor}
-      handleSubmit={handleEditNote}
+      onSetFormIsActive={setFormIsActive}
+      onSubmit={handleEditNote}
       addNote={() => addNote(title, content, color, labels, isPinned, status)}
       archiveNote={() => archiveNote(id)}
       deleteNote={() => deleteNote(id)}
@@ -45,7 +51,10 @@ const EditNote = ({ note, onEditNote, addNote, archiveNote, deleteNote }) => {
 EditNote.propTypes = {
   addNote: PropTypes.func.isRequired,
   archiveNote: PropTypes.func.isRequired,
+  editNote: PropTypes.func.isRequired,
   deleteNote: PropTypes.func.isRequired
 };
 
-export default connect(null, { addNote, archiveNote, deleteNote })(EditNote);
+export default connect(null, { addNote, archiveNote, editNote, deleteNote })(
+  EditNote
+);
