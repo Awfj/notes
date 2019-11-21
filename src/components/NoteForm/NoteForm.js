@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import Toolbox from "../Toolbox/Toolbox";
 import styles from "./NoteForm.module.scss";
@@ -15,6 +15,8 @@ const NoteForm = ({
   archiveNote,
   deleteNote
 }) => {
+  const noteFormRef = createRef();
+
   const test = Boolean(title.trim() || content.trim());
   let dropdownOptions = [["Add label"]];
   if (test) {
@@ -27,6 +29,8 @@ const NoteForm = ({
 
   return (
     <form
+      name="noteForm"
+      ref={noteFormRef}
       onSubmit={onSubmit}
       className={`note ${styles.NoteForm} ${color}`}
     >

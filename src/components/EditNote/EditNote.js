@@ -13,7 +13,7 @@ import {
 } from "../../redux/actions/actionCreators";
 
 const EditNote = ({ note, onEditNote, addNote, archiveNote, deleteNote }) => {
-  const { title, content, color } = note;
+  const { id, title, content, color, labels, isPinned, status } = note;
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
   const [newColor, setNewColor] = useState(color);
@@ -34,9 +34,9 @@ const EditNote = ({ note, onEditNote, addNote, archiveNote, deleteNote }) => {
       onSetContent={setNewContent}
       onSetColor={setNewColor}
       handleSubmit={handleEditNote}
-      addNote={addNote}
-      archiveNote={archiveNote}
-      deleteNote={deleteNote}
+      addNote={() => addNote(title, content, color, labels, isPinned, status)}
+      archiveNote={() => archiveNote(id)}
+      deleteNote={() => deleteNote(id)}
     />
     // </Modal>
   );

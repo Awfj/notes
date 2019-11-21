@@ -1,4 +1,4 @@
-import React, { createRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 // import styles from "./NewNote.module.scss";
 import NoteForm from "../NoteForm/NoteForm";
@@ -12,60 +12,70 @@ const NewNote = ({ addNote }) => {
 
   const [isPinned, setIsPinned] = useState(false);
   const [isFormActive, setIsFormActive] = useState(true);
-  const noteFormRef = createRef();
+
+  useEffect(() => {
+    if (isFormActive) {
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    }
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
+    addNewNote();
+  };
 
-    // if (noteFormRef.current.contains(e.target)) return;
-    if (!title.trim() && !content.trim()) {
-      setTitle("");
-      setContent("");
-      setIsPinned(false);
-      setIsFormActive(false);
+  const handleClick = e => {
+    if (document.forms["noteForm"].contains(e.target)) return;
+    addNewNote();
+  };
+
+  const addNewNote = () => {
+    if (!validateForm()) {
+      resetForm();
       return;
     }
 
     addNote(title, content, color, [], isPinned, NOTE_STATUS.ACTIVE);
+    resetForm();
+  };
+
+  const handleAddNote = status => {
+    if (!validateForm()) return;
+    addNote(title, content, color, [], isPinned, status);
+    if (status === NOTE_STATUS.ACTIVE) return;
+    resetForm();
+  };
+
+  const validateForm = () => {
+    return !!(title.trim() || content.trim());
+  };
+
+  const resetForm = () => {
     setColor("white");
     setTitle("");
     setContent("");
     setIsPinned(false);
-    setIsFormActive(false);
-  };
-
-  useEffect(() => {
-    // if (isFormActive) {
-    //   document.addEventListener("mousedown", handleSubmit);
-    //   return () => {
-    //     document.removeEventListener("mousedown", handleSubmit);
-    //   };
-    // }
-  });
-
-  const handleArchiveNote = () => {
-    addNote(title, content, color, [], isPinned, NOTE_STATUS.ARCHIVED);
-  };
-
-  const handleDeleteNote = () => {
-    addNote(title, content, color, [], isPinned, NOTE_STATUS.DELETED);
+    // setIsFormActive(false);
   };
 
   return (
     <>
-      {isFormActive ? (
-        <NoteForm
-          title={title}
-          content={content}
-          color={color}
-          onSetTitle={setTitle}
-          onSetContent={setContent}
-          onSetColor={setColor}
-          onSubmit={handleSubmit}
-          addNote={addNote}
-          archiveNote={handleArchiveNote}
-          deleteNote={handleDeleteNote}
-        />
+      <NoteForm
+        title={title}
+        content={content}
+        color={color}
+        onSetTitle={setTitle}
+        onSetContent={setContent}
+        onSetColor={setColor}
+        onSubmit={handleSubmit}
+        addNote={() => handleAddNote(NOTE_STATUS.ACTIVE)}
+        archiveNote={() => handleAddNote(NOTE_STATUS.ARCHIVED)}
+        deleteNote={() => handleAddNote(NOTE_STATUS.DELETED)}
+      />
+      {/* {isFormActive ? (
       ) : (
         <form>
           <textarea
@@ -75,7 +85,7 @@ const NewNote = ({ addNote }) => {
             onChange={e => setContent(e.target.value)}
           />
         </form>
-      )}
+      )} */}
     </>
   );
 };
@@ -90,7 +100,6 @@ export default connect(null, { addNote })(NewNote);
 ></Toolbox>; */
 
 /* <form
-  ref={noteFormRef}
   className={`note ${styles.NewNote} ${activeColor}`}
   onClick={isFormActive ? undefined : () => setIsFormActive(true)}
   // onClick={() => setIsFormActive(true)}

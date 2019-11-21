@@ -22,7 +22,7 @@ const ViewNote = ({
   pinNote
 }) => {
   const noteRef = createRef();
-  const { id, title, content, color, labels, isPinned } = note;
+  const { id, title, content, color, labels, isPinned, status } = note;
 
   function handleMouseHover(e) {
     // const toolbox = e.currentTarget.children[0].children;
@@ -51,7 +51,7 @@ const ViewNote = ({
           ["Add label"],
           [
             "Make a copy",
-            () => addNote(title, content, color, labels, isPinned)
+            () => addNote(title, content, color, labels, isPinned, status)
           ]
         ]}
         isPinned={isPinned}

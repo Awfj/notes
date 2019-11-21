@@ -19,7 +19,7 @@ const Dropdown = ({ mainButton, options, children }) => {
 
   function handleOptionFunction(optionFunction) {
     optionFunction();
-    setIsDropdownOpen(false);
+    // setIsDropdownOpen(false);
   }
 
   useEffect(() => {
