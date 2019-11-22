@@ -18,6 +18,7 @@ const EditNote = ({ note, addNote, archiveNote, editNote, deleteNote }) => {
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
   const [newColor, setNewColor] = useState(color);
+  const [newIsPinned, setNewIsPinned] = useState(isPinned);
   const [formIsActive, setFormIsActive] = useState(false);
 
   const handleEditNote = () => {
@@ -35,9 +36,11 @@ const EditNote = ({ note, addNote, archiveNote, editNote, deleteNote }) => {
       title={newTitle}
       content={newContent}
       color={newColor}
+      isPinned={newIsPinned}
       onSetTitle={setNewTitle}
       onSetContent={setNewContent}
       onSetColor={setNewColor}
+      onSetIsPinned={() => setNewIsPinned(!newIsPinned)}
       onSetFormIsActive={setFormIsActive}
       onSubmit={handleEditNote}
       addNote={() => addNote(title, content, color, labels, isPinned, status)}

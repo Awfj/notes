@@ -17,7 +17,7 @@ const Home = ({ notes, notesLayout }) => {
   return (
     <FilterPage>
       <NewNote />
-      <EditNote note={notes[0]} />
+      {/* <EditNote note={notes[0]} /> */}
       {notes.length > 0 ? (
         <NoteList notes={notes} notesLayout={notesLayout} />
       ) : (

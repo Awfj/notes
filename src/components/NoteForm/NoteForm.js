@@ -2,17 +2,18 @@ import React, { createRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./NoteForm.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
+import NoteFormField from "../NoteFormField/NoteFormField";
 // import NoteBorder from "../NoteBorder/NoteBorder";
 
 const NoteForm = ({
-  formIsActive,
   title,
   content,
   color,
+  isPinned,
   onSetTitle,
   onSetContent,
   onSetColor,
-  onSetFormIsActive,
+  onSetIsPinned,
   onSubmit,
   addNote,
   archiveNote,
@@ -21,16 +22,16 @@ const NoteForm = ({
   const noteFormRef = createRef();
 
   useEffect(() => {
-    if (formIsActive) {
-      document.addEventListener("click", handleClick);
-      return () => {
-        document.removeEventListener("click", handleClick);
-      };
-    }
+    // console.log(Boolean(noteFormRef))
+    document.addEventListener("click", handleClick);
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
   });
 
   const handleClick = e => {
-    if (noteFormRef.current.contains(e.target)) return;
+    // console.log(!!noteFormRef)
+    if (noteFormRef.current && noteFormRef.current.contains(e.target)) return;
     onSubmit();
   };
 
@@ -55,26 +56,28 @@ const NoteForm = ({
       ref={noteFormRef}
       onSubmit={handleSubmit}
       className={`note ${styles.NoteForm} ${color}`}
-      onClick={() => onSetFormIsActive(true)}
     >
       <Toolbox
         activeColor={color}
         dropdownOptions={dropdownOptions}
         role="edit"
+        isPinned={isPinned}
         onArchiveNote={archiveNote}
         onChangeNoteColor={onSetColor}
+        onPinNote={onSetIsPinned}
       >
-        <textarea
+        <NoteFormField
           name="title"
           placeholder="Title"
           value={title}
-          onChange={e => onSetTitle(e.target.value)}
+          onSetField={e => onSetTitle(e.target.value)}
         />
-        <textarea
+        <NoteFormField
           name="content"
           placeholder="Take a note..."
           value={content}
-          onChange={e => onSetContent(e.target.value)}
+          onSetField={e => onSetContent(e.target.value)}
+          isFocused
         />
       </Toolbox>
     </form>
@@ -82,14 +85,12 @@ const NoteForm = ({
 };
 
 NoteForm.propTypes = {
-  formIsActive: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   onSetTitle: PropTypes.func.isRequired,
   onSetContent: PropTypes.func.isRequired,
   onSetColor: PropTypes.func.isRequired,
-  onSetFormIsActive: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   addNote: PropTypes.func.isRequired,
   archiveNote: PropTypes.func.isRequired,
