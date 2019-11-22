@@ -40,7 +40,7 @@ const ViewNote = ({
   return (
     <div
       ref={noteRef}
-      className={`note ${styles.Note} ${color}`}
+      className={`note ${styles.Note} ${styles[color]}`}
       onMouseEnter={handleMouseHover}
       onMouseLeave={handleMouseHover}
     >
