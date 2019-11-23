@@ -16,7 +16,12 @@ const Modal = ({ children, onCloseModal }) => {
       }
     };
 
+    const handleKeyDown = e => {
+      e.keyCode === 27 && onCloseModal();
+    };
+
     modal.addEventListener("click", handleClose);
+    modal.addEventListener("keydown", handleKeyDown);
   }
 
   useEffect(() => {

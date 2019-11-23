@@ -20,11 +20,8 @@ const NoteForm = ({
   deleteNote
 }) => {
   const noteFormRef = createRef();
-  const textRef = createRef();
 
   useEffect(() => {
-    textRef.current.focus();
-    // console.log(Boolean(noteFormRef))
     document.addEventListener("click", handleClick);
     return () => {
       document.removeEventListener("click", handleClick);
@@ -80,7 +77,6 @@ const NoteForm = ({
           value={content}
           onSetField={e => onSetContent(e.target.value)}
           isFocused
-          textRef={textRef}
         />
       </Toolbox>
     </form>
