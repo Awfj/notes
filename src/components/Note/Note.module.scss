@@ -1,7 +1,10 @@
+@import  '../../styles/_noteBorder.scss';
 @import '../../styles/_colors.scss';
 
-.ViewNote {
+.Note {
   // transition: all 0.1s ease-in-out;
+  box-shadow: 0 0 1px gray;
+  @extend %noteBorder;
   &:hover {
     box-shadow: 0 0 5px gray;
   }

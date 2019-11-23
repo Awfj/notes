@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./NoteFormField.module.scss";
 
-const NoteFormField = ({ isFocused, name, placeholder, value, onSetField }) => {
+const NoteFormField = ({ isFocused, name, placeholder, value, onSetField, textRef }) => {
   return (
     <textarea
       className={styles.NoteFormField}
@@ -12,6 +12,7 @@ const NoteFormField = ({ isFocused, name, placeholder, value, onSetField }) => {
       onChange={onSetField}
       // wrap="hard"
       autoFocus={isFocused}
+      ref={textRef}
     />
   );
 };

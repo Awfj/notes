@@ -20,8 +20,10 @@ const NoteForm = ({
   deleteNote
 }) => {
   const noteFormRef = createRef();
+  const textRef = createRef();
 
   useEffect(() => {
+    textRef.current.focus();
     // console.log(Boolean(noteFormRef))
     document.addEventListener("click", handleClick);
     return () => {
@@ -55,7 +57,7 @@ const NoteForm = ({
       name="noteForm"
       ref={noteFormRef}
       onSubmit={handleSubmit}
-      className={`note ${styles.NoteForm} ${color}`}
+      className={`${styles.NoteForm} ${styles[color]}`}
     >
       <Toolbox
         activeColor={color}
@@ -78,6 +80,7 @@ const NoteForm = ({
           value={content}
           onSetField={e => onSetContent(e.target.value)}
           isFocused
+          textRef={textRef}
         />
       </Toolbox>
     </form>

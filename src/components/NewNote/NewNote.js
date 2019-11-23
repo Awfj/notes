@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 
 import styles from "./NewNote.module.scss";
 import NoteForm from "../NoteForm/NoteForm";
-import NoteFormField from "../NoteFormField/NoteFormField";
-import NoteBorder from "../NoteBorder/NoteBorder";
+// import NoteFormField from "../NoteFormField/NoteFormField";
+// import NoteBorder from "../NoteBorder/NoteBorder";
 import { addNote } from "../../redux/actions/actionCreators";
 import { NOTE_STATUS } from "../../constants";
 
@@ -70,7 +70,7 @@ const NewNote = ({ addNote }) => {
       ) : (
         // <NoteBorder>
         <form
-          className={`note ${styles.dummyForm}`}
+          className={`${styles.dummyForm}`}
           onClick={() => setFormIsActive(true)}
           onKeyDown={() => setFormIsActive(true)}
         >

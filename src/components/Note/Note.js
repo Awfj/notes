@@ -1,9 +1,10 @@
-import React, { createRef } from "react";
+import React, { useState, createRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import styles from "./ViewNote.module.scss";
+import styles from "./Note.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
+import EditNote from "../EditNote/EditNote";
 
 import {
   addNote,
@@ -13,7 +14,7 @@ import {
   pinNote
 } from "../../redux/actions/actionCreators";
 
-const ViewNote = ({
+const Note = ({
   addNote,
   archiveNote,
   changeNoteColor,
@@ -21,6 +22,7 @@ const ViewNote = ({
   note,
   pinNote
 }) => {
+  const [noteIsEditable, setNoteIsEditable] = useState(false);
   const noteRef = createRef();
   const { id, title, content, color, labels, isPinned, status } = note;
 
@@ -38,43 +40,52 @@ const ViewNote = ({
   }
 
   return (
-    <div
-      ref={noteRef}
-      className={`note ${styles.Note} ${styles[color]}`}
-      onMouseEnter={handleMouseHover}
-      onMouseLeave={handleMouseHover}
-    >
-      <Toolbox
-        activeColor={color}
-        dropdownOptions={[
-          ["Delete note", () => deleteNote(id)],
-          ["Add label"],
-          [
-            "Make a copy",
-            () => addNote(title, content, color, labels, isPinned, status)
-          ]
-        ]}
-        isPinned={isPinned}
-        onArchiveNote={() => archiveNote(id)}
-        onChangeNoteColor={newColor => changeNoteColor(id, newColor)}
-        onPinNote={() => pinNote(id)}
-        role="view"
+    <>
+      {noteIsEditable && (
+        <EditNote
+          note={note}
+          onSetNoteIsEditable={setNoteIsEditable}
+        />
+      )}
+      <div
+        ref={noteRef}
+        className={`${styles.Note} ${styles[color]}`}
+        onMouseEnter={handleMouseHover}
+        onMouseLeave={handleMouseHover}
+        onClick={() => setNoteIsEditable(true)}
       >
-        {title && <h3>{title}</h3>}
-        {content && <p>{content}</p>}
-        {labels.length > 0 && (
-          <ul className={styles.labels}>
-            {labels.map((label, index) => (
-              <li key={index}>{label}</li>
-            ))}
-          </ul>
-        )}
-      </Toolbox>
-    </div>
+        <Toolbox
+          activeColor={color}
+          dropdownOptions={[
+            ["Delete note", () => deleteNote(id)],
+            ["Add label"],
+            [
+              "Make a copy",
+              () => addNote(title, content, color, labels, isPinned, status)
+            ]
+          ]}
+          isPinned={isPinned}
+          onArchiveNote={() => archiveNote(id)}
+          onChangeNoteColor={newColor => changeNoteColor(id, newColor)}
+          onPinNote={() => pinNote(id)}
+          role="view"
+        >
+          {title && <h3>{title}</h3>}
+          {content && <p>{content}</p>}
+          {labels.length > 0 && (
+            <ul className={styles.labels}>
+              {labels.map((label, index) => (
+                <li key={index}>{label}</li>
+              ))}
+            </ul>
+          )}
+        </Toolbox>
+      </div>
+    </>
   );
 };
 
-ViewNote.propTypes = {
+Note.propTypes = {
   note: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -96,4 +107,4 @@ export default connect(null, {
   changeNoteColor,
   deleteNote,
   pinNote
-})(ViewNote);
+})(Note);

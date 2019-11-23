@@ -9,13 +9,15 @@ const Modal = ({ children, onCloseModal }) => {
   const modal = document.createElement("div");
   modal.setAttribute("class", styles.Modal);
 
-  const handleClose = e => {
-    if (modal.isEqualNode(e.target)) {
-      onCloseModal();
-    }
-  };
+  if (onCloseModal) {
+    const handleClose = e => {
+      if (modal.isEqualNode(e.target)) {
+        onCloseModal();
+      }
+    };
 
-  modal.addEventListener("click", handleClose);
+    modal.addEventListener("click", handleClose);
+  }
 
   useEffect(() => {
     modalRoot.appendChild(modal);
@@ -28,7 +30,7 @@ const Modal = ({ children, onCloseModal }) => {
 
 Modal.propTypes = {
   children: PropTypes.element.isRequired,
-  onCloseModal: PropTypes.func.isRequired
+  onCloseModal: PropTypes.func
 };
 
 export default Modal;

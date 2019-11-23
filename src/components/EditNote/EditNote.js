@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
 
-// import Modal from "../Modal/Modal";
+import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
 
 import {
@@ -13,26 +13,33 @@ import {
   deleteNote
 } from "../../redux/actions/actionCreators";
 
-const EditNote = ({ note, addNote, archiveNote, editNote, deleteNote }) => {
+const EditNote = ({
+  note,
+  addNote,
+  archiveNote,
+  editNote,
+  deleteNote,
+  onSetNoteIsEditable
+}) => {
   const { id, title, content, color, labels, isPinned, status } = note;
   const [newTitle, setNewTitle] = useState(title);
   const [newContent, setNewContent] = useState(content);
   const [newColor, setNewColor] = useState(color);
   const [newIsPinned, setNewIsPinned] = useState(isPinned);
-  const [formIsActive, setFormIsActive] = useState(false);
+  // const [formIsActive, setFormIsActive] = useState(false);
 
   const handleEditNote = () => {
     if (title !== newTitle || content !== newContent || color !== newColor) {
       editNote(id, newTitle, newContent, newColor, labels, isPinned, status);
     }
-    setFormIsActive(false);
+    onSetNoteIsEditable(false);
+    // setFormIsActive(false);
   };
 
   // console.log('edit', formIsActive)
   return (
-    // <Modal>
+    <Modal>
     <NoteForm
-      formIsActive={formIsActive}
       title={newTitle}
       content={newContent}
       color={newColor}
@@ -41,13 +48,12 @@ const EditNote = ({ note, addNote, archiveNote, editNote, deleteNote }) => {
       onSetContent={setNewContent}
       onSetColor={setNewColor}
       onSetIsPinned={() => setNewIsPinned(!newIsPinned)}
-      onSetFormIsActive={setFormIsActive}
       onSubmit={handleEditNote}
       addNote={() => addNote(title, content, color, labels, isPinned, status)}
       archiveNote={() => archiveNote(id)}
       deleteNote={() => deleteNote(id)}
     />
-    // </Modal>
+    </Modal>
   );
 };
 
