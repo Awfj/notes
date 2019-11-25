@@ -41,7 +41,7 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
                 <li key={index}>
                   <button
                     type="button"
-                    className={`${color} fa-layers`}
+                    className={`${styles[color]} fa-layers`}
                     onClick={() => onChangeNoteColor(color)}
                   >
                     <FontAwesomeIcon
