@@ -1,5 +1,8 @@
 import React, { createRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
+
+import IconButton from "@material-ui/core/IconButton";
+
 import styles from "./Dropdown.module.scss";
 
 const Dropdown = ({ mainButton, options, children }) => {
@@ -33,13 +36,12 @@ const Dropdown = ({ mainButton, options, children }) => {
 
   return (
     <div className={styles.container}>
-      <button
-        type="button"
+      <IconButton
         ref={mainButtonRef}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         {mainButton}
-      </button>
+      </IconButton>
 
       {isDropdownOpen && (
         <ul className={styles.menu} ref={menuRef}>

@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
+
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
 import FilterPage from "./FilterPage";
 import NoteList from "../NoteList/NoteList";
@@ -20,7 +20,7 @@ const Bin = ({ notes, notesLayout }) => {
         <FilterMessage
           message="No notes in Recycle Bin"
           extraMessage="Notes in the Recycle Bin are deleted after 7 days."
-          icon={<FontAwesomeIcon icon={faTrashAlt} fixedWidth />}
+          icon={<DeleteOutlinedIcon />}
         />
       )}
     </FilterPage>

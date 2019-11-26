@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { StylesProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import styles from "./App.module.scss";
@@ -23,40 +24,42 @@ function App() {
   // };
 
   return (
-    <Router>
-      <CssBaseline />
-      <div
-        className={styles.App}
-        style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
-        // onClick={handleClose}
-      >
-        <Header
-          notesLayout={notesLayout}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
-          toggleNotesLayout={() =>
-            setNotesLayout(notesLayout === "list" ? "grid" : "list")
-          }
-          toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-        />
-        <main>
-          {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
+    <StylesProvider injectFirst>
+      <Router>
+        <CssBaseline />
+        <div
+          className={styles.App}
+          style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
+          // onClick={handleClose}
+        >
+          <Header
+            notesLayout={notesLayout}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
+            toggleNotesLayout={() =>
+              setNotesLayout(notesLayout === "list" ? "grid" : "list")
+            }
+            toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
+          <main>
+            {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
 
-          <Switch>
-            <Route path="/home">
-              <Home notesLayout={notesLayout} />
-            </Route>
-            <Route path="/archive">
-              <Archive notesLayout={notesLayout} />
-            </Route>
-            <Route path="/bin">
-              <Bin notesLayout={notesLayout} />
-            </Route>
-          </Switch>
-        </main>
-      </div>
-    </Router>
+            <Switch>
+              <Route path="/home">
+                <Home notesLayout={notesLayout} />
+              </Route>
+              <Route path="/archive">
+                <Archive notesLayout={notesLayout} />
+              </Route>
+              <Route path="/bin">
+                <Bin notesLayout={notesLayout} />
+              </Route>
+            </Switch>
+          </main>
+        </div>
+      </Router>
+    </StylesProvider>
   );
 }
 

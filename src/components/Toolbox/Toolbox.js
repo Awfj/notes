@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faThumbtack,
-  faFillDrip,
-  faEllipsisV,
-  faUndoAlt,
-  faRedoAlt
-} from "@fortawesome/free-solid-svg-icons";
-import { faBell, faFolderOpen } from "@fortawesome/free-regular-svg-icons";
+
+import IconButton from "@material-ui/core/IconButton";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
+import PaletteOutlinedIcon from "@material-ui/icons/PaletteOutlined";
+import UnarchiveOutlinedIcon from "@material-ui/icons/UnarchiveOutlined";
+import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import UndoIcon from "@material-ui/icons/Undo";
+import RedoIcon from "@material-ui/icons/RedoOutlined";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import styles from "./Toolbox.module.scss";
 import ColorPicker from "../ColorPicker/ColorPicker";
@@ -35,44 +36,44 @@ const Toolbox = ({
   return (
     <div className={classToolbox}>
       {isView && (
-        <button type="button" className={styles.select}>
-          <FontAwesomeIcon icon={faCheckCircle} />
-        </button>
+        <IconButton className={styles.select}>
+          <CheckCircleIcon />
+        </IconButton>
       )}
       <div>{children}</div>
-      <button type="button" className={styles.pin} onClick={onPinNote}>
+      <IconButton className={styles.pin} onClick={onPinNote}>
         {isPinned ? (
-          <FontAwesomeIcon icon={faThumbtack} />
+          <ArrowDropUpIcon />
         ) : (
-          <FontAwesomeIcon icon={faThumbtack} rotation={90} />
+          <ArrowDropDownIcon />
         )}
-      </button>
+      </IconButton>
       <footer>
         <div className={styles.tools}>
-          <button type="button">
-            <FontAwesomeIcon icon={faBell} fixedWidth />
-          </button>
+          <IconButton aria-label="Remind me">
+            <AddAlertOutlinedIcon />
+          </IconButton>
           <ColorPicker
             activeColor={activeColor}
-            mainButton={<FontAwesomeIcon icon={faFillDrip} fixedWidth />}
+            mainButton={<PaletteOutlinedIcon />}
             onChangeNoteColor={onChangeNoteColor}
           />
-          <button type="button" onClick={onArchiveNote}>
-            <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
-          </button>
+          <IconButton onClick={onArchiveNote}>
+            <UnarchiveOutlinedIcon />
+          </IconButton>
           <Dropdown
-            mainButton={<FontAwesomeIcon icon={faEllipsisV} fixedWidth />}
+            mainButton={<MoreVertIcon />}
             options={dropdownOptions}
           ></Dropdown>
 
           {isEdit && (
             <>
-              <button type="button">
-                <FontAwesomeIcon icon={faUndoAlt} fixedWidth />
-              </button>
-              <button type="button">
-                <FontAwesomeIcon icon={faRedoAlt} fixedWidth />
-              </button>
+              <IconButton>
+                <UndoIcon />
+              </IconButton>
+              <IconButton>
+                <RedoIcon />
+              </IconButton>
             </>
           )}
         </div>

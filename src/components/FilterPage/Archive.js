@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFolderOpen } from "@fortawesome/free-regular-svg-icons";
+
+import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 
 import FilterPage from "./FilterPage";
 import NoteList from "../NoteList/NoteList";
@@ -19,7 +19,7 @@ const Archive = ({ notes, notesLayout }) => {
       ) : (
         <FilterMessage
           message="Your archived notes appear here"
-          icon={<FontAwesomeIcon icon={faFolderOpen} fixedWidth />}
+          icon={<ArchiveOutlinedIcon />}
         />
       )}
     </FilterPage>

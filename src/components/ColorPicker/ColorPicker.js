@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-// import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-regular-svg-icons";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import IconButton from "@material-ui/core/IconButton";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+
 import styles from "./ColorPicker.module.scss";
-// import { changeNoteColor } from "../../redux/actions/actionCreators";
 
 const COLORS = [
   "white",
@@ -26,12 +26,13 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
+    // <ThemeProvider theme={theme} >
     <div
       className={styles.container}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <button type="button">{mainButton}</button>
+      <IconButton>{mainButton}</IconButton>
 
       {isOpen && (
         <div className={styles.menu}>
@@ -39,24 +40,17 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
             {COLORS.map((color, index) => {
               return (
                 <li key={index}>
-                  <button
-                    type="button"
-                    className={`${styles[color]} fa-layers`}
+                  <IconButton
+                    // classes={{root: styles[color]}}
+                    className={styles[color]}
                     onClick={() => onChangeNoteColor(color)}
                   >
-                    <FontAwesomeIcon
-                      className={styles.circle}
-                      icon={faCircle}
-                    />
-                    {activeColor === color && (
-                      <FontAwesomeIcon
-                        className={styles.check}
-                        icon={faCheck}
-                        inverse
-                        transform="shrink-8"
-                      />
+                    {activeColor === color ? (
+                      <CheckCircleOutlineIcon />
+                    ) : (
+                      <RadioButtonUncheckedIcon />
                     )}
-                  </button>
+                  </IconButton>
                 </li>
               );
             })}
@@ -64,6 +58,7 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
         </div>
       )}
     </div>
+    /* </ThemeProvider> */
   );
 };
 

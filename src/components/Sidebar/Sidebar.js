@@ -2,15 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLightbulb,
-  faBell,
-  faTrashAlt,
-  faFolderOpen,
-  faEdit
-} from "@fortawesome/free-regular-svg-icons";
-import { faHashtag } from "@fortawesome/free-solid-svg-icons";
+
+import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
+import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
+import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import styles from "./Sidebar.module.scss";
 import { getLabels } from "../../redux/selectors/labels";
 import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
@@ -22,13 +20,13 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
       <ul>
         <li>
           <Link to="/home">
-            <FontAwesomeIcon icon={faLightbulb} fixedWidth />
+            <EmojiObjectsOutlinedIcon />
             Notes
           </Link>
         </li>
         <li>
           <Link to="/reminders">
-            <FontAwesomeIcon icon={faBell} fixedWidth />
+            <NotificationsOutlinedIcon />
             Reminders
           </Link>
         </li>
@@ -40,14 +38,14 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
             labels.map(label => (
               <li key={label.id}>
                 <Link to={`/label/${label.label}`}>
-                  <FontAwesomeIcon icon={faHashtag} fixedWidth /> {label.label}
+                  <LabelOutlinedIcon /> {label.label}
                 </Link>
               </li>
             ))}
 
           <li>
             <button type="button" onClick={() => addLabel("asf")}>
-              <FontAwesomeIcon icon={faEdit} fixedWidth />
+              <CreateOutlinedIcon />
               Edit labels
             </button>
           </li>
@@ -56,13 +54,13 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
       <ul>
         <li>
           <Link to="/archive">
-            <FontAwesomeIcon icon={faFolderOpen} fixedWidth />
+            <ArchiveOutlinedIcon />
             Archive
           </Link>
         </li>
         <li>
           <Link to="/bin">
-            <FontAwesomeIcon icon={faTrashAlt} fixedWidth />
+            <DeleteOutlinedIcon />
             Bin
           </Link>
         </li>

@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLightbulb } from "@fortawesome/free-regular-svg-icons";
+
+import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 
 import FilterPage from "./FilterPage";
 import NewNote from "../NewNote/NewNote";
@@ -22,7 +22,7 @@ const Home = ({ notes, notesLayout }) => {
       ) : (
         <FilterMessage
           message="No notes yet"
-          icon={<FontAwesomeIcon icon={faLightbulb} fixedWidth />}
+          icon={<EmojiObjectsOutlinedIcon />}
         />
       )}
     </FilterPage>
