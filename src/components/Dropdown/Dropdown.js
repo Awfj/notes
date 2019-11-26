@@ -2,6 +2,7 @@ import React, { createRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import styles from "./Dropdown.module.scss";
 
@@ -36,12 +37,14 @@ const Dropdown = ({ mainButton, options, children }) => {
 
   return (
     <div className={styles.container}>
-      <IconButton
-        ref={mainButtonRef}
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-      >
-        {mainButton}
-      </IconButton>
+      <Tooltip title="More">
+        <IconButton
+          ref={mainButtonRef}
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+          {mainButton}
+        </IconButton>
+      </Tooltip>
 
       {isDropdownOpen && (
         <ul className={styles.menu} ref={menuRef}>

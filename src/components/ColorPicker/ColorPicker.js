@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
@@ -32,7 +33,9 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
-      <IconButton>{mainButton}</IconButton>
+      <Tooltip title="Change colour">
+        <IconButton>{mainButton}</IconButton>
+      </Tooltip>
 
       {isOpen && (
         <div className={styles.menu}>

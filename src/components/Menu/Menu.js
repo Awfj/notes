@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styles from "./Menu.module.scss";
 import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Fade from "@material-ui/core/Fade";
 import Paper from "@material-ui/core/Paper";
@@ -10,7 +10,9 @@ import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 
-const Menu = ({ icon, options }) => {
+import styles from "./Menu.module.scss";
+
+const Menu = ({ icon, options, title }) => {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -49,15 +51,17 @@ const Menu = ({ icon, options }) => {
 
   return (
     <div className={styles.root}>
-      <IconButton
-        aria-label="Settings"
-        ref={anchorRef}
-        onClick={handleToggle}
-        aria-controls={open ? "menu-list-fade" : undefined}
-        aria-haspopup="true"
-      >
-        {icon}
-      </IconButton>
+      <Tooltip title={title}>
+        <IconButton
+          aria-label={title}
+          ref={anchorRef}
+          onClick={handleToggle}
+          aria-controls={open ? "menu-list-fade" : undefined}
+          aria-haspopup="true"
+        >
+          {icon}
+        </IconButton>
+      </Tooltip>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -97,7 +101,8 @@ const Menu = ({ icon, options }) => {
 
 Menu.propTypes = {
   icon: PropTypes.element.isRequired,
-  options: PropTypes.array.isRequired
+  options: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default Menu;

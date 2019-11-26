@@ -2,15 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import IconButton from "@material-ui/core/IconButton";
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Tooltip from "@material-ui/core/Tooltip";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
 import PaletteOutlinedIcon from "@material-ui/icons/PaletteOutlined";
 import UnarchiveOutlinedIcon from "@material-ui/icons/UnarchiveOutlined";
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import UndoIcon from "@material-ui/icons/Undo";
 import RedoIcon from "@material-ui/icons/RedoOutlined";
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import styles from "./Toolbox.module.scss";
 import ColorPicker from "../ColorPicker/ColorPicker";
@@ -42,25 +43,25 @@ const Toolbox = ({
       )}
       <div>{children}</div>
       <IconButton className={styles.pin} onClick={onPinNote}>
-        {isPinned ? (
-          <ArrowDropUpIcon />
-        ) : (
-          <ArrowDropDownIcon />
-        )}
+        {isPinned ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
       </IconButton>
       <footer>
         <div className={styles.tools}>
-          <IconButton aria-label="Remind me">
-            <AddAlertOutlinedIcon />
-          </IconButton>
+          <Tooltip title="Remind me">
+            <IconButton aria-label="Remind me">
+              <AddAlertOutlinedIcon />
+            </IconButton>
+          </Tooltip>
           <ColorPicker
             activeColor={activeColor}
             mainButton={<PaletteOutlinedIcon />}
             onChangeNoteColor={onChangeNoteColor}
           />
-          <IconButton onClick={onArchiveNote}>
-            <UnarchiveOutlinedIcon />
-          </IconButton>
+          <Tooltip title="Archive">
+            <IconButton aria-label="Archive" onClick={onArchiveNote}>
+              <UnarchiveOutlinedIcon />
+            </IconButton>
+          </Tooltip>
           <Dropdown
             mainButton={<MoreVertIcon />}
             options={dropdownOptions}
@@ -68,12 +69,16 @@ const Toolbox = ({
 
           {isEdit && (
             <>
-              <IconButton>
-                <UndoIcon />
-              </IconButton>
-              <IconButton>
-                <RedoIcon />
-              </IconButton>
+              <Tooltip title="Undo">
+                <IconButton aria-label="Undo">
+                  <UndoIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Redo">
+                <IconButton aria-label="Redo">
+                  <RedoIcon />
+                </IconButton>
+              </Tooltip>
             </>
           )}
         </div>

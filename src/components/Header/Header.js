@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from '@material-ui/icons/Menu';
+import Tooltip from "@material-ui/core/Tooltip";
+import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import ViewAgendaOutlinedIcon from "@material-ui/icons/ViewAgendaOutlined";
-import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
+import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
@@ -23,12 +24,14 @@ const Header = props => {
         <Settings onCloseModal={() => setIsSettingsOpen(false)} />
       )}
       <div>
-        <IconButton
-          className={styles.iconSidebar}
-          onClick={props.toggleSidebar}
-        >
-          <MenuIcon />
-        </IconButton>
+        <Tooltip title="Main menu">
+          <IconButton
+            className={styles.iconSidebar}
+            onClick={props.toggleSidebar}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Tooltip>
         <h1>Notes</h1>
       </div>
       {window.innerWidth >= 768 && (
@@ -44,17 +47,24 @@ const Header = props => {
             <SearchIcon />
           </IconButton>
         )}
-        <IconButton aria-label="Refresh">
-          <RefreshIcon />
-        </IconButton>
-        {window.innerWidth >= 600 && (
-          <IconButton aria-label="Toggle Layout" onClick={props.toggleNotesLayout}>
-            {props.notesLayout === "grid" ? (
-              <ViewAgendaOutlinedIcon />
-            ) : (
-              <DashboardOutlinedIcon />
-            )}
+        <Tooltip title="Refresh">
+          <IconButton aria-label="Refresh">
+            <RefreshIcon />
           </IconButton>
+        </Tooltip>
+        {window.innerWidth >= 600 && (
+          <Tooltip title="Toggle Layout">
+            <IconButton
+              aria-label="Toggle Layout"
+              onClick={props.toggleNotesLayout}
+            >
+              {props.notesLayout === "grid" ? (
+                <ViewAgendaOutlinedIcon />
+              ) : (
+                <DashboardOutlinedIcon />
+              )}
+            </IconButton>
+          </Tooltip>
         )}
 
         <Menu
@@ -63,6 +73,7 @@ const Header = props => {
             ["Settings", () => setIsSettingsOpen(true)],
             ["Enable dark theme"]
           ]}
+          title="Settings"
         />
       </div>
     </header>
