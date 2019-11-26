@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 import styles from "./App.module.scss";
 import Header from "../Header/Header";
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <Router>
+      <CssBaseline />
       <div
         className={styles.App}
         style={isDarkThemeActive ? { backgroundColor: "pink" } : null}

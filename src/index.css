@@ -1,4 +1,4 @@
-@import-normalize;
+/* @import-normalize; */
 
 html {
   box-sizing: border-box;
@@ -21,7 +21,7 @@ body {
   z-index: 999;
 }
 
-a {
+/* a {
   text-decoration: none;
 }
 
@@ -61,4 +61,4 @@ dd {
 
 li {
   display: block;
-}
+} */
