@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 import IconButton from "@material-ui/core/IconButton";
@@ -13,8 +13,8 @@ import MenuList from "@material-ui/core/MenuList";
 import styles from "./Menu.module.scss";
 
 const Menu = ({ icon, options, title }) => {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
 
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
@@ -24,19 +24,18 @@ const Menu = ({ icon, options, title }) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
-  function handleListKeyDown(event) {
+  const handleListKeyDown = event => {
     if (event.key === "Tab" || event.key === "Escape") {
       event.preventDefault();
       setOpen(false);
     }
-  }
+  };
 
-  const prevOpen = React.useRef(open);
-  React.useEffect(() => {
+  const prevOpen = useRef(open);
+  useEffect(() => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
@@ -101,7 +100,7 @@ const Menu = ({ icon, options, title }) => {
 
 Menu.propTypes = {
   icon: PropTypes.element.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.array.isRequired).isRequired,
   title: PropTypes.string.isRequired
 };
 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import Modal from "../Modal/Modal";
+import Dialog from "@material-ui/core/Dialog";
 import NoteForm from "../NoteForm/NoteForm";
 
 import {
@@ -19,7 +19,9 @@ const EditNote = ({
   archiveNote,
   editNote,
   deleteNote,
-  onSetNoteIsEditable
+  onSetNoteIsEditable,
+  open,
+  onClose
 }) => {
   const { id, title, content, color, labels, isPinned, status } = note;
   const [newTitle, setNewTitle] = useState(title);
@@ -38,22 +40,22 @@ const EditNote = ({
 
   // console.log('edit', formIsActive)
   return (
-    <Modal>
-    <NoteForm
-      title={newTitle}
-      content={newContent}
-      color={newColor}
-      isPinned={newIsPinned}
-      onSetTitle={setNewTitle}
-      onSetContent={setNewContent}
-      onSetColor={setNewColor}
-      onSetIsPinned={() => setNewIsPinned(!newIsPinned)}
-      onSubmit={handleEditNote}
-      addNote={() => addNote(title, content, color, labels, isPinned, status)}
-      archiveNote={() => archiveNote(id)}
-      deleteNote={() => deleteNote(id)}
-    />
-    </Modal>
+    <Dialog open={open} onClose={onClose}>
+      <NoteForm
+        title={newTitle}
+        content={newContent}
+        color={newColor}
+        isPinned={newIsPinned}
+        onSetTitle={setNewTitle}
+        onSetContent={setNewContent}
+        onSetColor={setNewColor}
+        onSetIsPinned={() => setNewIsPinned(!newIsPinned)}
+        onSubmit={handleEditNote}
+        addNote={() => addNote(title, content, color, labels, isPinned, status)}
+        archiveNote={() => archiveNote(id)}
+        deleteNote={() => deleteNote(id)}
+      />
+    </Dialog>
   );
 };
 
@@ -61,7 +63,9 @@ EditNote.propTypes = {
   addNote: PropTypes.func.isRequired,
   archiveNote: PropTypes.func.isRequired,
   editNote: PropTypes.func.isRequired,
-  deleteNote: PropTypes.func.isRequired
+  deleteNote: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default connect(null, { addNote, archiveNote, editNote, deleteNote })(

@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import EmojiObjectsOutlinedIcon from "@material-ui/icons/EmojiObjectsOutlined";
 import NotificationsOutlinedIcon from "@material-ui/icons/NotificationsOutlined";
-import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
-import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+import LabelOutlinedIcon from "@material-ui/icons/LabelOutlined";
+import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import ArchiveOutlinedIcon from "@material-ui/icons/ArchiveOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
+
 import styles from "./Sidebar.module.scss";
+import EditLabels from "../EditLabels/EditLabels";
 import { getLabels } from "../../redux/selectors/labels";
 import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
 
 const Sidebar = ({ labels, addLabel, deleteLabel }) => {
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
   // console.warn('Sidebar')
   return (
     <aside className={styles.Sidebar}>
@@ -44,11 +47,16 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
             ))}
 
           <li>
-            <button type="button" onClick={() => addLabel("asf")}>
+            <button type="button" onClick={() => setDialogIsOpen(true)}>
               <CreateOutlinedIcon />
               Edit labels
             </button>
           </li>
+          <EditLabels
+            open={dialogIsOpen}
+            onClose={() => setDialogIsOpen(false)}
+            labels={labels}
+          />
         </ul>
       </section>
       <ul>

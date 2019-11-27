@@ -12,7 +12,7 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 
 import styles from "./Header.module.scss";
 import Search from "../../components/Search/Search";
-import Settings from "../../components/Modal/Settings/Settings";
+import Settings from "../Settings/Settings";
 import Menu from "../Menu/Menu";
 
 const Header = props => {
@@ -20,9 +20,10 @@ const Header = props => {
 
   return (
     <header className={styles.header}>
-      {isSettingsOpen && (
-        <Settings onCloseModal={() => setIsSettingsOpen(false)} />
-      )}
+      <Settings
+        open={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+      />
       <div>
         <Tooltip title="Main menu">
           <IconButton

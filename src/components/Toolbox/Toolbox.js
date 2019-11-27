@@ -15,7 +15,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import styles from "./Toolbox.module.scss";
 import ColorPicker from "../ColorPicker/ColorPicker";
-import Dropdown from "../Dropdown/Dropdown";
+import Menu from "../Menu/Menu";
 
 const Toolbox = ({
   activeColor,
@@ -62,10 +62,11 @@ const Toolbox = ({
               <UnarchiveOutlinedIcon />
             </IconButton>
           </Tooltip>
-          <Dropdown
-            mainButton={<MoreVertIcon />}
+          <Menu
+            icon={<MoreVertIcon />}
             options={dropdownOptions}
-          ></Dropdown>
+            title='More'
+          ></Menu>
 
           {isEdit && (
             <>

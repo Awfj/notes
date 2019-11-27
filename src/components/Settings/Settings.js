@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Modal from "../Modal";
+import Dialog from "@material-ui/core/Dialog";
 import styles from "./Settings.module.scss";
 
-const Settings = ({ onCloseModal }) => {
+const Settings = ({ open, onClose }) => {
   const handleSave = () => {
-    onCloseModal();
+    onClose();
   };
 
   return (
-    <Modal onCloseModal={onCloseModal}>
+    <Dialog open={open} onClose={onClose}>
       <section className={styles.Settings}>
         <h3>Settings</h3>
         <section>
@@ -36,11 +36,7 @@ const Settings = ({ onCloseModal }) => {
           </ul>
         </section>
         <footer>
-          <button
-            className={styles.cancel}
-            type="button"
-            onClick={onCloseModal}
-          >
+          <button className={styles.cancel} type="button" onClick={onClose}>
             Cancel
           </button>
           <button className={styles.save} type="button" onClick={handleSave}>
@@ -48,12 +44,13 @@ const Settings = ({ onCloseModal }) => {
           </button>
         </footer>
       </section>
-    </Modal>
+    </Dialog>
   );
 };
 
 Settings.propTypes = {
-  onCloseModal: PropTypes.func.isRequired
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default Settings;

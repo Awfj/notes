@@ -22,7 +22,7 @@ const Note = ({
   note,
   pinNote
 }) => {
-  const [noteIsEditable, setNoteIsEditable] = useState(false);
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const noteRef = createRef();
   const { id, title, content, color, labels, isPinned, status } = note;
 
@@ -41,18 +41,17 @@ const Note = ({
 
   return (
     <>
-      {noteIsEditable && (
-        <EditNote
-          note={note}
-          onSetNoteIsEditable={setNoteIsEditable}
-        />
-      )}
+      <EditNote
+        note={note}
+        open={dialogIsOpen}
+        onClose={() => setDialogIsOpen(false)}
+      />
       <div
         ref={noteRef}
         className={`${styles.Note} ${styles[color]}`}
         onMouseEnter={handleMouseHover}
         onMouseLeave={handleMouseHover}
-        onClick={() => setNoteIsEditable(true)}
+        onClick={() => setDialogIsOpen(true)}
       >
         <Toolbox
           activeColor={color}
