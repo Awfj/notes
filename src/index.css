@@ -62,3 +62,9 @@ dd {
 li {
   display: block;
 } */
+
+.MuiTooltip-tooltip {
+  font-size: .8rem;
+  font-weight: normal;
+  margin: 5px 0;
+}

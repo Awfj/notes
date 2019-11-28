@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { StylesProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -9,6 +10,14 @@ import Sidebar from "../Sidebar/Sidebar";
 import Home from "../FilterPage/Home";
 import Archive from "../FilterPage/Archive";
 import Bin from "../FilterPage/Bin";
+
+const theme = createMuiTheme({
+  props: {
+    MuiButtonBase: {
+      disableRipple: true
+    }
+  }
+});
 
 function App() {
   // console.warn('App')
@@ -25,40 +34,42 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-      <Router>
-        <CssBaseline />
-        <div
-          className={styles.App}
-          style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
-          // onClick={handleClose}
-        >
-          <Header
-            notesLayout={notesLayout}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
-            toggleNotesLayout={() =>
-              setNotesLayout(notesLayout === "list" ? "grid" : "list")
-            }
-            toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
-          />
-          <main>
-            {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
+      <ThemeProvider theme={theme}>
+        <Router>
+          <CssBaseline />
+          <div
+            className={styles.App}
+            style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
+            // onClick={handleClose}
+          >
+            <Header
+              notesLayout={notesLayout}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              toggleDarkTheme={() => setIsDarkThemeActive(!isDarkThemeActive)}
+              toggleNotesLayout={() =>
+                setNotesLayout(notesLayout === "list" ? "grid" : "list")
+              }
+              toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+            />
+            <main>
+              {window.innerWidth >= 1024 && isSidebarOpen && <Sidebar />}
 
-            <Switch>
-              <Route path="/home">
-                <Home notesLayout={notesLayout} />
-              </Route>
-              <Route path="/archive">
-                <Archive notesLayout={notesLayout} />
-              </Route>
-              <Route path="/bin">
-                <Bin notesLayout={notesLayout} />
-              </Route>
-            </Switch>
-          </main>
-        </div>
-      </Router>
+              <Switch>
+                <Route path="/home">
+                  <Home notesLayout={notesLayout} />
+                </Route>
+                <Route path="/archive">
+                  <Archive notesLayout={notesLayout} />
+                </Route>
+                <Route path="/bin">
+                  <Bin notesLayout={notesLayout} />
+                </Route>
+              </Switch>
+            </main>
+          </div>
+        </Router>
+      </ThemeProvider>
     </StylesProvider>
   );
 }

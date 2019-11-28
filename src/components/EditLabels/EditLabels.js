@@ -10,7 +10,7 @@ import ListItem from "@material-ui/core/ListItem";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
-import TextField from "@material-ui/core/TextField";
+import Input from "@material-ui/core/Input";
 import DoneIcon from "@material-ui/icons/Done";
 import ClearIcon from "@material-ui/icons/Clear";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -28,7 +28,7 @@ const EditLabels = ({ labels, open, onClose }) => {
                 <ClearIcon />
               </IconButton>
             </Tooltip>
-            <TextField id="create-label" autoFocus label="Create new label" />
+            <Input id="create-label" autoFocus placeholder="Create new label" />
             <Tooltip title="Create label">
               <IconButton aria-label="Create label">
                 <DoneIcon />
@@ -43,7 +43,7 @@ const EditLabels = ({ labels, open, onClose }) => {
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
-                <TextField id="label" label={label.label} />
+                <Input id="label" placeholder='Enter label name' />
                 <Tooltip title="Rename label">
                   <IconButton aria-label="Rename label">
                     <CreateIcon />

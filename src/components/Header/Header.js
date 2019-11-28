@@ -48,7 +48,7 @@ const Header = props => {
             <SearchIcon />
           </IconButton>
         )}
-        <Tooltip title="Refresh">
+        <Tooltip title="Refresh" open={true}>
           <IconButton aria-label="Refresh">
             <RefreshIcon />
           </IconButton>
