@@ -16,7 +16,7 @@ import Settings from "../Settings/Settings";
 import Menu from "../Menu/Menu";
 
 const Header = props => {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(true);
 
   return (
     <header className={styles.header}>
@@ -48,7 +48,7 @@ const Header = props => {
             <SearchIcon />
           </IconButton>
         )}
-        <Tooltip title="Refresh" open={true}>
+        <Tooltip title="Refresh">
           <IconButton aria-label="Refresh">
             <RefreshIcon />
           </IconButton>

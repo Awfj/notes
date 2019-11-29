@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Dialog from "@material-ui/core/Dialog";
+
 import styles from "./Settings.module.scss";
+import Button from "../Button/Button";
 
 const Settings = ({ open, onClose }) => {
-  const handleSave = () => {
-    onClose();
-  };
+  const handleSave = () => onClose();
 
   return (
     <Dialog open={open} onClose={onClose}>
@@ -36,12 +36,12 @@ const Settings = ({ open, onClose }) => {
           </ul>
         </section>
         <footer>
-          <button className={styles.cancel} type="button" onClick={onClose}>
+          <Button color="primary" onClick={onClose} variant="text">
             Cancel
-          </button>
-          <button className={styles.save} type="button" onClick={handleSave}>
+          </Button>
+          <Button color="secondary" onClick={handleSave} variant="text">
             Save
-          </button>
+          </Button>
         </footer>
       </section>
     </Dialog>

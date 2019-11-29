@@ -27,7 +27,6 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    // <ThemeProvider theme={theme} >
     <div
       className={styles.container}
       onMouseEnter={() => setIsOpen(true)}
@@ -61,7 +60,6 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
         </div>
       )}
     </div>
-    /* </ThemeProvider> */
   );
 };
 

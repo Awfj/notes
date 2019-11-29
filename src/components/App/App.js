@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+// import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { StylesProvider } from "@material-ui/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
+// import CssBaseline from "@material-ui/core/CssBaseline";
 
 import styles from "./App.module.scss";
 import Header from "../Header/Header";
@@ -11,13 +11,29 @@ import Home from "../FilterPage/Home";
 import Archive from "../FilterPage/Archive";
 import Bin from "../FilterPage/Bin";
 
-const theme = createMuiTheme({
-  props: {
-    MuiButtonBase: {
-      disableRipple: true
-    }
-  }
-});
+const ThemeContext = createContext('light');
+
+// const theme = createMuiTheme({
+//   props: {
+//     MuiButtonBase: {
+//       disableRipple: true
+//     }
+//   }
+// });
+
+// theme.overrides = {
+//   MuiTooltip: {
+//     tooltip: {
+//       fontSize: "0.7rem",
+//       fontWeight: "normal"
+//     },
+//     tooltipPlacementBottom: {
+//       [theme.breakpoints.up("sm")]: {
+//         margin: "5px 0"
+//       }
+//     }
+//   }
+// };
 
 function App() {
   // console.warn('App')
@@ -34,9 +50,9 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-      <ThemeProvider theme={theme}>
+      <ThemeContext.Provider theme={'dark'}>
         <Router>
-          <CssBaseline />
+          {/* <CssBaseline /> */}
           <div
             className={styles.App}
             style={isDarkThemeActive ? { backgroundColor: "pink" } : null}
@@ -69,7 +85,7 @@ function App() {
             </main>
           </div>
         </Router>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     </StylesProvider>
   );
 }

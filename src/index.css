@@ -1,4 +1,4 @@
-/* @import-normalize; */
+@import-normalize;
 
 html {
   box-sizing: border-box;
@@ -11,25 +11,13 @@ html {
 
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#modal-root {
-  position: relative;
-  z-index: 999;
-}
-
-/* a {
+a {
   text-decoration: none;
-}
-
-button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
 }
 
 input,
@@ -61,10 +49,4 @@ dd {
 
 li {
   display: block;
-} */
-
-.MuiTooltip-tooltip {
-  font-size: .8rem;
-  font-weight: normal;
-  margin: 5px 0;
 }
