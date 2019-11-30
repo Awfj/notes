@@ -16,10 +16,16 @@ import { getLabels } from "../../redux/selectors/labels";
 import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
 
 const Sidebar = ({ labels, addLabel, deleteLabel }) => {
-  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [dialogIsOpen, setDialogIsOpen] = useState(true);
   // console.warn('Sidebar')
   return (
     <aside className={styles.Sidebar}>
+      <EditLabels
+        open={dialogIsOpen}
+        onClose={() => setDialogIsOpen(false)}
+        labels={labels}
+      />
+
       <ul>
         <li>
           <Link to="/home">
@@ -52,11 +58,6 @@ const Sidebar = ({ labels, addLabel, deleteLabel }) => {
               Edit labels
             </button>
           </li>
-          <EditLabels
-            open={dialogIsOpen}
-            onClose={() => setDialogIsOpen(false)}
-            labels={labels}
-          />
         </ul>
       </section>
       <ul>

@@ -1,0 +1,21 @@
+.root {
+  padding: 1.2em;
+}
+
+.content {
+  .fieldset {
+    display: flex;
+    align-items: center;
+  }
+  .fieldset:not(:last-child) {
+    margin-bottom: 1em;
+  }
+  input {
+    font-size: 0.875rem;
+    margin: 0 1.3em;
+    &:focus {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      outline: none;
+    }
+  }
+}

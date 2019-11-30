@@ -24,6 +24,7 @@ const Header = props => {
         open={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}
       />
+
       <div>
         <Tooltip title="Main menu">
           <IconButton

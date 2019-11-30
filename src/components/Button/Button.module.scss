@@ -1,3 +1,15 @@
+@mixin backgroundColor($hover, $active, $focus) {
+  &:hover {
+    background-color: $hover;
+  }
+  &:active {
+    background-color: $active;
+  }
+  &:focus {
+    background-color: $focus;
+  }
+}
+
 .root {
   background-color: transparent;
   border: none;
@@ -11,34 +23,41 @@
 }
 
 // variants
+.icon {
+  padding-right: 0;
+  padding-left: 0;
+  svg {
+    display: block;
+  }
+}
+
 .text {
   border-radius: 4px;
   padding: 0.6em 1.7em;
 }
 
 // colors
+.default {
+  color: #747474;
+  &:hover {
+    color: #202020;
+  }
+}
+
 .primary {
   color: #272727;
-  &:hover {
-    background-color: rgba(95, 99, 104, 0.039);
-  }
-  &:active {
-    background-color: rgba(95, 99, 104, 0.161);
-  }
-  &:focus {
-    background-color: rgba(95, 99, 104, 0.122);
-  }
+  @include backgroundColor(
+    rgba(95, 99, 104, 0.039),
+    rgba(95, 99, 104, 0.161),
+    rgba(95, 99, 104, 0.122)
+  );
 }
 
 .secondary {
   color: #1a73e8;
-  &:hover {
-    background-color: rgba(66, 133, 244, 0.039);
-  }
-  &:active {
-    background-color: rgba(66, 133, 244, 0.161);
-  }
-  &:focus {
-    background-color: rgba(66, 133, 244, 0.122);
-  }
+  @include backgroundColor(
+    rgba(66, 133, 244, 0.039),
+    rgba(66, 133, 244, 0.161),
+    rgba(66, 133, 244, 0.122)
+  );
 }

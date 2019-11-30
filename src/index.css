@@ -26,6 +26,11 @@ textarea {
   font-family: inherit;
 }
 
+fieldset {
+  padding: 0;
+  border: none;
+}
+
 h1,
 h2,
 h3,
@@ -46,13 +51,11 @@ ul {
 h2 {
   font-size: 1.375rem;
   font-weight: 400;
-  margin-bottom: 1.5em;
 }
 
 h3 {
   font-size: 0.875rem;
   font-weight: 500;
-  margin-bottom: 1.3em;
 }
 
 ul {

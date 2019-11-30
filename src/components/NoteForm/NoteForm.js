@@ -66,13 +66,11 @@ const NoteForm = ({
         onPinNote={onSetIsPinned}
       >
         <NoteFormField
-          name="title"
           placeholder="Title"
           value={title}
           onSetField={e => onSetTitle(e.target.value)}
         />
         <NoteFormField
-          name="content"
           placeholder="Take a note..."
           value={content}
           onSetField={e => onSetContent(e.target.value)}
