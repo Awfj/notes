@@ -5,6 +5,9 @@
   font-family: inherit;
   font-size: 0.875rem;
   font-weight: 500;
+  &:focus {
+    outline: none;
+  }
 }
 
 // variants
@@ -22,6 +25,9 @@
   &:active {
     background-color: rgba(95, 99, 104, 0.161);
   }
+  &:focus {
+    background-color: rgba(95, 99, 104, 0.122);
+  }
 }
 
 .secondary {
@@ -31,5 +37,8 @@
   }
   &:active {
     background-color: rgba(66, 133, 244, 0.161);
+  }
+  &:focus {
+    background-color: rgba(66, 133, 244, 0.122);
   }
 }

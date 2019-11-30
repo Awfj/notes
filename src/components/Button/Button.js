@@ -24,7 +24,7 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.oneOf(["default", "primary", "secondary"]),
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(['button', 'submit']),
+  type: PropTypes.oneOf(["button", "submit", "reset"]),
   variant: PropTypes.oneOf(["icon", "text"])
 };
 

@@ -16,7 +16,7 @@ import Settings from "../Settings/Settings";
 import Menu from "../Menu/Menu";
 
 const Header = props => {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(true);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
     <header className={styles.header}>

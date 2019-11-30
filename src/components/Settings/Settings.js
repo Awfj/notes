@@ -4,16 +4,17 @@ import Dialog from "@material-ui/core/Dialog";
 
 import styles from "./Settings.module.scss";
 import Button from "../Button/Button";
+import DialogActions from "../Dialog/DialogActions/DialogActions";
 
 const Settings = ({ open, onClose }) => {
   const handleSave = () => onClose();
 
   return (
     <Dialog open={open} onClose={onClose}>
-      <section className={styles.Settings}>
-        <h3>Settings</h3>
-        <section>
-          <h4>Notes and lists</h4>
+      <section className={styles.root}>
+        <h2>Settings</h2>
+        <section className={styles.content}>
+          <h3>Notes and lists</h3>
           <ul>
             <li>
               <label htmlFor="newItems">Add new items to the bottom</label>
@@ -35,14 +36,14 @@ const Settings = ({ open, onClose }) => {
             </li>
           </ul>
         </section>
-        <footer>
+        <DialogActions>
           <Button color="primary" onClick={onClose} variant="text">
             Cancel
           </Button>
           <Button color="secondary" onClick={handleSave} variant="text">
             Save
           </Button>
-        </footer>
+        </DialogActions>
       </section>
     </Dialog>
   );

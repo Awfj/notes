@@ -1,6 +1,6 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import { StylesProvider } from "@material-ui/styles";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 
@@ -11,29 +11,35 @@ import Home from "../FilterPage/Home";
 import Archive from "../FilterPage/Archive";
 import Bin from "../FilterPage/Bin";
 
-const ThemeContext = createContext('light');
+const theme = createMuiTheme({
+  props: {
+    MuiButtonBase: {
+      disableRipple: true
+    }
+  }
+});
 
-// const theme = createMuiTheme({
-//   props: {
-//     MuiButtonBase: {
-//       disableRipple: true
-//     }
-//   }
-// });
-
-// theme.overrides = {
-//   MuiTooltip: {
-//     tooltip: {
-//       fontSize: "0.7rem",
-//       fontWeight: "normal"
-//     },
-//     tooltipPlacementBottom: {
-//       [theme.breakpoints.up("sm")]: {
-//         margin: "5px 0"
-//       }
-//     }
-//   }
-// };
+theme.overrides = {
+  MuiTooltip: {
+    tooltip: {
+      fontSize: "0.7rem",
+      fontWeight: "normal"
+    },
+    tooltipPlacementBottom: {
+      [theme.breakpoints.up("sm")]: {
+        margin: "5px 0"
+      }
+    }
+  },
+  MuiPaper: {
+    root: {
+      color: "#3c4043"
+    },
+    rounded: {
+      borderRadius: "8px"
+    }
+  }
+};
 
 function App() {
   // console.warn('App')
@@ -50,7 +56,7 @@ function App() {
 
   return (
     <StylesProvider injectFirst>
-      <ThemeContext.Provider theme={'dark'}>
+      <ThemeProvider theme={theme}>
         <Router>
           {/* <CssBaseline /> */}
           <div
@@ -85,7 +91,7 @@ function App() {
             </main>
           </div>
         </Router>
-      </ThemeContext.Provider>
+      </ThemeProvider>
     </StylesProvider>
   );
 }
