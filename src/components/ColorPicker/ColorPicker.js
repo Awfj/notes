@@ -5,6 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import PaletteOutlinedIcon from "@material-ui/icons/PaletteOutlined";
 
 import styles from "./ColorPicker.module.scss";
 
@@ -23,7 +24,7 @@ const COLORS = [
   "grey"
 ];
 
-const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
+const ColorPicker = ({ activeColor, onChangeNoteColor }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -33,7 +34,9 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
       onMouseLeave={() => setIsOpen(false)}
     >
       <Tooltip title="Change colour">
-        <IconButton>{mainButton}</IconButton>
+        <IconButton>
+          <PaletteOutlinedIcon />
+        </IconButton>
       </Tooltip>
 
       {isOpen && (
@@ -45,7 +48,9 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
                   <IconButton
                     // classes={{root: styles[color]}}
                     className={styles[color]}
-                    onClick={() => onChangeNoteColor(color)}
+                    onClick={() => {
+                      console.log(color)
+                      onChangeNoteColor(color)}}
                   >
                     {activeColor === color ? (
                       <CheckCircleOutlineIcon />
@@ -64,9 +69,8 @@ const ColorPicker = ({ mainButton, onChangeNoteColor, activeColor }) => {
 };
 
 ColorPicker.propTypes = {
-  mainButton: PropTypes.element.isRequired,
-  onChangeNoteColor: PropTypes.func.isRequired,
-  activeColor: PropTypes.string.isRequired
+  activeColor: PropTypes.string.isRequired,
+  onChangeNoteColor: PropTypes.func.isRequired
 };
 
 export default ColorPicker;

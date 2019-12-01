@@ -16,7 +16,7 @@ import { getLabels } from "../../redux/selectors/labels";
 import { addLabel, deleteLabel } from "../../redux/actions/actionCreators";
 
 const Sidebar = ({ labels, addLabel, deleteLabel }) => {
-  const [dialogIsOpen, setDialogIsOpen] = useState(true);
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
   // console.warn('Sidebar')
   return (
     <aside className={styles.Sidebar}>

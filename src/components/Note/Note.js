@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import styles from "./Note.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
 import EditNote from "../EditNote/EditNote";
+import ColorPicker from "../ColorPicker/ColorPicker";
 
 import {
   addNote,
@@ -46,6 +47,7 @@ const Note = ({
         open={dialogIsOpen}
         onClose={() => setDialogIsOpen(false)}
       />
+
       <div
         ref={noteRef}
         className={`${styles.Note} ${styles[color]}`}
@@ -54,7 +56,12 @@ const Note = ({
         onClick={() => setDialogIsOpen(true)}
       >
         <Toolbox
-          activeColor={color}
+          ColorPicker={
+            <ColorPicker
+              activeColor={color}
+              onChangeNoteColor={newColor => changeNoteColor(id, newColor)}
+            />
+          }
           dropdownOptions={[
             ["Delete note", () => deleteNote(id)],
             ["Add label"],
@@ -65,7 +72,6 @@ const Note = ({
           ]}
           isPinned={isPinned}
           onArchiveNote={() => archiveNote(id)}
-          onChangeNoteColor={newColor => changeNoteColor(id, newColor)}
           onPinNote={() => pinNote(id)}
           role="view"
         >

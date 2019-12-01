@@ -2,6 +2,7 @@ import React, { createRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./NoteForm.module.scss";
 import Toolbox from "../Toolbox/Toolbox";
+import ColorPicker from "../ColorPicker/ColorPicker";
 import NoteFormField from "../NoteFormField/NoteFormField";
 // import NoteBorder from "../NoteBorder/NoteBorder";
 
@@ -57,13 +58,14 @@ const NoteForm = ({
       className={`${styles.NoteForm} ${styles[color]}`}
     >
       <Toolbox
-        activeColor={color}
         dropdownOptions={dropdownOptions}
         role="edit"
         isPinned={isPinned}
         onArchiveNote={archiveNote}
-        onChangeNoteColor={onSetColor}
         onPinNote={onSetIsPinned}
+        ColorPicker={
+          <ColorPicker activeColor={color} onChangeNoteColor={onSetColor} />
+        }
       >
         <NoteFormField
           placeholder="Title"

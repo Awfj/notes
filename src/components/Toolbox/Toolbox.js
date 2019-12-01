@@ -5,7 +5,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
-import PaletteOutlinedIcon from "@material-ui/icons/PaletteOutlined";
 import UnarchiveOutlinedIcon from "@material-ui/icons/UnarchiveOutlined";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -14,18 +13,17 @@ import RedoIcon from "@material-ui/icons/RedoOutlined";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import styles from "./Toolbox.module.scss";
-import ColorPicker from "../ColorPicker/ColorPicker";
+// import ColorPicker from "../ColorPicker/ColorPicker";
 import Menu from "../Menu/Menu";
 
 const Toolbox = ({
-  activeColor,
   children,
   dropdownOptions,
   isPinned,
   onArchiveNote,
-  onChangeNoteColor,
   onPinNote,
-  role
+  role,
+  ColorPicker
 }) => {
   const isEdit = role === "edit";
   const isView = role === "view";
@@ -52,11 +50,7 @@ const Toolbox = ({
               <AddAlertOutlinedIcon />
             </IconButton>
           </Tooltip>
-          <ColorPicker
-            activeColor={activeColor}
-            mainButton={<PaletteOutlinedIcon />}
-            onChangeNoteColor={onChangeNoteColor}
-          />
+          {ColorPicker}
           <Tooltip title="Archive">
             <IconButton aria-label="Archive" onClick={onArchiveNote}>
               <UnarchiveOutlinedIcon />
@@ -65,7 +59,7 @@ const Toolbox = ({
           <Menu
             icon={<MoreVertIcon />}
             options={dropdownOptions}
-            title='More'
+            title="More"
           ></Menu>
 
           {isEdit && (
@@ -90,14 +84,13 @@ const Toolbox = ({
 };
 
 Toolbox.propTypes = {
-  activeColor: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   dropdownOptions: PropTypes.array.isRequired,
   isPinned: PropTypes.bool.isRequired,
   onArchiveNote: PropTypes.func.isRequired,
-  onChangeNoteColor: PropTypes.func.isRequired,
   onPinNote: PropTypes.func.isRequired,
-  role: PropTypes.string.isRequired
+  role: PropTypes.string.isRequired,
+  ColorPicker: PropTypes.element.isRequired
 };
 
 export default Toolbox;
